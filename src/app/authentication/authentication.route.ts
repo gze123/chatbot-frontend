@@ -1,8 +1,8 @@
 export const AUTH_ROUTE = [
   {
-    path: 'auth',
-    redirectTo: '/login',
-    pathMatch: 'full'
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'prefix'
   },
   {
     path: 'login',

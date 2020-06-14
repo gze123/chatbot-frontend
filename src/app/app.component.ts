@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (!localStorage.getItem('jwtToken')) {
-      this._router.navigate(['/auth/login'])
+      this._router.navigate(['/auth/login']).then();
     }
 
   }

@@ -1,9 +1,9 @@
 {
-  "name": "final-year-project-frontend",
+  "name": "chatbot-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +24,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@ngxs/store": "^3.6.2",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "ng-zorro-antd": "^8.5.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

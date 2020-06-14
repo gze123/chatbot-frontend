@@ -1,0 +1,21 @@
+<nz-spin [nzSpinning]="pageLoading">
+  <div class="container">
+    <div>
+      <nz-page-header
+        class="site-page-header"
+        nzTitle="{{'frequently.asked.question' | translate}}">
+      </nz-page-header>
+    </div>
+    <div class="content-faq">
+      <div *ngFor="let faqQuestionAnswer of faqQuestionAndAnswer; let i = index">
+        <ul nz-menu nzMode="inline">
+          <li [nzOpen]="false" nz-submenu nzIcon="question" nzTitle="{{faqQuestionAnswer.question}}">
+            <ul>
+              <li nz-menu-group nzTitle="{{faqQuestionAnswer.answer}}">
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nz-spin>

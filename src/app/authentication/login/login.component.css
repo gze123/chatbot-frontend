@@ -1,0 +1,12 @@
+.auth-card {
+  margin: auto;
+}
+
+nz-card {
+  width: 100%;
+  border-radius: 5%;
+}
+
+.login-registration-form {
+  /*height: 55vh;*/
+}

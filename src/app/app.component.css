@@ -1,0 +1,16 @@
+.center {
+  display: flex;
+  background-color: #000000;
+  justify-content: center;
+  height: 100vh;
+  background-image: linear-gradient(blue, #023963);
+}
+
+.login-registration {
+  align-self: center;
+  width: 470px;
+}
+
+.center h1 {
+  align-self: center;
+}

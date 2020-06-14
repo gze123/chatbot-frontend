@@ -1,0 +1,12 @@
+<a (click)="showModal()" [nzType]="'link'" nz-button><span>{{'show.image' | translate}}</span></a>
+<nz-modal
+  (nzOnOk)="closeModel()" [(nzVisible)]="isVisible" [nzCancelText]="null" nzClosable="false"
+  nzTitle="{{'image' | translate}}" nzWidth="650">
+  <nz-spin [nzSpinning]="!imageUrl">
+
+  </nz-spin>
+  <!--  <p *ngIf="!imageUrl">Loading...</p>-->
+  <img *ngIf="imageUrl" [src]=imageUrl alt="" style="height:400px;">
+</nz-modal>
+
+

@@ -1,0 +1,23 @@
+<nz-card [nzBordered]="true" nzTitle="{{'create.forum' | translate}}">
+  <form (ngSubmit)="submitForm()" [formGroup]="createForumForm" [nzLayout]="'horizontal'" nz-form>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your title!">
+        <nz-input-group>
+          <input formControlName="title" nz-input placeholder="{{'title' | translate}}"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your description for the title!">
+        <nz-input-group>
+          <input formControlName="description" nz-input placeholder="{{'description' | translate}}"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button [disabled]="!createForumForm.valid" nz-button nzType="primary">{{'create' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>

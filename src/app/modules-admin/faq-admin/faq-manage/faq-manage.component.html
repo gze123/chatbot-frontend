@@ -1,0 +1,37 @@
+<nz-table #editRowTable [nzData]="faqData" [nzLoading]="pageLoading" nzBordered nzTableLayout="fixed">
+  <thead>
+  <tr>
+    <th nzWidth="40%">{{'question' | translate}}</th>
+    <th nzWidth="40%">{{'answer' | translate}}</th>
+    <th nzWidth="20%">{{'action' | translate}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of editRowTable.data">
+    <ng-container *ngIf="!editCache[data._id].edit; else editTemplate">
+      <td>{{ data.question }}</td>
+      <td>{{ data.answer }}</td>
+      <td>
+        <a (click)="startEdit(data._id)" style="float: left">{{'edit' | translate}}</a>
+        <a (nzOnConfirm)="deleteRow(data._id)" nz-popconfirm
+           nzPopconfirmTitle="{{'sure.to.delete' | translate}}"
+           style="float: right"
+        >{{'delete' | translate}}</a>
+      </td>
+    </ng-container>
+    <ng-template #editTemplate>
+      <td><input [(ngModel)]="editCache[data._id].data.question" nz-input type="text"/></td>
+      <td><input [(ngModel)]="editCache[data._id].data.answer" nz-input type="text"/></td>
+      <td>
+        <a (click)="saveEdit(data._id)" class="save" style="float: left">
+          {{'save' | translate}}
+        </a>
+        <a (nzOnConfirm)="cancelEdit(data._id)" nz-popconfirm nzTitle="{{'sure.to.cancel' | translate}}"
+           style="float: right">
+          {{'cancel' | translate}}
+        </a>
+      </td>
+    </ng-template>
+  </tr>
+  </tbody>
+</nz-table>

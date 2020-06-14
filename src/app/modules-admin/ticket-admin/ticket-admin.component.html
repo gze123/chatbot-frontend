@@ -1,0 +1,44 @@
+<nz-tabset>
+  <nz-tab nzTitle="{{'manage.ticket' | translate}}">
+    <!--    <form (ngSubmit)="search()" [formGroup]="searchTicketForm" [nzLayout]="'inline'" nz-form>-->
+    <!--      <nz-form-item>-->
+    <!--        <nz-form-control>-->
+    <!--          <nz-input-group nzPrefixIcon="search">-->
+    <!--            <input formControlName="ticketNo" nz-input placeholder="{{'ticket.no'| translate}}"/>-->
+    <!--          </nz-input-group>-->
+    <!--        </nz-form-control>-->
+    <!--      </nz-form-item>-->
+    <!--      <nz-form-item>-->
+    <!--        <nz-form-control>-->
+    <!--          <button nz-button nzType="primary">{{'search' | translate}}</button>-->
+    <!--        </nz-form-control>-->
+    <!--      </nz-form-item>-->
+    <!--    </form>-->
+
+    <nz-table #ticketTable [nzData]="ticketData" [nzLoading]="pageLoading">
+      <thead>
+      <tr>
+        <th>{{'id' | translate}}</th>
+        <th>{{'title' | translate}}</th>
+        <th>{{'status' | translate}}</th>
+        <th>{{'created.date' | translate}}</th>
+        <!--        <th>{{'last.updated.date' | translate}}</th>-->
+        <th>{{'view' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of ticketTable.data">
+        <td>{{ data._id}}</td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.status }}</td>
+        <td>{{ data.createdAt | date}}</td>
+        <!--        <td>{{ data.lastUpdatedDate}}</td>-->
+        <td>
+          <app-ticket-detail (reloadTable)="reloadTable()" [ticketDetail]="data"></app-ticket-detail>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+
+  </nz-tab>
+</nz-tabset>

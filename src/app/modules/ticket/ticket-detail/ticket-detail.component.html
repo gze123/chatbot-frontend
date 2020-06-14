@@ -1,0 +1,82 @@
+<a (click)="showModal()" [nzType]="'link'" nz-button><span>{{'view' | translate}}</span></a>
+<nz-modal (nzOnOk)="closeModel()"
+          [(nzVisible)]="isVisible" [nzCancelText]="null" nzClosable="false"
+          nzTitle="{{'ticket.detail' | translate}}: {{ticketDetail._id}}"
+          nzWidth="900">
+  <div nz-row nzAlign="middle" nzJustify="space-around">
+    <div nz-col nzSpan="15">
+      <nz-card nzTitle="{{'ticket.title' | translate}}">
+        <h4>{{'description' | translate}}:</h4>
+        <p>
+          {{ticketDetail.description}}
+        </p>
+
+        <nz-divider></nz-divider>
+
+        <div style="float: left">
+          {{'category' | translate}} : {{ticketDetail.category}}
+        </div>
+        <div style="float: right">
+          {{'assigned.to' | translate}} : {{ticketDetail.assignedTo}}
+        </div>
+      </nz-card>
+
+      <nz-card nzTitle="{{'resolution' | translate}}" style="margin-top: 4px">
+        <div *ngIf="ticketDetail.resolution">
+          <h4>{{'solution' | translate}}:</h4>
+          <p>
+            {{ticketDetail.resolution.solution}}
+          </p>
+          <nz-divider></nz-divider>
+          <div nz-row>
+            <div nz-col nzSpan="16">
+              {{'resolved.by' | translate}} : {{ticketDetail.resolution.resolvedBy}}
+            </div>
+            <div nz-col nzSpan="8">
+              <div style="float: right">
+                {{'date' | translate}} : {{ticketDetail.resolution.resolvedDate}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!ticketDetail.resolution">
+          <div *ngIf="getUserRole()">
+            <nz-form-item>
+              <textarea [(ngModel)]="solution" nz-input rows="4"></textarea>
+            </nz-form-item>
+            <nz-form-item>
+              <button (click)="submitSolution()" [nzLoading]="" nz-button
+                      nzType="primary">{{'submit'|translate}}</button>
+            </nz-form-item>
+
+          </div>
+          <div *ngIf="!getUserRole()">
+            <p>
+              {{'no.resolution.yet' | translate}}
+            </p>
+          </div>
+        </div>
+
+      </nz-card>
+    </div>
+    <div nz-col nzOffset="1" nzSpan="8">
+      <nz-card nzTitle="{{'transaction.log' | translate}}">
+        <div *ngFor="let transactionLog of ticketDetail.transactionLog">
+          <nz-card style="margin-bottom: 4px">
+            <p>
+              {{'status' | translate}} : {{transactionLog.status}}
+            </p>
+            <p *ngIf="transactionLog.assignedTo">
+              {{'assigned.to' | translate}} : {{transactionLog.assignedTo}}
+            </p>
+            <p>
+              {{'date' | translate}} : {{transactionLog.date}}
+            </p>
+          </nz-card>
+        </div>
+      </nz-card>
+    </div>
+  </div>
+
+</nz-modal>
+

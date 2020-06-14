@@ -1,0 +1,16 @@
+<div class="auth-card">
+  <nz-card>
+    <nz-card-tab>
+      <nz-tabset [(nzSelectedIndex)]="index" nzSize="large">
+        <nz-tab nzTitle="{{'login' | translate}}"></nz-tab>
+        <nz-tab nzTitle="{{'register' | translate}}"></nz-tab>
+      </nz-tabset>
+    </nz-card-tab>
+    <div *ngIf="index==0" class="login-registration-form">
+      <app-login-form></app-login-form>
+    </div>
+    <div *ngIf="index==1" class="login-registration-form">
+      <app-register-form></app-register-form>
+    </div>
+  </nz-card>
+</div>

@@ -1,0 +1,101 @@
+<nz-layout class="app-layout">
+  <nz-sider [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+    class="menu-sidebar"
+    nzBreakpoint="md"
+    nzCollapsible
+    nzWidth="256px">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img alt="logo" src="https://ng.ant.design/assets/img/logo.svg">
+        <h1>Chatbot & Ticketing</h1>
+      </a>
+    </div>
+    <div *ngIf="studentAccess">
+      <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline" nzTheme="dark">
+        <li [nzTitle]="isCollapsed ? ('home' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
+                                                                nzTooltipPlacement="right">
+          <i nz-icon nzType="home"></i>
+          <span>{{'home' | translate}}</span>
+          <a routerLink="/student/home"></a>
+        </li>
+        <li [nzTitle]="isCollapsed ? ('forum' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
+                                                                 nzTooltipPlacement="right">
+          <i nz-icon nzTheme="outline" nzType="team"></i>
+          <span>{{'forum' | translate}}</span>
+          <a routerLink="/student/forum/title"></a>
+        </li>
+        <li [nzTitle]="isCollapsed ? ('faq' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
+                                                               nzTooltipPlacement="right">
+          <i nz-icon nzType="question-circle"></i>
+          <span>{{'faq' | translate}}</span>
+          <a routerLink="/student/faq"></a>
+        </li>
+        <li [nzTitle]="isCollapsed ? ('lost.and.found' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
+                                                                          nzTooltipPlacement="right">
+          <i nz-icon nzType="file-search"></i>
+          <span>{{'lost.and.found' | translate}}</span>
+          <a routerLink="/student/lost-and-found"></a>
+        </li>
+        <!--        <li [nzTitle]="isCollapsed ? ('news.and.announcement' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter-->
+        <!--                                                                                 nzTooltipPlacement="right">-->
+        <!--          <i nz-icon nzType="alert"></i>-->
+        <!--          <span>{{'news.and.announcement' | translate}}</span>-->
+        <!--          <a routerLink="/student/news-and-announcement"></a>-->
+        <!--        </li>-->
+        <li [nzTitle]="isCollapsed ? ('my.tickets' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
+                                                                      nzTooltipPlacement="right">
+          <i nz-icon nzType="wallet"></i>
+          <span>{{'my.tickets' | translate}}</span>
+          <a routerLink="/student/my-tickets"></a>
+        </li>
+      </ul>
+    </div>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span (click)="isCollapsed = !isCollapsed" class="header-trigger">
+          <i [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            class="trigger"
+            nz-icon
+          ></i>
+        </span>
+        <a [nzDropdownMenu]="menu" nz-dropdown style="right: -90%">
+          {{username}}
+          <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>
+              <a (click)="logout()" [nzType]="'link'" nz-button>
+                <span>{{'logout' | translate}}</span>
+              </a>
+            </li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <nz-spin [nzSpinning]="pageLoading">
+          <router-outlet></router-outlet>
+        </nz-spin>
+      </div>
+      <!--      <div *ngIf="_router.url !== '/home'">-->
+      <!--        <nz-affix-->
+      <!--          (click)="openChatbot()"-->
+      <!--          [nzOffsetBottom]="nzOffsetBottom"-->
+      <!--          style="-->
+      <!--          width: 786px;-->
+      <!--          height: 42px;"-->
+      <!--        >-->
+      <!--          <button nz-button nzShape="circle" nzSize="large" nzType="primary" style="float:right; left: 0;">-->
+      <!--            <i nz-icon nzType="message"></i>-->
+      <!--          </button>-->
+      <!--        </nz-affix>-->
+      <!--      </div>-->
+    </nz-content>
+  </nz-layout>
+
+</nz-layout>

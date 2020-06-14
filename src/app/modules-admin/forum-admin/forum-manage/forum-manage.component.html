@@ -1,0 +1,114 @@
+<nz-spin [nzSpinning]="pageLoading">
+  <div>
+    <div *ngIf="isAdminOrAuthor(forumDetail.createdBy); else studentTemplate">
+      <ng-container *ngIf="!showUpdate; else editTemplate">
+        <h3>
+          {{ forumDetail.title }}
+        </h3>
+        <p>
+          {{ forumDetail.description }}
+        </p>
+        <nz-form-item>
+          <button (click)="updateForum()" nz-button nzType="primary">
+            {{'update' | translate}}
+          </button>
+          <button (click)="deleteForum(forumDetail._id)" nz-button nzDanger nzType="default" style="margin-left: 4px">
+            {{'delete' | translate}}
+          </button>
+        </nz-form-item>
+      </ng-container>
+    </div>
+
+    <ng-template #studentTemplate>
+      <ng-container>
+        <h3>
+          {{ forumDetail.title }}
+        </h3>
+        <p>
+          {{ forumDetail.description }}
+        </p>
+      </ng-container>
+    </ng-template>
+
+    <ng-template #editTemplate>
+      <nz-form-item>
+        <nz-form-label>{{'title' | translate}}</nz-form-label>
+        <nz-form-control>
+          <input [(ngModel)]="forumDetail.title" nz-input type="text"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>{{'description'|translate}}</nz-form-label>
+        <nz-form-control>
+          <input [(ngModel)]="forumDetail.description" nz-input type="text"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <button (click)="saveUpdate()" *ngIf="showUpdate" nz-button nzType="primary">
+          {{'save' | translate}}
+        </button>
+        <button (click)="deleteForum(forumDetail._id)" nz-button nzDanger nzType="default" style="margin-left: 4px">
+          {{'delete' | translate}}
+        </button>
+      </nz-form-item>
+    </ng-template>
+
+
+    <nz-list>
+    </nz-list>
+    <div *ngFor="let data of commentData; let i = index">
+      <ng-template [ngTemplateOutletContext]="{ comment: data }" [ngTemplateOutlet]="commentTemplateRef"></ng-template>
+    </div>
+    <ng-template #commentTemplateRef let-comment="comment">
+      <nz-comment [nzAuthor]="comment.username" [nzDatetime]="comment.createdAt | date">
+        <nz-avatar [nzSrc]="comment.avatar" nz-comment-avatar nzIcon="user"></nz-avatar>
+        <nz-comment-content *ngIf="!editCache[comment._id].edit">
+          <p>{{ comment.content }}</p>
+        </nz-comment-content>
+
+        <nz-form-control *ngIf="editCache[comment._id].edit">
+          <nz-form-item>
+            <textarea [(ngModel)]="comment.content" nz-input></textarea>
+          </nz-form-item>
+        </nz-form-control>
+
+        <!--        <nz-comment-action><a (click)="replyTo(comment._id)">{{'reply.to' | translate}}</a></nz-comment-action>-->
+        <nz-comment-action *ngIf="isEditable(comment.createdBy)">
+          <a (click)="editComment(comment._id)" *ngIf="!editCache[comment._id].edit">{{'edit' | translate}}</a>
+          <a (click)="saveComment(comment._id, comment.content)"
+             *ngIf="editCache[comment._id].edit">{{'save' | translate}}</a>
+        </nz-comment-action>
+        <nz-comment-action *ngIf="isAdminOrAuthor(comment.createdBy)">
+          <a
+            (click)="deleteComment(comment._id)">{{'delete' | translate}}
+          </a>
+        </nz-comment-action>
+        <!--        <app-forum-comment-box-->
+        <!--          [replyDetail]="{conversationId: comment.conversationId, replyId: comment._id}"></app-forum-comment-box>-->
+
+        <ng-container *ngIf="comment.reply && comment.reply.length">
+          <ng-template [ngForOf]="comment.reply" let-child ngFor>
+            <ng-template [ngTemplateOutletContext]="{ comment: child }"
+                         [ngTemplateOutlet]="commentTemplateRef"></ng-template>
+          </ng-template>
+        </ng-container>
+      </nz-comment>
+    </ng-template>
+
+
+    <nz-comment>
+      <nz-avatar nz-comment-avatar nzIcon="user"></nz-avatar>
+      <nz-comment-content>
+        <nz-form-item>
+          <textarea [(ngModel)]="inputValue" nz-input rows="4"></textarea>
+        </nz-form-item>
+        <nz-form-item>
+          <button (click)="handleSubmit()" [disabled]="!inputValue" [nzLoading]="submitting" nz-button nzType="primary">
+            {{'add.comment' | translate}}
+          </button>
+        </nz-form-item>
+      </nz-comment-content>
+    </nz-comment>
+  </div>
+
+</nz-spin>

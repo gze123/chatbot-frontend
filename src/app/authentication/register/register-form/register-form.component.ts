@@ -27,8 +27,8 @@ export class RegisterFormComponent implements OnInit {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
     }
-    console.log(this.validateForm)
-    let user = {
+    console.log(this.validateForm);
+    const user = {
       email: this.validateForm.controls.email.value,
       fullname: this.validateForm.controls.fullname.value,
       username: this.validateForm.controls.username.value,
@@ -36,7 +36,7 @@ export class RegisterFormComponent implements OnInit {
       role: this.validateForm.controls.role.value,
       password: this.validateForm.controls.password.value,
       retypePassword: this.validateForm.controls.checkPassword.value
-    }
+    };
     this.authService.register(user).subscribe(res => {
       const response: any = res;
       console.log(res);
@@ -44,19 +44,19 @@ export class RegisterFormComponent implements OnInit {
       localStorage.setItem('username', response.result.user.username);
       localStorage.setItem('role', response.result.user.role);
       localStorage.setItem('id', response.result.user._id);
-      this.router.navigate(["/student/forum/title"]).then(r => {
+      this.router.navigate(['/student/forum/title']).then(r => {
       });
     }, error => {
       this.pageLoading = false;
-      const errorMsg = error.error.error
+      const errorMsg = error.error.error;
       this.nzModalService.error({
-        nzTitle: "Failed to register",
+        nzTitle: 'Failed to register',
         nzContent: errorMsg,
         nzOnOk: () => {
         }
-      })
+      });
 
-    })
+    });
   }
 
   updateConfirmValidator(): void {
@@ -76,7 +76,7 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
     this.pageLoading = false;
     this.validateForm = this.fb.group({
-      email: [null, [Validators.email, Validators.required]],
+      email: [null, [Validators.email, Validators.required,  Validators.pattern('^[a-z0-9._%+-]+@siswa.um.edu.my$')]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       username: [null, [Validators.required]],

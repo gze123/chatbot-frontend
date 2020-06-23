@@ -45,7 +45,7 @@
         <td>{{ data._id}}</td>
         <td>{{ data.title }}</td>
         <td>{{ data.status }}</td>
-        <td>{{ data.createdAt }}</td>
+        <td>{{ data.createdAt | date }}</td>
         <!--        <td>{{ data.lastUpdatedDate}}</td>-->
         <td>
           <app-ticket-detail [ticketDetail]="data"></app-ticket-detail>

@@ -1,34 +1,37 @@
-<form (ngSubmit)="submitForm()" [formGroup]="addTicketForm" nz-form>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7">{{'title' | translate}}</nz-form-label>
-    <nz-form-control [nzErrorTip]="titleErrorTpl" [nzSpan]="12">
-      <input formControlName="title" nz-input placeholder=""/>
-      <ng-template #titleErrorTpl let-control>
-        <ng-container *ngIf="control.hasError('required')">
-          {{'no.blank' | translate}}
-        </ng-container>
-      </ng-template>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7">{{'description' | translate}}</nz-form-label>
-    <nz-form-control [nzSpan]="12" nzErrorTip="{{'write.something' | translate}}">
-      <textarea formControlName="description" nz-input placeholder="write any thing" rows="2"></textarea>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="7">{{'category' | translate}}</nz-form-label>
-    <nz-form-control [nzSpan]="12" nzErrorTip="{{'select.category' | translate}}">
-      <nz-select formControlName="category" nzAllowClear nzPlaceHolder="{{'select.category' | translate}}" nzShowSearch>
-        <nz-option *ngFor="let category of categories" nzLabel="{{category}}" nzValue="{{category}}"></nz-option>
-      </nz-select>
-    </nz-form-control>
+<nz-spin [nzSpinning]="formLoading">
+  <form (ngSubmit)="submitForm()" [formGroup]="addTicketForm" nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7">{{'title' | translate}}</nz-form-label>
+      <nz-form-control [nzErrorTip]="titleErrorTpl" [nzSpan]="12">
+        <input formControlName="title" nz-input placeholder=""/>
+        <ng-template #titleErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            {{'no.blank' | translate}}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7">{{'description' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="{{'write.something' | translate}}">
+        <textarea formControlName="description" nz-input placeholder="write any thing" rows="2"></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7">{{'category' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="{{'select.category' | translate}}">
+        <nz-select formControlName="category" nzAllowClear nzPlaceHolder="{{'select.category' | translate}}"
+                   nzShowSearch>
+          <nz-option *ngFor="let category of categories" nzLabel="{{category}}" nzValue="{{category}}"></nz-option>
+        </nz-select>
+      </nz-form-control>
 
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control [nzOffset]="7" [nzSpan]="12">
-      <button [disabled]="!addTicketForm.valid" nz-button nzType="primary">{{'add' | translate}}</button>
-    </nz-form-control>
-  </nz-form-item>
-</form>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button [disabled]="!addTicketForm.valid" nz-button nzType="primary">{{'add' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
 
+</nz-spin>

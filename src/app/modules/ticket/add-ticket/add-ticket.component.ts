@@ -13,7 +13,8 @@ export class AddTicketComponent implements OnInit {
   addTicketForm: FormGroup;
   categories = ['registration', 'timetable'];
   @Output()
-  triggerReloadTable = new EventEmitter<any>()
+  triggerReloadTable = new EventEmitter<any>();
+  formLoading = false;
 
   constructor(
     private fb: FormBuilder,
@@ -25,12 +26,13 @@ export class AddTicketComponent implements OnInit {
   ngOnInit(): void {
     this.addTicketForm = this.fb.group({
       title: [null, [Validators.required]],
-      description: [null],
-      category: [null]
+      description: [null, [Validators.required]],
+      category: [null, [Validators.required]]
     });
   }
 
   submitForm() {
+    this.formLoading = true;
     for (const i in this.addTicketForm.controls) {
       this.addTicketForm.controls[i].markAsDirty();
       this.addTicketForm.controls[i].updateValueAndValidity();
@@ -40,20 +42,21 @@ export class AddTicketComponent implements OnInit {
       title: this.addTicketForm.controls['title'].value,
       description: this.addTicketForm.controls['description'].value,
       category: this.addTicketForm.controls['category'].value
-    }
-    console.log(ticketCreateModel)
+    };
+    console.log(ticketCreateModel);
     this.ticketService.addTicket(ticketCreateModel).subscribe(res => {
       const response: any = res;
       this.addTicketForm.reset();
+      this.formLoading = false;
       this.nzModalService.info({
-        nzTitle: "Ticket created successfully",
+        nzTitle: 'Ticket created successfully',
         nzOnOk: () => {
         }
-      })
+      });
       this.triggerReloadTable.emit();
     }, error => {
-
-    })
+      this.formLoading = false;
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import {NewsAndAnnouncementComponent} from "./news-and-announcement.component";
+import {NewsAndAnnouncementComponent} from './news-and-announcement.component';
 
 export const NEWS_AND_ANNOUNCEMENT_ROUTES = [
   {

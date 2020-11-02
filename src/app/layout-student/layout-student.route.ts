@@ -1,5 +1,5 @@
-import {MODULE_ROUTES} from "../modules/modules.route";
-import {LayoutStudentComponent} from "./layout-student.component";
+import {MODULE_ROUTES} from '../modules/modules.route';
+import {LayoutStudentComponent} from './layout-student.component';
 
 export const LAYOUT_STUDENT_ROUTES = [
   {

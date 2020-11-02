@@ -1,4 +1,4 @@
-import {FORUM_ROUTES} from "./forum/forum.route";
+import {FORUM_ROUTES} from './forum/forum.route';
 
 export const MODULE_ROUTES = [
   {

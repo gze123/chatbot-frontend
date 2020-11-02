@@ -1,16 +1,28 @@
 <div class="auth-card">
-  <nz-card>
-    <nz-card-tab>
-      <nz-tabset [(nzSelectedIndex)]="index" nzSize="large">
-        <nz-tab nzTitle="{{'login' | translate}}"></nz-tab>
-        <nz-tab nzTitle="{{'register' | translate}}"></nz-tab>
-      </nz-tabset>
-    </nz-card-tab>
-    <div *ngIf="index==0" class="login-registration-form">
-      <app-login-form></app-login-form>
+  <nz-card *ngIf="!forgotPasswordFormVisible">
+    <div>
+      <nz-card-tab>
+        <nz-tabset [(nzSelectedIndex)]="index" nzSize="large">
+          <nz-tab nzTitle="{{'login' | translate}}"></nz-tab>
+          <nz-tab nzTitle="{{'register' | translate}}"></nz-tab>
+        </nz-tabset>
+      </nz-card-tab>
+      <div *ngIf="index==0" class="login-registration-form">
+        <app-login-form (resetPassword)="forgotPasswordVisible($event)"></app-login-form>
+      </div>
+      <div *ngIf="index==1" class="login-registration-form">
+        <app-register-form></app-register-form>
+      </div>
     </div>
-    <div *ngIf="index==1" class="login-registration-form">
-      <app-register-form></app-register-form>
+  </nz-card>
+  <nz-card *ngIf="forgotPasswordFormVisible">
+    <div>
+      <nz-card-tab>
+        <nz-tabset [(nzSelectedIndex)]="index" nzSize="large">
+          <nz-tab nzTitle="{{'Forgot password'}}"></nz-tab>
+        </nz-tabset>
+      </nz-card-tab>
+      <app-forgot-password-form (back)="forgotPasswordVisible($event)"></app-forgot-password-form>
     </div>
   </nz-card>
 </div>

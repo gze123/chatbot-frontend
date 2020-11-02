@@ -17,9 +17,9 @@ import {ModulesAdminComponent} from './modules-admin/modules-admin.component';
 import {LayoutAdminComponent} from './layout-admin/layout-admin.component';
 import {LayoutStudentComponent} from './layout-student/layout-student.component';
 import {LayoutAuthComponent} from './layout-auth/layout-auth.component';
-import {StoreModule} from "@ngrx/store";
-import {reducer} from "./store/reducers/user.reducer";
-import {TokenInterceptor} from "./interceptor/token-interceptor.interceptor";
+import {StoreModule} from '@ngrx/store';
+import {reducer} from './store/reducers/user.reducer';
+import {TokenInterceptor} from './interceptor/token-interceptor.interceptor';
 
 registerLocaleData(en);
 

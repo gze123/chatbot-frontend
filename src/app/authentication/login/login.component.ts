@@ -8,12 +8,17 @@ import {Component, OnInit} from '@angular/core';
 export class LoginComponent implements OnInit {
 
   index = 0;
+  forgotPasswordFormVisible = false;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log('login component');
+  }
+
+  forgotPasswordVisible(event: any) {
+      this.forgotPasswordFormVisible = event;
+      console.log(this.forgotPasswordFormVisible);
   }
 
 }

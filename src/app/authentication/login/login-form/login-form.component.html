@@ -18,7 +18,7 @@
         </nz-form-item>
         <div class="login-form-margin" nz-row>
           <div [nzSpan]="24" nz-col>
-            <a class="login-form-forgot">Forgot password</a>
+            <a class="login-form-forgot" (click)="resetPasswordVisible()">Forgot password?</a>
           </div>
         </div>
         <button [nzType]="'primary'" class="login-form-button login-form-margin" nz-button>Log in</button>

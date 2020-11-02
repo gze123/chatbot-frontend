@@ -1,5 +1,5 @@
-import {ForumComponent} from "./forum.component";
-import {ForumManageComponent} from "./forum-manage/forum-manage.component";
+import {ForumComponent} from './forum.component';
+import {ForumManageComponent} from './forum-manage/forum-manage.component';
 
 export const FORUM_ROUTES = [
   {

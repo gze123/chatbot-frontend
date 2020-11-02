@@ -3,11 +3,11 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login.component';
 import {RouterModule} from '@angular/router';
 import {LOGIN_ROUTES} from './login.route';
-import {NgZorroAntdModule} from "ng-zorro-antd";
-import {TranslateModule} from "@ngx-translate/core";
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {TranslateModule} from '@ngx-translate/core';
 import {LoginFormComponent} from './login-form/login-form.component';
-import {AuthenticationModule} from "../authentication.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {AuthenticationModule} from '../authentication.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({

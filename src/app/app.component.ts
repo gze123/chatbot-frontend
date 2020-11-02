@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   nzOffsetBottom = 10;
   public _router: Router;
 
+
   constructor(
     translate: TranslateService,
     router: Router
@@ -26,10 +27,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('jwtToken')) {
-      this._router.navigate(['/auth/login']).then();
-    }
-
+    // if (!localStorage.getItem('jwtToken') ) {
+    //   this._router.navigate(['/auth/login']).then();
+    // }
   }
 
   openChatbot(): void {

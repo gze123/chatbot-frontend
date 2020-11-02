@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {AuthService} from "../../../services/auth.service";
-import {NzModalService} from "ng-zorro-antd";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-login-form',
@@ -12,6 +12,8 @@ import {NzModalService} from "ng-zorro-antd";
 export class LoginFormComponent implements OnInit {
   validateForm!: FormGroup;
   pageLoading = false;
+  forgotPassword = false;
+  @Output() resetPassword = new EventEmitter<any>();
 
   constructor(
     private fb: FormBuilder,
@@ -29,12 +31,12 @@ export class LoginFormComponent implements OnInit {
     }
 
     const userLogin = {
-      email: this.validateForm.controls['userName'].value,
-      password: this.validateForm.controls['password'].value
-    }
+      email: this.validateForm.controls.userName.value,
+      password: this.validateForm.controls.password.value
+    };
 
 
-    console.log('username: ', this.validateForm.controls['userName'].value);
+    console.log('username: ', this.validateForm.controls.userName.value);
     this.authService.login(userLogin).subscribe(res => {
       const response: any = res;
       this.pageLoading = false;
@@ -42,22 +44,22 @@ export class LoginFormComponent implements OnInit {
       localStorage.setItem('role', response.result.user.role);
       localStorage.setItem('id', response.result.user._id);
       localStorage.setItem('username', response.result.user.username);
-      if (response.result.user.role == "staff") {
-        this.router.navigate(["/admin/forum"]).then(r => {
+      if (response.result.user.role == 'staff') {
+        this.router.navigate(['/admin/forum']).then(r => {
         });
       } else {
-        this.router.navigate(["/student/forum/title"]).then(r => {
+        this.router.navigate(['/student/forum/title']).then(r => {
         });
       }
 
     }, error => {
-      const errorMsg = error.error.error
+      const errorMsg = error.error.error;
       this.nzModalService.error({
-        nzTitle: "Login Failed",
+        nzTitle: 'Login Failed',
         nzContent: errorMsg,
         nzOnOk: () => {
         }
-      })
+      });
       this.pageLoading = false;
     });
 
@@ -69,6 +71,11 @@ export class LoginFormComponent implements OnInit {
       password: [null, [Validators.required]],
       remember: [true]
     });
+  }
+
+  resetPasswordVisible(): void {
+    this.forgotPassword = !this.forgotPassword;
+    this.resetPassword.emit(this.forgotPassword);
   }
 
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NzModalService} from 'ng-zorro-antd';
@@ -17,7 +17,8 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
               private fb: FormBuilder,
-              private nzModalService: NzModalService
+              private nzModalService: NzModalService,
+              private router: Router
   ) {
   }
 
@@ -46,6 +47,13 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(resetPassword).subscribe(res => {
       const response: any = res;
       console.log(res);
+      this.nzModalService.info(
+        {
+          nzTitle: 'Reset password done',
+          nzContent: 'Your password has been reset. Please login with your new password.',
+          nzOnOk: () => this.router.navigate(['auth/login']).then()
+        }
+      );
     }, error => {
       this.pageLoading = false;
       const errorMsg = error.error.error;

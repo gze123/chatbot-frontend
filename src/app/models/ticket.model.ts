@@ -29,6 +29,7 @@ export interface TicketModel {
   updatedAt: string;
   __v: number;
   _id: string;
+  assigneeName: string;
 }
 
 export interface SolutionModel {

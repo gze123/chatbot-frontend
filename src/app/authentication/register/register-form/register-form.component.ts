@@ -32,7 +32,7 @@ export class RegisterFormComponent implements OnInit {
       email: this.validateForm.controls.email.value,
       fullname: this.validateForm.controls.fullname.value,
       username: this.validateForm.controls.username.value,
-      matricNo: this.validateForm.controls.matricNo.value,
+      userId: this.validateForm.controls.matricNo.value,
       role: this.validateForm.controls.role.value,
       password: this.validateForm.controls.password.value,
       retypePassword: this.validateForm.controls.checkPassword.value

@@ -2,7 +2,7 @@ export interface User {
   email: string;
   fullname: string;
   username: string;
-  matricNo: string;
+  userId: string;
   role: string;
   password: string;
 }

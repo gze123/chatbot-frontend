@@ -1,7 +1,7 @@
 export interface TicketCreateModel {
-  title: string,
-  description: string,
-  category: string
+  title: string;
+  description: string;
+  category: string;
 }
 
 export interface Resolution {

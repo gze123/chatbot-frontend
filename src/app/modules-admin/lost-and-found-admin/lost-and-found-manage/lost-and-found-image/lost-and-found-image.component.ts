@@ -25,16 +25,16 @@ export class LostAndFoundImageComponent implements OnInit {
   ngOnInit(): void {
     this.lostAndFoundService.getLostAndFoundImageById(this.imageId).subscribe(res => {
       const response: any = res;
-      let arrayBuffer = response.result.image.data
+      const arrayBuffer = response.result.image.data;
       const TYPED_ARRAY = new Uint8Array(arrayBuffer);
       const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
           return data + String.fromCharCode(byte);
         },
         '');
-      let base64String = btoa(STRING_CHAR);
+      const base64String = btoa(STRING_CHAR);
       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64, ' + base64String);
     }, error => {
-    })
+    });
   }
 
   showModal() {

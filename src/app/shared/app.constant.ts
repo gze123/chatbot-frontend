@@ -28,7 +28,7 @@ export class AppConstants {
   public static LOST_AND_FOUND = '/lostandfound';
   public static LOST_AND_FOUND_CREATE = AppConstants.API_WEB + AppConstants.LOST_AND_FOUND;
   public static LOST_AND_FOUND_GET = AppConstants.API_WEB + '/lostandfounds';
-  public static LOST_AND_FOUND_GET_IMAGE = AppConstants.API_WEB + AppConstants.LOST_AND_FOUND + '/image?id=';
+  public static LOST_AND_FOUND_GET_IMAGE = AppConstants.API_WEB + AppConstants.LOST_AND_FOUND + '/image?fileName=';
   public static LOST_AND_FOUND_UPDATE = AppConstants.API_WEB + AppConstants.LOST_AND_FOUND + AppConstants.UPDATE;
   public static LOST_AND_FOUND_DELETE = AppConstants.API_WEB + AppConstants.LOST_AND_FOUND + AppConstants.DELETE;
 

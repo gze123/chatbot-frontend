@@ -44,7 +44,7 @@
         <td>{{ data.location }}</td>
         <td>{{ data.createdAt | date }}</td>
         <td>
-          <app-lost-and-found-image [imageId]="data._id"></app-lost-and-found-image>
+          <app-lost-and-found-image [imageId]="data.fileName"></app-lost-and-found-image>
         </td>
       </tr>
       </tbody>

@@ -29,7 +29,7 @@ export class LostAndFoundService {
   }
 
   deleteLostAndFound(id: string) {
-    let arrayId = [];
+    const arrayId = [];
     arrayId.push(id);
     return this.http.post(AppConstants.LOST_AND_FOUND_DELETE, {id: arrayId});
   }

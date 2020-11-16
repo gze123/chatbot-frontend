@@ -38,7 +38,7 @@ export class LostAndFoundManageComponent implements OnInit {
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
-    })
+    });
     this.lostAndFoundForm = this.fb.group({
       item: [null],
       date: [null]
@@ -46,7 +46,7 @@ export class LostAndFoundManageComponent implements OnInit {
   }
 
   search() {
-    console.log(this.lostAndFoundForm)
+    console.log(this.lostAndFoundForm);
     //search function
     // this.listOfSearchedData = this.lostAndFoundData.filter()
   }

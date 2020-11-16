@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LostAndFoundService} from "../../../../services/lost-and-found-service.service";
+import {LostAndFoundService} from '../../../../services/lost-and-found-service.service';
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {NzModalService} from "ng-zorro-antd";
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-lost-and-found-image',

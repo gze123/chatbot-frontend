@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {NzModalService} from "ng-zorro-antd";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {LostAndFoundService} from "../../services/lost-and-found-service.service";
-import {LostAndFound} from "../../models/lost-and-found.model";
+import {NzModalService} from 'ng-zorro-antd';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {LostAndFoundService} from '../../services/lost-and-found-service.service';
+import {LostAndFound} from '../../models/lost-and-found.model';
 
 @Component({
   selector: 'app-lost-and-found',
@@ -40,7 +40,7 @@ export class LostAndFoundComponent implements OnInit {
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
-    })
+    });
   }
 
   showModal(): void {
@@ -53,8 +53,8 @@ export class LostAndFoundComponent implements OnInit {
   }
 
   search() {
-    console.log(this.lostAndFoundForm)
-    //search function
+    console.log(this.lostAndFoundForm);
+    // search function
     // this.listOfSearchedData = this.lostAndFoundData.filter()
   }
 

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {NzModalService} from "ng-zorro-antd";
-import {LostAndFoundService} from "../../../services/lost-and-found-service.service";
-import {LostAndFound} from "../../../models/lost-and-found.model";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {NzModalService} from 'ng-zorro-antd';
+import {LostAndFoundService} from '../../../services/lost-and-found-service.service';
+import {LostAndFound} from '../../../models/lost-and-found.model';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -47,7 +47,7 @@ export class LostAndFoundManageComponent implements OnInit {
 
   search() {
     console.log(this.lostAndFoundForm);
-    //search function
+    // search function
     // this.listOfSearchedData = this.lostAndFoundData.filter()
   }
 
@@ -57,6 +57,6 @@ export class LostAndFoundManageComponent implements OnInit {
       console.log(res);
     }, error => {
 
-    })
+    });
   }
 }

@@ -1,7 +1,7 @@
-import {FaqAdminComponent} from "./faq-admin/faq-admin.component";
-import {LostAndFoundAdminComponent} from "./lost-and-found-admin/lost-and-found-admin.component";
-import {FORUM_ADMIN_ROUTE} from "./forum-admin/forum-admin.route";
-import {TicketAdminComponent} from "./ticket-admin/ticket-admin.component";
+import {FaqAdminComponent} from './faq-admin/faq-admin.component';
+import {LostAndFoundAdminComponent} from './lost-and-found-admin/lost-and-found-admin.component';
+import {FORUM_ADMIN_ROUTE} from './forum-admin/forum-admin.route';
+import {TicketAdminComponent} from './ticket-admin/ticket-admin.component';
 
 export const MODULE_ADMIN_ROUTES = [
   // {

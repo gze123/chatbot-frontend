@@ -3,13 +3,18 @@ import {HttpClient} from '@angular/common/http';
 import {AppConstants} from '../shared/app.constant';
 import {User, UserLogin} from '../models/user.model';
 import {ResetPassword} from '../models/reset-password.model';
+import {NzModalService} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private nzModalService: NzModalService,
+              private router: Router
+  ) {
   }
 
   login(userLogin: UserLogin) {
@@ -38,6 +43,17 @@ export class AuthService {
     // student
     // return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWQyNjQ5M2Y1YWY3OTEzZTA5Y2M3NDkiLCJpYXQiOjE1OTE3MDgzNTd9.rLxsM8PerLqw-hSjOm9SPFDHOZQx7gS-Tk6l6GPzrOI';
     return localStorage.getItem('jwtToken');
+  }
+
+  httpErrorModal() {
+    this.nzModalService.error({
+        nzTitle: 'Session Error',
+        nzContent: 'Please click "Ok" to re-login.',
+        nzOnOk: () => this.router.navigate(['auth/login']).then(() => {
+          localStorage.clear();
+        })
+      }
+    );
   }
 
 }

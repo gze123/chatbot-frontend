@@ -20,6 +20,7 @@ import {LayoutAuthComponent} from './layout-auth/layout-auth.component';
 import {StoreModule} from '@ngrx/store';
 import {reducer} from './store/reducers/user.reducer';
 import {TokenInterceptor} from './interceptor/token-interceptor.interceptor';
+import {ErrorInterceptor} from './interceptor/error-interceptor.interceptor';
 
 registerLocaleData(en);
 
@@ -56,7 +57,8 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

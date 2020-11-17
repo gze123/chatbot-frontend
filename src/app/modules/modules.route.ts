@@ -11,7 +11,7 @@ export const MODULE_ROUTES = [
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
   },
   {
-    path: 'forum/title',
+    path: 'forum',
     children: FORUM_ROUTES
   },
   {

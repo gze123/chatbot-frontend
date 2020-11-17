@@ -2,6 +2,11 @@ import {ForumComponent} from './forum.component';
 import {ForumManageComponent} from './forum-manage/forum-manage.component';
 
 export const FORUM_ROUTES = [
+  // {
+  //   path: '',
+  //   redirectTo: '/title',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
     component: ForumComponent,

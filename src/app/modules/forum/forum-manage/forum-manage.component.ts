@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Comment, Forum} from "../../../models/forum.model";
-import {Subscription, zip} from "rxjs";
-import {ForumCommentBoxComponent} from "../../../modules-admin/forum-admin/forum-manage/forum-comment-box/forum-comment-box.component";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ForumService} from "../../../services/forum-service.service";
-import {NzModalService} from "ng-zorro-antd";
+import {Comment, Forum} from '../../../models/forum.model';
+import {Subscription, zip} from 'rxjs';
+import {ForumCommentBoxComponent} from '../../../modules-admin/forum-admin/forum-manage/forum-comment-box/forum-comment-box.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ForumService} from '../../../services/forum-service.service';
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-forum-manage',
@@ -36,7 +36,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
 
   @ViewChild(ForumCommentBoxComponent)
-  private forumCommentBox: ForumCommentBoxComponent
+  private forumCommentBox: ForumCommentBoxComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +49,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.pageLoading = true;
     this.routeSub = this.route.params.subscribe(params => {
-      this.paramId = params['id'];
+      this.paramId = params.id;
     });
     zip(this.forumService.getReplyByForumId(this.paramId), this.forumService.getForumTitle()).subscribe(res => {
       let responseReply: any = res[0];
@@ -62,7 +62,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
-    })
+    });
   }
 
   getReply() {
@@ -73,12 +73,12 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         reply = response.result;
         x.reply = reply;
       }, error => {
-      })
-    })
+      });
+    });
   }
 
   replyTo(id: string) {
-    console.log(id)
+    console.log(id);
   }
 
   ngOnDestroy() {
@@ -94,25 +94,25 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     let commentCreateModel = {
       conversationId: this.forumDetail._id,
       content: content
-    }
+    };
 
     this.forumService.addReplyToForum(commentCreateModel).subscribe(res => {
       const response: any = res;
-      console.log(response.result)
+      console.log(response.result);
       this.commentData = [...this.commentData, response.result].map(e => {
         return {
           ...e
-        }
-      })
+        };
+      });
       this.editCache[response.result._id] = {
         edit: false,
         data: response.result
-      }
+      };
       this.updateEditCache();
       this.submitting = false;
     }, error => {
       this.submitting = false;
-    })
+    });
 
   }
 
@@ -127,14 +127,14 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         this.forumService.deleteForum(id).subscribe(res => {
           const response: any = res;
           console.log(response);
-          this.router.navigate(["/student/forum/title"]).then()
+          this.router.navigate(['/student/forum/title']).then();
         }, error => {
 
-        })
+        });
       },
       nzOnCancel: instance => {
       }
-    })
+    });
 
   }
 
@@ -143,8 +143,8 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       id: this.forumDetail._id,
       title: this.forumDetail.title,
       description: this.forumDetail.description
-    }
-    console.log(editForumDetail)
+    };
+    console.log(editForumDetail);
     this.nzModalService.confirm({
       nzTitle: 'Are you sure to edit this forum title and description?',
       nzOnOk: () => {
@@ -153,11 +153,11 @@ export class ForumManageComponent implements OnInit, OnDestroy {
           this.showUpdate = false;
         }, error => {
 
-        })
+        });
       },
       nzOnCancel: () => {
       }
-    })
+    });
 
   }
 
@@ -172,11 +172,11 @@ export class ForumManageComponent implements OnInit, OnDestroy {
           location.reload();
         }, error => {
 
-        })
+        });
       },
       nzOnCancel: instance => {
       }
-    })
+    });
   }
 
   isAdminOrAuthor(id: string, editable?: boolean) {
@@ -197,7 +197,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         data: {...item}
       };
     });
-    console.log(this.editCache)
+    console.log(this.editCache);
   }
 
   saveComment(_id: any, content: string) {
@@ -207,7 +207,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       console.log(response.result);
     }, error => {
 
-    })
+    });
     this.editCache[_id].edit = false;
   }
 

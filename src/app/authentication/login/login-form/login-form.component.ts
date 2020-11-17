@@ -48,7 +48,7 @@ export class LoginFormComponent implements OnInit {
         this.router.navigate(['/admin/forum']).then(r => {
         });
       } else {
-        this.router.navigate(['/student/forum/title']).then(r => {
+        this.router.navigate(['/student/home']).then(r => { console.log(r);
         });
       }
 

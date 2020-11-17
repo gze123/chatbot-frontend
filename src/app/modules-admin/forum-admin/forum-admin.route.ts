@@ -1,5 +1,5 @@
-import {ForumAdminComponent} from "./forum-admin.component";
-import {ForumManageComponent} from "./forum-manage/forum-manage.component";
+import {ForumAdminComponent} from './forum-admin.component';
+import {ForumManageComponent} from './forum-manage/forum-manage.component';
 
 export const FORUM_ADMIN_ROUTE = [
   {
@@ -13,4 +13,4 @@ export const FORUM_ADMIN_ROUTE = [
     loadChildren: () => import('./forum-manage/forum-manage.module').then(m => m.ForumManageModule)
   },
 
-]
+];

@@ -7,16 +7,19 @@ import {NbChatModule, NbSpinnerModule} from '@nebular/theme';
 
 
 @NgModule({
-  declarations: [
-    ModulesComponent,
-    ChatbotComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    NbChatModule,
-    NbSpinnerModule
-  ]
+    declarations: [
+        ModulesComponent,
+        ChatbotComponent
+    ],
+    exports: [
+        ChatbotComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        NbChatModule,
+        NbSpinnerModule
+    ]
 })
 export class ModulesModule {
 }

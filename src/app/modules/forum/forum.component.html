@@ -14,7 +14,7 @@
     <nz-list nzItemLayout="vertical">
       <li *ngFor="let data of forumData; let i = index" nz-list-item nzNoFlex>
         <h3>
-          <a [routerLink]="['/student/forum/title/',data._id]">{{ data.title }}</a>
+          <a [routerLink]="['/student/forum/',data._id]">{{ data.title }}</a>
         </h3>
         <p>
           {{ data.description }}

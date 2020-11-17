@@ -9,13 +9,16 @@ export class AppConstants {
   public static UPDATE = '/update';
   public static DELETE = '/delete';
 
+  // chatbot
+  public static CHATBOT = AppConstants.API_WEB + '/chatbot';
+
   // auth
   public static USER = '/user';
   public static AUTH_LOGIN = AppConstants.API_WEB + AppConstants.USER + '/login';
   public static AUTH_REGISTER = AppConstants.API_WEB + AppConstants.USER + '/register';
   public static AUTH_LOGOUT = AppConstants.API_WEB + AppConstants.USER + '/logout';
   public static RESET_PASSWORD_LINK = AppConstants.API_WEB + AppConstants.USER + '/resetpasswordlink?email=';
-  public static RESET_PASSWORD =  AppConstants.API_WEB + AppConstants.USER + '/resetpassword';
+  public static RESET_PASSWORD = AppConstants.API_WEB + AppConstants.USER + '/resetpassword';
 
   // faq
   public static FAQ = '/questions';
@@ -38,6 +41,7 @@ export class AppConstants {
   public static FORUM_GET = AppConstants.API_WEB + '/conversations?order=desc';
   public static FORUM_UPDATE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.UPDATE;
   public static FORUM_DELETE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.DELETE;
+
   // forum content
   public static COMMENT = '/reply';
   public static COMMENT_CREATE = AppConstants.API_WEB + AppConstants.COMMENT;

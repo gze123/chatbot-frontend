@@ -21,6 +21,9 @@ import {StoreModule} from '@ngrx/store';
 import {reducer} from './store/reducers/user.reducer';
 import {TokenInterceptor} from './interceptor/token-interceptor.interceptor';
 import {ErrorInterceptor} from './interceptor/error-interceptor.interceptor';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { AppRoutingModule } from './app-routing.module';
 
 registerLocaleData(en);
 
@@ -53,7 +56,11 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     RouterModule.forRoot(APP_ROUTES),
     AuthenticationModule,
-    StoreModule.forRoot({user: reducer})
+    StoreModule.forRoot({user: reducer}),
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    AppRoutingModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: en_US},

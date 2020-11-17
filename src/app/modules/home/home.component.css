@@ -224,3 +224,17 @@ img {
 .message {
   list-style-type: none;
 }
+
+.container {
+  /*outline: 1px solid #ed862a;*/
+  width: 100vw;
+  height: 83vh;
+}
+
+nb-chat {
+  margin: 0 auto;
+}
+
+.scrollable-container .layout .layout-container .content .columns {
+  max-height: 85vh;
+}

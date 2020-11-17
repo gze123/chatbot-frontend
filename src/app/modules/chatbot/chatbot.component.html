@@ -1,4 +1,4 @@
-<nb-chat title="Conversation with a Bot">
+<nb-chat title="Conversation with a Bot" style="height:85vh">
   <nb-chat-message *ngFor="let msg of messages"
                    type="text"
                    [message]="msg.text"
@@ -11,7 +11,7 @@
 
   <nb-chat-message *ngIf="loading" [nbSpinner]="loading" nbSpinnerStatus="info"
                    type="text"
-                   avatar="/assets/bot.jpeg"
+                   avatar="https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/robot-face.png"
                    message="...">
 
   </nb-chat-message>

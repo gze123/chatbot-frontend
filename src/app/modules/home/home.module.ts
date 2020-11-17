@@ -7,18 +7,20 @@ import {TranslateModule} from '@ngx-translate/core';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule} from '@angular/forms';
 import {ModulesModule} from '../modules.module';
+import {NbLayoutModule} from '@nebular/theme';
 
 
 @NgModule({
   declarations: [HomeComponent],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(HOME_ROUTES),
-        TranslateModule,
-        NgZorroAntdModule,
-        FormsModule,
-        ModulesModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(HOME_ROUTES),
+    TranslateModule,
+    NgZorroAntdModule,
+    FormsModule,
+    ModulesModule,
+    NbLayoutModule
+  ]
 })
 export class HomeModule {
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {AppConstants} from '../../shared/app.constant';
 
 @Component({
   selector: 'app-chatbot',
@@ -13,12 +14,12 @@ export class ChatbotComponent implements OnInit {
 
   // Random ID to maintain session with server
   sessionId = Math.random().toString(36).slice(-5);
-  private dialogflowURL: string;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.addBotMessage('Human presence detected 🤖. How can I help you? ');
+    const name = localStorage.getItem('username');
+    this.addBotMessage('Hi ' + name + '. How can I help you? ');
   }
 
   handleUserMessage(event) {
@@ -30,7 +31,7 @@ export class ChatbotComponent implements OnInit {
 
     // Make the request
     this.http.post<any>(
-      this.dialogflowURL,
+      AppConstants.CHATBOT,
       {
         sessionId: this.sessionId,
         queryInput: {
@@ -61,7 +62,7 @@ export class ChatbotComponent implements OnInit {
     this.messages.push({
       text,
       sender: 'Bot',
-      avatar: '/assets/bot.jpeg',
+      avatar: 'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/robot-face.png',
       date: new Date()
     });
   }

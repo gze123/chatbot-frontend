@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FaqService} from "../../../services/faq-service.service";
-import {Faq} from "../../../models/faq.model";
+import {FaqService} from '../../../services/faq-service.service';
+import {Faq} from '../../../models/faq.model';
 
 @Component({
   selector: 'app-faq-manage',
@@ -28,19 +28,10 @@ export class FaqManageComponent implements OnInit {
     }, error => {
       this.pageLoading = false;
     });
-    // for (let i = 0; i < 50; i++) {
-    //   data.push({
-    //     id: `${i}`,
-    //     name: `Edrward ${i}`,
-    //     age: 32,
-    //     address: `London Park no. ${i}`
-    //   });
-    // }
-    // this.listOfData = data;
   }
 
   startEdit(id: string): void {
-    console.log(id)
+    console.log(id);
     this.editCache[id].edit = true;
   }
 
@@ -53,25 +44,25 @@ export class FaqManageComponent implements OnInit {
   }
 
   saveEdit(id: string): void {
-    const index = this.faqData.findIndex(item => item._id === id);
-    console.log(this.editCache[id].data._id, this.editCache[id].data.question, this.editCache[id].data.answer);
+    const index = this.faqData.findIndex(item => item.intentId === id);
+    console.log(this.editCache[id].data.intentId, this.editCache[id].data.question, this.editCache[id].data.answer);
     let faqUpdateModel = {
-      id: this.editCache[id].data._id,
+      id: this.editCache[id].data.intentId,
       question: this.editCache[id].data.question,
       answer: this.editCache[id].data.answer
-    }
+    };
     this.faqService.editFaq(faqUpdateModel).subscribe(res => {
-      console.log(res)
+      console.log(res);
     }, error => {
 
-    })
+    });
     Object.assign(this.faqData[index], this.editCache[id].data);
     this.editCache[id].edit = false;
   }
 
   updateEditCache(): void {
     this.faqData.forEach(item => {
-      this.editCache[item._id] = {
+      this.editCache[item.intentId] = {
         edit: false,
         data: {...item}
       };
@@ -80,10 +71,10 @@ export class FaqManageComponent implements OnInit {
 
   deleteRow(id: string): void {
     this.faqService.deleteFaq(id).subscribe(res => {
-      console.log(res)
+      console.log(res);
     }, error => {
 
-    })
-    this.faqData = this.faqData.filter(d => d._id !== id);
+    });
+    this.faqData = this.faqData.filter(d => d.intentId !== id);
   }
 }

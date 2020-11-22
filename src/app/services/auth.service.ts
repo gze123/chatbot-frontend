@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AppConstants} from '../shared/app.constant';
 import {User, UserLogin} from '../models/user.model';
 import {ResetPassword} from '../models/reset-password.model';
@@ -37,6 +37,13 @@ export class AuthService {
     return this.http.post(AppConstants.RESET_PASSWORD, resetPassword);
   }
 
+  refresh() {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.getRefreshToken() });
+    const options = { headers };
+    return this.http.post(AppConstants.REFRESH, {}, options);
+  }
+
   public getToken(): string {
     // admin
     // return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWQyNWU3Zjc5Yzg5NjJjNmM2MTIyYTQiLCJpYXQiOjE1OTA4NDUwNTV9._Ht2Vy36nHm3EiZOBIpHzrUHc-dYfsTQA3k6n7iZ4-8';
@@ -45,11 +52,18 @@ export class AuthService {
     return localStorage.getItem('jwtToken');
   }
 
+  public getRefreshToken(): string {
+    return localStorage.getItem('refreshToken');
+  }
+
   httpErrorModal() {
     this.nzModalService.error({
-        nzTitle: 'Session Error',
+        nzTitle: 'Session Expired',
         nzContent: 'Please click "Ok" to re-login.',
-        nzOnOk: () => this.router.navigate(['auth/login']).then(() => {
+        nzOnOk: () => this.logout().subscribe(res => {
+          localStorage.clear();
+          this.router.navigate(['/auth/login']).then();
+        }, error => {
           localStorage.clear();
         })
       }
@@ -57,3 +71,4 @@ export class AuthService {
   }
 
 }
+

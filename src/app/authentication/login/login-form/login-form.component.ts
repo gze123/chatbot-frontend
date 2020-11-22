@@ -41,6 +41,7 @@ export class LoginFormComponent implements OnInit {
       const response: any = res;
       this.pageLoading = false;
       localStorage.setItem('jwtToken', response.result.token);
+      localStorage.setItem('refreshToken', response.result.refreshToken);
       localStorage.setItem('role', response.result.user.role);
       localStorage.setItem('id', response.result.user._id);
       localStorage.setItem('username', response.result.user.username);

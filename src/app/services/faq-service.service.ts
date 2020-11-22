@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {AppConstants} from "../shared/app.constant";
-import {FaqCreateModel, FaqUpdateModel} from "../models/faq.model";
+import {HttpClient} from '@angular/common/http';
+import {AppConstants} from '../shared/app.constant';
+import {FaqCreateModel, FaqUpdateModel} from '../models/faq.model';
 
 @Injectable({
   providedIn: 'root'

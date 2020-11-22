@@ -19,6 +19,7 @@ export class AppConstants {
   public static AUTH_LOGOUT = AppConstants.API_WEB + AppConstants.USER + '/logout';
   public static RESET_PASSWORD_LINK = AppConstants.API_WEB + AppConstants.USER + '/resetpasswordlink?email=';
   public static RESET_PASSWORD = AppConstants.API_WEB + AppConstants.USER + '/resetpassword';
+  public static REFRESH = AppConstants.API_WEB + AppConstants.USER + '/refresh';
 
   // faq
   public static FAQ = '/questions';

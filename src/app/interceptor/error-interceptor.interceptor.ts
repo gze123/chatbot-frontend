@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError, take} from 'rxjs/operators';
+import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
+import {catchError, filter, switchMap, take} from 'rxjs/operators';
 import {NzModalService} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
@@ -18,46 +18,60 @@ export class ErrorInterceptor implements HttpInterceptor {
   ) {
   }
 
-  handleError(error: HttpErrorResponse) {
-    this.authService.httpErrorModal();
-    return throwError(error);
-  }
+  private isRefreshing = false;
+  private refreshTokenSubject: Subject<any> = new BehaviorSubject<any>(null);
+
+
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request)
-      .pipe(
-        catchError(error => {
-          if (window.location.href.includes('student') || window.location.href.includes('admin')) {
-            const jwtToken = this.authService.getToken();
-            const refreshToken = this.authService.getRefreshToken();
-            const decodedToken: JwtTokenModel = jwtDecode(jwtToken);
-            const decodedRefreshToken: JwtTokenModel = jwtDecode(refreshToken);
-            console.log(decodedToken);
-            console.log(decodedRefreshToken);
-            const date = new Date();
-            if (date > decodedToken.exp) {
-              request = request.clone({
-                setHeaders: {
-                  Authorization: `Bearer ${this.authService.getRefreshToken()}`
-                }
-              });
-              this.authService.refresh().pipe(take(1)).subscribe(res => {
-                const response: any = res;
-                localStorage.setItem('jwtToken', response.result.token);
-                request = request.clone({
-                  setHeaders: {
-                    Authorization: `Bearer ${this.authService.getToken()}`
-                  }
-                });
-              }, err => {
-                this.handleError(error);
-              });
-            }
-          } else {
-            this.handleError(error);
-          }
-          return throwError(error);
-        })
-      );
+    const date = new Date();
+    if (this.authService.getToken()) {
+      const decodedToken: JwtTokenModel = jwtDecode(this.authService.getToken());
+      if (date > decodedToken.exp) {
+        request = this.addToken(request, this.authService.getRefreshToken());
+      } else {
+        request = this.addToken(request, this.authService.getToken());
+      }
+    }
+
+    return next.handle(request).pipe(catchError(error => {
+      if (error instanceof HttpErrorResponse && error.status === 400) {
+        return this.handleError(request, next);
+      } else {
+        this.authService.httpErrorModal();
+        return throwError(error);
+      }
+    }));
+  }
+
+  private addToken(request: HttpRequest<any>, token: string) {
+    return request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
+
+  private handleError(request: HttpRequest<any>, next: HttpHandler) {
+    if (!this.isRefreshing) {
+      this.isRefreshing = true;
+      this.refreshTokenSubject.next(null);
+
+      return this.authService.refresh().pipe(
+        switchMap((token: any) => {
+          this.isRefreshing = false;
+          this.refreshTokenSubject.next(token.result.token);
+          localStorage.setItem('jwtToken', token.result.token);
+          return next.handle(this.addToken(request, token.result.token));
+        }));
+
+    } else {
+      return this.refreshTokenSubject.pipe(
+        filter(token => token != null),
+        take(1),
+        switchMap(jwt => {
+          return next.handle(this.addToken(request, jwt));
+        }));
+    }
   }
 }

@@ -45,7 +45,7 @@ export class LoginFormComponent implements OnInit {
       localStorage.setItem('role', response.result.user.role);
       localStorage.setItem('id', response.result.user._id);
       localStorage.setItem('username', response.result.user.username);
-      if (response.result.user.role == 'staff') {
+      if (response.result.user.role === 'staff') {
         this.router.navigate(['/admin/forum']).then(r => {
         });
       } else {

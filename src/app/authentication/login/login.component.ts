@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit {
 
   forgotPasswordVisible(event: any) {
       this.forgotPasswordFormVisible = event;
-      console.log(this.forgotPasswordFormVisible);
   }
 
 }

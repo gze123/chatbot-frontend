@@ -27,40 +27,46 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const jwtToken = this.authService.getToken();
-    const decodedToken: JwtTokenModel = jwtDecode(jwtToken);
-    const date = new Date();
-    if (window.location.href.includes('student') || window.location.href.includes('admin')) {
-      if (date > decodedToken.exp) {
-        if (!this.refreshTokenInProgress) {
-          this.refreshTokenInProgress = true;
-          this.refreshTokenSubject.next(null);
-          request = request.clone({
-            setHeaders: {
-              Authorization: `Bearer ${this.authService.getRefreshToken()}`
-            }
-          });
-          return this.authService.refresh().pipe(
-            switchMap((response: any) => {
-              localStorage.setItem('jwtToken', response.result.token);
+    try {
+      if (localStorage.getItem('jwtToken')) {
+        const jwtToken = this.authService.getToken();
+        const decodedToken: JwtTokenModel = jwtDecode(jwtToken);
+        const date = new Date();
+        if (window.location.href.includes('student') || window.location.href.includes('admin')) {
+          if (date > decodedToken.exp) {
+            if (!this.refreshTokenInProgress) {
+              this.refreshTokenInProgress = true;
+              this.refreshTokenSubject.next(null);
               request = request.clone({
                 setHeaders: {
-                  Authorization: `Bearer ${this.authService.getToken()}`
+                  Authorization: `Bearer ${this.authService.getRefreshToken()}`
                 }
               });
-              window.location.reload();
-              return Observable.throw(request);
-            })
-          );
-        } else {
-          return this.refreshTokenSubject.pipe(
-            filter(res => res !== null),
-            take(1),
-            switchMap((res) => {
-              return next.handle(request);
-            }));
+              return this.authService.refresh().pipe(
+                switchMap((response: any) => {
+                  localStorage.setItem('jwtToken', response.result.token);
+                  request = request.clone({
+                    setHeaders: {
+                      Authorization: `Bearer ${this.authService.getToken()}`
+                    }
+                  });
+                  window.location.reload();
+                  return Observable.throw(request);
+                })
+              );
+            } else {
+              return this.refreshTokenSubject.pipe(
+                filter(res => res !== null),
+                take(1),
+                switchMap((res) => {
+                  return next.handle(request);
+                }));
+            }
+          }
         }
       }
+    } catch (error) {
     }
+
   }
 }

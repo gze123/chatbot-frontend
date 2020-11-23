@@ -2,6 +2,7 @@ import {FaqAdminComponent} from './faq-admin/faq-admin.component';
 import {LostAndFoundAdminComponent} from './lost-and-found-admin/lost-and-found-admin.component';
 import {FORUM_ADMIN_ROUTE} from './forum-admin/forum-admin.route';
 import {TicketAdminComponent} from './ticket-admin/ticket-admin.component';
+import {USER_MANAGEMENT_ADMIN_ROUTE} from './user-management-admin/user-management-admin.route';
 
 export const MODULE_ADMIN_ROUTES = [
   // {
@@ -35,5 +36,9 @@ export const MODULE_ADMIN_ROUTES = [
     path: 'tickets',
     component: TicketAdminComponent,
     loadChildren: () => import('./ticket-admin/ticket-admin.module').then(m => m.TicketAdminModule)
+  },
+  {
+    path: 'user-management',
+    children: USER_MANAGEMENT_ADMIN_ROUTE
   }
 ];

@@ -61,29 +61,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             }));
         }
       }
-      //   if (date > decodedToken.exp) {
-      //
-      //     this.authService.refresh().pipe(take(1)).subscribe(res => {
-      //       const response: any = res;
-      //       localStorage.setItem('jwtToken', response.result.token);
-      //       request = request.clone({
-      //         setHeaders: {
-      //           Authorization: `Bearer ${this.authService.getToken()}`
-      //         }
-      //       });
-      //     }, err => {
-      //       this.handleError(error);
-      //     });
-      //   }
-      // } else {
-      //   this.handleError(error);
-      // }
-      // return next.handle(request)
-      //   .pipe(
-      //     catchError(error => {
-      //       return throwError(error);
-      //     })
-      //   );
     }
   }
 }

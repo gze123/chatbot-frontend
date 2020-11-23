@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError, take} from 'rxjs/operators';
+import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
+import {catchError, filter, switchMap, take} from 'rxjs/operators';
 import {NzModalService} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
@@ -18,46 +18,72 @@ export class ErrorInterceptor implements HttpInterceptor {
   ) {
   }
 
+  private refreshTokenInProgress = false;
+  private refreshTokenSubject: Subject<any> = new BehaviorSubject<any>(null);
+
   handleError(error: HttpErrorResponse) {
     this.authService.httpErrorModal();
     return throwError(error);
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request)
-      .pipe(
-        catchError(error => {
-          if (window.location.href.includes('student') || window.location.href.includes('admin')) {
-            const jwtToken = this.authService.getToken();
-            const refreshToken = this.authService.getRefreshToken();
-            const decodedToken: JwtTokenModel = jwtDecode(jwtToken);
-            const decodedRefreshToken: JwtTokenModel = jwtDecode(refreshToken);
-            console.log(decodedToken);
-            console.log(decodedRefreshToken);
-            const date = new Date();
-            if (date > decodedToken.exp) {
+    const jwtToken = this.authService.getToken();
+    const decodedToken: JwtTokenModel = jwtDecode(jwtToken);
+    const date = new Date();
+    if (window.location.href.includes('student') || window.location.href.includes('admin')) {
+      if (date > decodedToken.exp) {
+        if (!this.refreshTokenInProgress) {
+          this.refreshTokenInProgress = true;
+          this.refreshTokenSubject.next(null);
+          request = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${this.authService.getRefreshToken()}`
+            }
+          });
+          return this.authService.refresh().pipe(
+            switchMap((response: any) => {
+              localStorage.setItem('jwtToken', response.result.token);
               request = request.clone({
                 setHeaders: {
-                  Authorization: `Bearer ${this.authService.getRefreshToken()}`
+                  Authorization: `Bearer ${this.authService.getToken()}`
                 }
               });
-              this.authService.refresh().pipe(take(1)).subscribe(res => {
-                const response: any = res;
-                localStorage.setItem('jwtToken', response.result.token);
-                request = request.clone({
-                  setHeaders: {
-                    Authorization: `Bearer ${this.authService.getToken()}`
-                  }
-                });
-              }, err => {
-                this.handleError(error);
-              });
-            }
-          } else {
-            this.handleError(error);
-          }
-          return throwError(error);
-        })
-      );
+              window.location.reload();
+              return Observable.throw(request);
+            })
+          );
+        } else {
+          return this.refreshTokenSubject.pipe(
+            filter(res => res !== null),
+            take(1),
+            switchMap((res) => {
+              return next.handle(request);
+            }));
+        }
+      }
+      //   if (date > decodedToken.exp) {
+      //
+      //     this.authService.refresh().pipe(take(1)).subscribe(res => {
+      //       const response: any = res;
+      //       localStorage.setItem('jwtToken', response.result.token);
+      //       request = request.clone({
+      //         setHeaders: {
+      //           Authorization: `Bearer ${this.authService.getToken()}`
+      //         }
+      //       });
+      //     }, err => {
+      //       this.handleError(error);
+      //     });
+      //   }
+      // } else {
+      //   this.handleError(error);
+      // }
+      // return next.handle(request)
+      //   .pipe(
+      //     catchError(error => {
+      //       return throwError(error);
+      //     })
+      //   );
+    }
   }
 }

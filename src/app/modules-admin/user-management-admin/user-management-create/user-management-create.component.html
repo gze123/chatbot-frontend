@@ -1,0 +1,84 @@
+<nz-spin [nzSpinning]="pageLoading">
+  <form (ngSubmit)="submitForm()" [formGroup]="adminCreateForm" nz-form>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'email' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="The input is not valid email!">
+        <nz-input-group nzPrefixIcon="mail">
+          <input formControlName="email" nz-input placeholder="Email" type="text"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'full.name' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input admin full name!">
+        <nz-input-group nzPrefixIcon="user">
+          <input formControlName="fullname" id="fullname" nz-input placeholder="Full Name" type="text"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'username' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input admin user name!">
+        <nz-input-group nzPrefixIcon="user">
+          <input formControlName="username" id="username" nz-input placeholder="User Name" type="text"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'user.id' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input user ID!">
+        <nz-input-group nzPrefixIcon="user">
+          <input formControlName="userId" id="userId" nz-input placeholder="{{'user.id'| translate}}" type="text"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" nzFor="staffRole">{{'staff.role' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please select staff role!">
+        <nz-select
+          id="staffRole"
+          formControlName="staffRole"
+          nzPlaceHolder="Select staff role"
+          nzAllowClear
+        >
+          <nz-option *ngFor="let options of staffRoleOption" nzLabel="{{options.role}}" nzValue="{{options.role}}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'password' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input (ngModelChange)="updateConfirmValidator()" formControlName="password" id="password" nz-input
+                 placeholder="Password" type="password"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'retype.password' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" [nzErrorTip]="errorTpl">
+        <nz-input-group nzPrefixIcon="check-circle">
+          <input (ngModelChange)="updateConfirmValidator()" formControlName="retypePassword" id="retypePassword"
+                 nz-input
+                 placeholder="Retype Password" type="password"/>
+        </nz-input-group>
+        <ng-template #errorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            Please confirm your password!
+          </ng-container>
+          <ng-container *ngIf="control.hasError('confirm')">
+            Two passwords that you enter is inconsistent!
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row>
+      <nz-form-control [nzSpan]="5" [nzOffset]="3">
+        <button [disabled]="!adminCreateForm.valid" nz-button nzType="primary">{{'create.admin' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+
+</nz-spin>

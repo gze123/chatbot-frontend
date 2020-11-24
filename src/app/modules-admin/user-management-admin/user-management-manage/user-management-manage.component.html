@@ -1,0 +1,24 @@
+<div>
+  <nz-table #basicTable [nzData]="adminUser" [nzLoading]="pageLoading">
+    <thead>
+    <tr>
+      <th>{{'full.name' | translate}}</th>
+      <th>{{'user.id' | translate}}</th>
+      <th>{{'staff.role' | translate}}</th>
+      <th>{{'action' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.fullname }}</td>
+      <td>{{ data.userId }}</td>
+      <td>{{ data.staffRole }}</td>
+      <td>
+        <a (nzOnConfirm)="deleteUser(data._id)" nz-popconfirm
+           nzPopconfirmTitle="{{'sure.to.delete' | translate}}"> {{'delete' | translate}}
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

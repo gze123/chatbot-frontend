@@ -1,0 +1,21 @@
+<nz-spin [nzSpinning]="pageLoading">
+  <form (ngSubmit)="submitForm()" [formGroup]="roleCreateForm" nz-form>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'role' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="8" nzErrorTip="Please input role!">
+        <nz-input-group nzPrefixIcon="user">
+          <input formControlName="role" id="role" nz-input placeholder="Role" type="text"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item nz-row>
+      <nz-form-control [nzSpan]="5" [nzOffset]="3">
+        <button [disabled]="!roleCreateForm.valid" nz-button nzType="primary">{{'create.role' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+
+</nz-spin>

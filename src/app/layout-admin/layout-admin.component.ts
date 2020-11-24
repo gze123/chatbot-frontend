@@ -15,6 +15,7 @@ export class LayoutAdminComponent implements OnInit {
   public _router: Router;
   username: string;
   pageLoading = false;
+  roleSuperadmin = false;
 
   constructor(
     private translate: TranslateService,
@@ -30,6 +31,9 @@ export class LayoutAdminComponent implements OnInit {
   ngOnInit(): void {
     console.log('layout admin component');
     this.username = localStorage.getItem('username');
+    if (localStorage.getItem('role') === 'superadmin') {
+      this.roleSuperadmin = true;
+    }
   }
 
   logout() {

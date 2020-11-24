@@ -1,0 +1,20 @@
+<div>
+  <nz-table #basicTable [nzData]="role" [nzLoading]="pageLoading">
+    <thead>
+    <tr>
+      <th>{{'role' | translate}}</th>
+      <th>{{'action' | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.role }}</td>
+      <td>
+        <a (nzOnConfirm)="deleteRole(data._id)" nz-popconfirm
+           nzPopconfirmTitle="{{'sure.to.delete' | translate}}"> {{'delete' | translate}}
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

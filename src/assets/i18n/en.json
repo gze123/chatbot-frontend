@@ -57,5 +57,22 @@
   "upload": "Upload",
   "manage.ticket": "Manage ticket",
   "tickets": "Tickets",
-  "edit": "Edit"
+  "edit": "Edit",
+  "user.role.management": "User and Role Management",
+  "user.management": "User Management",
+  "manage.user.management": "Manage Admin",
+  "add.user.management": "Add Admin",
+  "role.management": "Role Management",
+  "manage.role": "Manage Role",
+  "add.role": "Add New Role",
+  "full.name": "Full Name",
+  "staff.role": "Staff Role",
+  "user.id": "Staff ID",
+  "email": "E-mail",
+  "username": "User Name",
+  "password": "Password",
+  "retype.password": "Retype Password",
+  "role": "Role",
+  "create.admin": "Create Admin",
+  "create.role": "Create Role"
 }

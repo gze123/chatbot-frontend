@@ -56,4 +56,13 @@ export class AppConstants {
   public static TICKET_GET = AppConstants.API_WEB + '/tickets';
   public static TICKET_UPDATE = AppConstants.API_WEB + AppConstants.TICKET + AppConstants.UPDATE;
 
+  // user management
+  public static USER_MANAGEMENT = '/management';
+  public static ROLE = '/role';
+  public static USER_MANAGEMENT_ROLES = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + '/roles';
+  public static USER_MANAGEMENT_ROLES_CREATE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.ROLE;
+  public static USER_MANAGEMENT_ROLES_DELETE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.ROLE + AppConstants.DELETE;
+  public static USER_MANAGEMENT_USERS = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + '/users';
+  public static USER_MANAGEMENT_USERS_CREATE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.USER;
+  public static USER_MANAGEMENT_USERS_DELETE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.USER + AppConstants.DELETE;
 }

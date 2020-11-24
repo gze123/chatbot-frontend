@@ -9,16 +9,16 @@
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <nz-form-item>
+        <nz-form-item class="input-container-no-margin">
           <nz-form-control nzErrorTip="Please input your Password!">
             <nz-input-group nzPrefixIcon="lock">
               <input formControlName="password" nz-input placeholder="Password" type="password"/>
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div class="login-form-margin" nz-row>
-          <div [nzSpan]="24" nz-col>
-            <a class="login-form-forgot" (click)="resetPasswordVisible()">Forgot password?</a>
+        <div nz-row>
+          <div [nzSpan]="24" nz-col class="forget-password-div">
+            <a class="login-form-forgot" (click)="resetPasswordVisible()">Forgot Password?</a>
           </div>
         </div>
         <button [nzType]="'primary'" class="login-form-button login-form-margin" nz-button>Log in</button>

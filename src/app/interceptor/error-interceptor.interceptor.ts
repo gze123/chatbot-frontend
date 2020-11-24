@@ -18,49 +18,60 @@ export class ErrorInterceptor implements HttpInterceptor {
   ) {
   }
 
-  private refreshTokenInProgress = false;
+  private isRefreshing = false;
   private refreshTokenSubject: Subject<any> = new BehaviorSubject<any>(null);
 
-  handleError(error: HttpErrorResponse) {
-    this.authService.httpErrorModal();
-    return throwError(error);
-  }
+
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const jwtToken = this.authService.getToken();
-    const decodedToken: JwtTokenModel = jwtDecode(jwtToken);
     const date = new Date();
-    if (window.location.href.includes('student') || window.location.href.includes('admin')) {
+    if (this.authService.getToken()) {
+      const decodedToken: JwtTokenModel = jwtDecode(this.authService.getToken());
       if (date > decodedToken.exp) {
-        if (!this.refreshTokenInProgress) {
-          this.refreshTokenInProgress = true;
-          this.refreshTokenSubject.next(null);
-          request = request.clone({
-            setHeaders: {
-              Authorization: `Bearer ${this.authService.getRefreshToken()}`
-            }
-          });
-          return this.authService.refresh().pipe(
-            switchMap((response: any) => {
-              localStorage.setItem('jwtToken', response.result.token);
-              request = request.clone({
-                setHeaders: {
-                  Authorization: `Bearer ${this.authService.getToken()}`
-                }
-              });
-              window.location.reload();
-              return Observable.throw(request);
-            })
-          );
-        } else {
-          return this.refreshTokenSubject.pipe(
-            filter(res => res !== null),
-            take(1),
-            switchMap((res) => {
-              return next.handle(request);
-            }));
-        }
+        request = this.addToken(request, this.authService.getRefreshToken());
+      } else {
+        request = this.addToken(request, this.authService.getToken());
       }
+    }
+
+    return next.handle(request).pipe(catchError(error => {
+      if (error instanceof HttpErrorResponse && error.status === 400) {
+        return this.handleError(request, next);
+      } else {
+        this.authService.httpErrorModal();
+        return throwError(error);
+      }
+    }));
+  }
+
+  private addToken(request: HttpRequest<any>, token: string) {
+    return request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  }
+
+  private handleError(request: HttpRequest<any>, next: HttpHandler) {
+    if (!this.isRefreshing) {
+      this.isRefreshing = true;
+      this.refreshTokenSubject.next(null);
+
+      return this.authService.refresh().pipe(
+        switchMap((token: any) => {
+          this.isRefreshing = false;
+          this.refreshTokenSubject.next(token.result.token);
+          localStorage.setItem('jwtToken', token.result.token);
+          return next.handle(this.addToken(request, token.result.token));
+        }));
+
+    } else {
+      return this.refreshTokenSubject.pipe(
+        filter(token => token != null),
+        take(1),
+        switchMap(jwt => {
+          return next.handle(this.addToken(request, jwt));
+        }));
     }
   }
 }

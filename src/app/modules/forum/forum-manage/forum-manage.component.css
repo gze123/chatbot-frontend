@@ -9,6 +9,7 @@ nz-form-item {
 .buttons-container {
   display: flex;
   justify-content: flex-end;
+  margin-top: 5px;
 }
 
 .button {

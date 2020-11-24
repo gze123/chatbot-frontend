@@ -14,9 +14,9 @@
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item class="create-button-container">
       <nz-form-control>
-        <button [disabled]="!createForumForm.valid" nz-button nzType="primary">{{'create' | translate}}</button>
+        <button class="create-button" [disabled]="!createForumForm.valid" nz-button nzType="primary">{{'create' | translate}}</button>
       </nz-form-control>
     </nz-form-item>
   </form>

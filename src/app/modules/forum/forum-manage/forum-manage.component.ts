@@ -138,6 +138,10 @@ export class ForumManageComponent implements OnInit, OnDestroy {
 
   }
 
+  cancelUpdate() {
+    this.showUpdate = false;
+  }
+
   saveUpdate() {
     let editForumDetail = {
       id: this.forumDetail._id,

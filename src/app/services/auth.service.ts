@@ -58,8 +58,11 @@ export class AuthService {
         nzTitle: 'Session Expired',
         nzContent: 'Please click "Ok" to re-login.',
         nzOnOk: () => this.logout().subscribe(res => {
-          localStorage.clear();
-          this.router.navigate(['/auth/login']).then();
+          this.router.navigate(['/auth/login']).then(r => {
+            if (r) {
+              localStorage.clear();
+            }
+          });
         }, error => {
           localStorage.clear();
         })

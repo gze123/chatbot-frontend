@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {AppConstants} from "../shared/app.constant";
-import {CommentCreateModel, ForumCreateModel, ForumUpdateModel} from "../models/forum.model";
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {AppConstants} from '../shared/app.constant';
+import {CommentCreateModel, ForumCreateModel, ForumUpdateModel} from '../models/forum.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,7 @@ export class ForumService {
   }
 
   getReplyByForumIdAndReplyId(forumId: string, replyId: string) {
-    let params = new HttpParams().set("conversationId", forumId).set("replyId", replyId);
+    let params = new HttpParams().set('conversationId', forumId).set('replyId', replyId);
     return this.http.get(AppConstants.COMMENT_GET, {params: params});
   }
 
@@ -52,7 +52,7 @@ export class ForumService {
     const editReply = {
       id: id,
       content: content
-    }
+    };
     return this.http.post(AppConstants.COMMENT_UPDATE, editReply);
   }
 

@@ -45,11 +45,17 @@ export class LoginFormComponent implements OnInit {
       localStorage.setItem('role', response.result.user.role);
       localStorage.setItem('id', response.result.user._id);
       localStorage.setItem('username', response.result.user.username);
-      if (response.result.user.role === 'staff') {
+      if (response.result.user.role === 'staff' || response.result.user.role === 'superadmin') {
         this.router.navigate(['/admin/forum']).then(r => {
+          if (r) {
+            console.log('navigate admin success');
+          } else {
+            console.log('fail to navigate');
+          }
         });
       } else {
-        this.router.navigate(['/student/home']).then(r => { console.log(r);
+        this.router.navigate(['/student/home']).then(r => {
+          console.log(r);
         });
       }
 

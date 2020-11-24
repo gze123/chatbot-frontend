@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from "../../../services/auth.service";
-import {Router} from "@angular/router";
-import {NzModalService} from "ng-zorro-antd";
+import {AuthService} from '../../../services/auth.service';
+import {Router} from '@angular/router';
+import {NzModalService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-register-form',
@@ -12,6 +12,7 @@ import {NzModalService} from "ng-zorro-antd";
 export class RegisterFormComponent implements OnInit {
   validateForm!: FormGroup;
   pageLoading = false;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -71,12 +72,12 @@ export class RegisterFormComponent implements OnInit {
       return {confirm: true, error: true};
     }
     return {};
-  }
+  };
 
   ngOnInit(): void {
     this.pageLoading = false;
     this.validateForm = this.fb.group({
-      email: [null, [Validators.email, Validators.required,  Validators.pattern('^[a-z0-9._%+-]+@siswa.um.edu.my$')]],
+      email: [null, [Validators.email, Validators.required, Validators.pattern('^[a-z0-9._%+-]+@siswa.um.edu.my$')]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       username: [null, [Validators.required]],

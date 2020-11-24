@@ -8,18 +8,19 @@ export class AppConstants {
   public static API_WEB = 'https://fcsit-chatbot-server.herokuapp.com';
   public static UPDATE = '/update';
   public static DELETE = '/delete';
+  public static USER = '/user';
 
   // chatbot
   public static CHATBOT = AppConstants.API_WEB + '/chatbot';
 
   // auth
-  public static USER = '/user';
-  public static AUTH_LOGIN = AppConstants.API_WEB + AppConstants.USER + '/login';
-  public static AUTH_REGISTER = AppConstants.API_WEB + AppConstants.USER + '/register';
-  public static AUTH_LOGOUT = AppConstants.API_WEB + AppConstants.USER + '/logout';
-  public static RESET_PASSWORD_LINK = AppConstants.API_WEB + AppConstants.USER + '/resetpasswordlink?email=';
-  public static RESET_PASSWORD = AppConstants.API_WEB + AppConstants.USER + '/resetpassword';
-  public static REFRESH = AppConstants.API_WEB + AppConstants.USER + '/refresh';
+  public static AUTH = '/auth';
+  public static AUTH_LOGIN = AppConstants.API_WEB + AppConstants.AUTH + '/login';
+  public static AUTH_REGISTER = AppConstants.API_WEB + AppConstants.AUTH + '/register';
+  public static AUTH_LOGOUT = AppConstants.API_WEB + AppConstants.AUTH + '/logout';
+  public static RESET_PASSWORD_LINK = AppConstants.API_WEB + AppConstants.AUTH + '/resetpasswordlink?email=';
+  public static RESET_PASSWORD = AppConstants.API_WEB + AppConstants.AUTH + '/resetpassword';
+  public static REFRESH = AppConstants.API_WEB + AppConstants.AUTH + '/refresh';
 
   // faq
   public static FAQ = '/questions';

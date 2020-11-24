@@ -21,9 +21,7 @@ export class RoleManagementManageComponent implements OnInit {
     this.pageLoading = true;
     this.userManagementService.getAdminRoles().subscribe(res => {
         const response: any = res;
-        console.log(response)
         this.role = response.result;
-        console.log(this.role);
         this.pageLoading = false;
       }, error => {
         this.pageLoading = false;

@@ -10,8 +10,7 @@ import {UserRoleManagementService} from '../../../services/user-role-management-
 })
 export class RoleManagementCreateComponent implements OnInit {
   pageLoading = false;
-  roleCreateForm: any;
-  roleCreateFormForm!: FormGroup;
+  roleCreateForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,

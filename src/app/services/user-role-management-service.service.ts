@@ -27,7 +27,7 @@ export class UserRoleManagementService {
   }
 
   getAdminUser() {
-    return this.http.get(AppConstants.USER_MANAGEMENT_USERS);
+    return this.http.get(AppConstants.USER_MANAGEMENT_USERS + '?role=staff');
   }
 
   deleteAdminUser(id: string) {

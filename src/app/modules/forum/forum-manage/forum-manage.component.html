@@ -1,116 +1,228 @@
 <nz-spin [nzSpinning]="pageLoading">
   <div>
-    <div *ngIf="isAdminOrAuthor(forumDetail.createdBy); else studentTemplate">
-      <ng-container *ngIf="!showUpdate; else editTemplate">
-        <h3>
-          {{ forumDetail.title }}
-        </h3>
-        <p>
-          {{ forumDetail.description }}
-        </p>
-        <nz-form-item>
-          <button (click)="updateForum()" nz-button nzType="primary">
-            {{'update' | translate}}
-          </button>
-          <button (click)="deleteForum(forumDetail._id)" nz-button nzDanger nzType="default" style="margin-left: 4px">
-            {{'delete' | translate}}
-          </button>
-        </nz-form-item>
-      </ng-container>
+    <div>
+      <nz-card>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+          "
+        >
+          <div style="margin-right: 10px">
+            <nz-avatar nz-comment-avatar nzIcon="user"></nz-avatar>
+          </div>
+          <div>
+            <h3 style="margin-bottom: 0">{{ forumDetail.creatorName }}</h3>
+            <p style="margin-bottom: 0">{{ forumDetail.createdAt }}</p>
+          </div>
+          <div
+            style="
+              flex: 1;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: flex-end;
+            "
+          >
+            <i
+              style="font-size: 20px; color: orange; margin-right: 8px"
+              nz-icon
+              nzTheme="fill"
+              nzType="fire"
+            ></i>
+            <p style="margin-bottom: 0">
+              {{ forumDetail.numberOfReplies }} replies
+            </p>
+          </div>
+        </div>
+        <ng-container *ngIf="!showUpdate; else editTemplate">
+          <h2 style="margin-bottom: 0">
+            {{ forumDetail.title }}
+          </h2>
+          <p style="margin-bottom: 0">
+            {{ forumDetail.description }}
+          </p>
+          <nz-form-item *ngIf="isAdminOrAuthor(forumDetail.createdBy)">
+            <button
+              (click)="updateForum()"
+              style="
+                color: #1890ff;
+                border-style: none;
+                box-shadow: none;
+                padding-left: 0px;
+              "
+              nz-button
+            >
+              <i nz-icon nzTheme="fill" nzType="edit"></i>Edit
+            </button>
+            <button
+              (click)="deleteForum(forumDetail._id)"
+              style="color: red; border-style: none; box-shadow: none"
+              nz-button
+            >
+              <i nz-icon nzTheme="fill" nzType="delete"></i>Delete
+            </button>
+          </nz-form-item>
+        </ng-container>
+      </nz-card>
     </div>
-
-    <ng-template #studentTemplate>
-      <ng-container>
-        <h3>
-          {{ forumDetail.title }}
-        </h3>
-        <p>
-          {{ forumDetail.description }}
-        </p>
-      </ng-container>
-    </ng-template>
 
     <ng-template #editTemplate>
-      <nz-form-item>
-        <nz-form-label>{{'title' | translate}}</nz-form-label>
+      <nz-form-item class="edit-form-item">
+        <nz-form-label>{{ "title" | translate }}</nz-form-label>
         <nz-form-control>
-          <input [(ngModel)]="forumDetail.title" nz-input type="text"/>
+          <input [(ngModel)]="forumDetail.title" nz-input type="text" />
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
-        <nz-form-label>{{'description'|translate}}</nz-form-label>
+      <nz-form-item class="edit-form-item">
+        <nz-form-label>{{ "description" | translate }}</nz-form-label>
         <nz-form-control>
-          <input [(ngModel)]="forumDetail.description" nz-input type="text"/>
+          <input [(ngModel)]="forumDetail.description" nz-input type="text" />
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
-        <button (click)="saveUpdate()" *ngIf="showUpdate" nz-button nzType="primary">
-          {{'save' | translate}}
+      <nz-form-item class="buttons-container">
+        <button
+          class="button"
+          (click)="saveUpdate()"
+          *ngIf="showUpdate"
+          nz-button
+          nzType="primary"
+        >
+          {{ "save" | translate }}
         </button>
-        <button (click)="deleteForum(forumDetail._id)" nz-button nzDanger nzType="default" style="margin-left: 4px">
-          {{'delete' | translate}}
+        <button
+          class="button"
+          (click)="cancelUpdate()"
+          nz-button
+          nzType="default"
+          nzDanger
+          style="margin-left: 10px"
+        >
+          Cancel
         </button>
       </nz-form-item>
     </ng-template>
 
-    <nz-list>
-    </nz-list>
+    <nz-list> </nz-list>
     <div *ngFor="let data of commentData; let i = index">
-      <ng-template [ngTemplateOutletContext]="{ comment: data }" [ngTemplateOutlet]="commentTemplateRef"></ng-template>
+      <ng-template
+        [ngTemplateOutletContext]="{ comment: data }"
+        [ngTemplateOutlet]="commentTemplateRef"
+      ></ng-template>
     </div>
+
     <ng-template #commentTemplateRef let-comment="comment">
-      <nz-comment [nzAuthor]="comment.username" [nzDatetime]="comment.createdAt | date">
-        <nz-avatar [nzSrc]="comment.avatar" nz-comment-avatar nzIcon="user"></nz-avatar>
+      <nz-comment
+        [nzAuthor]="comment.username"
+        [nzDatetime]="comment.createdAt | date"
+      >
+        <nz-avatar
+          [nzSrc]="comment.avatar"
+          nz-comment-avatar
+          nzIcon="user"
+        ></nz-avatar>
         <nz-comment-content *ngIf="!editCache[comment._id].edit">
-          <p>{{ comment.content }}</p>
+          <p style="margin-bottom: 0">{{ comment.content }}</p>
         </nz-comment-content>
-        <nz-form-control *ngIf="editCache[comment._id].edit">
+        <nz-comment-content *ngIf="editCache[comment._id].edit">
           <nz-form-item>
             <textarea [(ngModel)]="comment.content" nz-input></textarea>
           </nz-form-item>
-        </nz-form-control>
+        </nz-comment-content>
 
         <!--        <nz-comment-action><a (click)="replyTo(comment._id)">{{'reply.to' | translate}}</a></nz-comment-action>-->
-        <nz-comment-action *ngIf="isAdminOrAuthor(comment.createdBy, comment.editable)">
-          <a (click)="editComment(comment._id)" *ngIf="!editCache[comment._id].edit">{{'edit' | translate}}</a>
-          <a (click)="saveComment(comment._id, comment.content)"
-             *ngIf="editCache[comment._id].edit">{{'save' | translate}}</a>
-        </nz-comment-action>
+        <nz-comment-content
+          *ngIf="isAdminOrAuthor(comment.createdBy, comment.editable)"
+        >
+          <button
+            (click)="editComment(comment._id)"
+            *ngIf="!editCache[comment._id].edit"
+            style="
+              color: #1890ff;
+              border-style: none;
+              box-shadow: none;
+              padding-left: 0px;
+            "
+            nz-button
+          >
+            <i nz-icon nzTheme="fill" nzType="edit"></i>Edit
+          </button>
+          <button
+            *ngIf="
+              isAdminOrAuthor(comment.createdBy, comment.editable) &&
+              !editCache[comment._id].edit
+            "
+            (click)="deleteComment(comment._id)"
+            style="color: red; border-style: none; box-shadow: none"
+            nz-button
+          >
+            <i nz-icon nzTheme="fill" nzType="delete"></i
+            >{{ "delete" | translate }}
+          </button>
+          <nz-form-item class="buttons-container">
+            <button
+              class="button"
+              (click)="saveComment(comment._id, comment.content)"
+              *ngIf="editCache[comment._id].edit"
+              nz-button
+              nzType="primary"
+            >
+              {{ "save" | translate }}
+            </button>
+            <button
+              class="button"
+              *ngIf="editCache[comment._id].edit"
+              (click)="cancelEditComment(comment._id)"
+              nz-button
+              nzType="default"
+              nzDanger
+              style="margin-left: 10px"
+            >
+              Cancel
+            </button>
+          </nz-form-item>
+        </nz-comment-content>
         <!--        <nz-comment-action *ngIf="editCache[comment._id].edit"><a-->
         <!--          (click)="saveComment(comment._id)">{{'save' | translate}}</a></nz-comment-action>-->
         <!--        <nz-comment-action *ngIf="editCache[comment._id].edit"><a-->
         <!--          (click)="cancelEditComment(comment._id)">{{'cancel' | translate}}</a></nz-comment-action>-->
-
-        <nz-comment-action *ngIf="isAdminOrAuthor(comment.createdBy, comment.editable)"><a
-          (click)="deleteComment(comment._id)">{{'delete' | translate}}</a></nz-comment-action>
-
         <!--        <app-forum-comment-box-->
         <!--          [replyDetail]="{conversationId: comment.conversationId, replyId: comment._id}"></app-forum-comment-box>-->
 
         <ng-container *ngIf="comment.reply && comment.reply.length">
           <ng-template [ngForOf]="comment.reply" let-child ngFor>
-            <ng-template [ngTemplateOutletContext]="{ comment: child }"
-                         [ngTemplateOutlet]="commentTemplateRef">
+            <ng-template
+              [ngTemplateOutletContext]="{ comment: child }"
+              [ngTemplateOutlet]="commentTemplateRef"
+            >
             </ng-template>
           </ng-template>
         </ng-container>
       </nz-comment>
     </ng-template>
 
-
     <nz-comment>
       <nz-avatar nz-comment-avatar nzIcon="user"></nz-avatar>
       <nz-comment-content>
         <nz-form-item>
-          <textarea [(ngModel)]="inputValue" nz-input rows="4"></textarea>
+          <textarea [(ngModel)]="inputValue" nz-input rows="1"></textarea>
         </nz-form-item>
-        <nz-form-item>
-          <button (click)="handleSubmit()" [disabled]="!inputValue" [nzLoading]="submitting" nz-button nzType="primary">
-            {{'add.comment' | translate}}
-          </button>
+        <nz-form-item style="margin-top: 5px">
+          <div style="display: flex; justify-content: flex-end">
+            <button
+              (click)="handleSubmit()"
+              [disabled]="!inputValue"
+              [nzLoading]="submitting"
+              nz-button
+              nzType="primary"
+            >
+              {{ "add.comment" | translate }}
+            </button>
+          </div>
         </nz-form-item>
       </nz-comment-content>
     </nz-comment>
   </div>
-
 </nz-spin>

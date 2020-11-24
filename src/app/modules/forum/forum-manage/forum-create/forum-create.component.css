@@ -1,0 +1,22 @@
+.create-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+input {
+  height: 50px;
+}
+
+nz-form-item {
+  margin-bottom: 10px;
+}
+
+.create-button-container {
+  margin-bottom: 0px;
+}
+
+.create-button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}

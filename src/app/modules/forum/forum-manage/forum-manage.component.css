@@ -1,0 +1,19 @@
+nz-form-item {
+  margin-bottom: 0px;
+}
+
+.edit-form-item {
+  margin-bottom: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+.button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}

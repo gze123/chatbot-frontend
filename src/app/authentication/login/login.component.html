@@ -3,8 +3,8 @@
     <div>
       <nz-card-tab>
         <nz-tabset [(nzSelectedIndex)]="index" nzSize="large">
-          <nz-tab nzTitle="{{'login' | translate}}"></nz-tab>
-          <nz-tab nzTitle="{{'register' | translate}}"></nz-tab>
+          <nz-tab nzTitle="{{'Login' | translate}}"></nz-tab>
+          <nz-tab nzTitle="{{'Register' | translate}}"></nz-tab>
         </nz-tabset>
       </nz-card-tab>
       <div *ngIf="index==0" class="login-registration-form">
@@ -19,7 +19,7 @@
     <div>
       <nz-card-tab>
         <nz-tabset [(nzSelectedIndex)]="index" nzSize="large">
-          <nz-tab nzTitle="{{'Forgot password'}}"></nz-tab>
+          <nz-tab nzTitle="{{'Forgot Password'}}"></nz-tab>
         </nz-tabset>
       </nz-card-tab>
       <app-forgot-password-form (back)="forgotPasswordVisible($event)"></app-forgot-password-form>

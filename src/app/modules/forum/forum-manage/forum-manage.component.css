@@ -15,5 +15,5 @@ nz-form-item {
 .button {
   height: 40px;
   border-radius: 5px;
-  width: 100px;
+  min-width: 100px;
 }

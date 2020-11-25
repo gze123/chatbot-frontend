@@ -40,7 +40,7 @@ export class AppConstants {
   // forum
   public static FORUM = '/forum';
   public static FORUM_CREATE = AppConstants.API_WEB + AppConstants.FORUM;
-  public static FORUM_GET = AppConstants.API_WEB + '/conversations?order=desc';
+  public static FORUM_GET = AppConstants.API_WEB + '/forums?order=desc';
   public static FORUM_UPDATE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.UPDATE;
   public static FORUM_DELETE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.DELETE;
 

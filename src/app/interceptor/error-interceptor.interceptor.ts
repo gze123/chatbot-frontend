@@ -35,7 +35,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse && error.status === 401) {
+      if (error instanceof HttpErrorResponse && (error.status === 401 || error.status === 400 )) {
         return this.handleError(request, next);
       } else {
         this.authService.httpErrorModal();

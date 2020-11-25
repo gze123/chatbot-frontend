@@ -38,7 +38,7 @@ export class AppConstants {
   public static LOST_AND_FOUND_DELETE = AppConstants.API_WEB + AppConstants.LOST_AND_FOUND + AppConstants.DELETE;
 
   // forum
-  public static FORUM = '/conversation';
+  public static FORUM = '/forum';
   public static FORUM_CREATE = AppConstants.API_WEB + AppConstants.FORUM;
   public static FORUM_GET = AppConstants.API_WEB + '/conversations?order=desc';
   public static FORUM_UPDATE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.UPDATE;
@@ -46,10 +46,10 @@ export class AppConstants {
 
   // forum content
   public static COMMENT = '/reply';
-  public static COMMENT_CREATE = AppConstants.API_WEB + AppConstants.COMMENT;
-  public static COMMENT_GET = AppConstants.API_WEB + '/replies?conversationId=';
-  public static COMMENT_UPDATE = AppConstants.API_WEB + AppConstants.COMMENT + AppConstants.UPDATE;
-  public static COMMENT_DELETE = AppConstants.API_WEB + AppConstants.COMMENT + AppConstants.DELETE;
+  public static COMMENT_CREATE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.COMMENT;
+  public static COMMENT_GET = AppConstants.API_WEB + AppConstants.FORUM + '/replies?conversationId=';
+  public static COMMENT_UPDATE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.COMMENT + AppConstants.UPDATE;
+  public static COMMENT_DELETE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.COMMENT + AppConstants.DELETE;
 
   // ticket
   public static TICKET = '/ticket';
@@ -63,7 +63,7 @@ export class AppConstants {
   public static USER_MANAGEMENT_ROLES = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + '/roles';
   public static USER_MANAGEMENT_ROLES_CREATE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.ROLE;
   public static USER_MANAGEMENT_ROLES_DELETE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.ROLE + AppConstants.DELETE;
-  public static USER_MANAGEMENT_USERS = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + '/users';
-  public static USER_MANAGEMENT_USERS_CREATE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.USER;
-  public static USER_MANAGEMENT_USERS_DELETE = AppConstants.API_WEB + AppConstants.USER_MANAGEMENT + AppConstants.USER + AppConstants.DELETE;
+  public static USER_MANAGEMENT_USERS = AppConstants.API_WEB + '/users';
+  public static USER_MANAGEMENT_USERS_CREATE = AppConstants.API_WEB + AppConstants.USER;
+  public static USER_MANAGEMENT_USERS_DELETE = AppConstants.API_WEB + AppConstants.USER + AppConstants.DELETE;
 }

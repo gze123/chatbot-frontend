@@ -17,3 +17,7 @@ th {
 .image-link {
   text-align: center !important;
 }
+
+nz-table {
+  margin-top: 30px;
+}

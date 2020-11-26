@@ -7,49 +7,44 @@
     </nz-page-header>
   </div>
   <div class="content-lost-and-found">
-    <form
-      style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 24px;
-        padding-top: 0px;
-      "
-      (ngSubmit)="search()"
-      [formGroup]="lostAndFoundForm"
-      [nzLayout]="'inline'"
-      nz-form
-    >
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group nzPrefixIcon="search">
-            <input
-              formControlName="item"
-              nz-input
-              placeholder="{{ 'item' | translate }}"
-            />
-          </nz-input-group>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
+    <nz-card [nzBordered]="true" nzTitle="Search For Item">
+      <form
+        style="align-items: center; justify-content: center; display: flex;"
+        (ngSubmit)="search()"
+        [formGroup]="lostAndFoundForm"
+        [nzLayout]="'inline'"
+        nz-form
+      >
+        <nz-form-item>
           <nz-form-control>
-            <nz-range-picker
-              nzSize="large"
-              formControlName="date"
-            ></nz-range-picker>
+            <nz-input-group nzPrefixIcon="search">
+              <input
+                formControlName="item"
+                nz-input
+                placeholder="{{ 'item' | translate }}"
+              />
+            </nz-input-group>
           </nz-form-control>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <button class="search-button" nz-button nzType="primary">
-            Search
-          </button>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-control>
+              <nz-range-picker
+                nzSize="large"
+                formControlName="date"
+              ></nz-range-picker>
+            </nz-form-control>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button class="search-button" nz-button nzType="primary">
+              Search
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-card>
     <nz-table
       #lostAndFoundTable
       nzSize="small"

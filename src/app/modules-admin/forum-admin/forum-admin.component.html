@@ -13,7 +13,7 @@
   <div>
     <nz-list nzItemLayout="vertical">
       <li *ngFor="let data of forumData; let i = index" nz-list-item nzNoFlex>
-        <h3>
+        <h3 nz-typography>
           <a [routerLink]="['/admin/forum/',data._id]">{{ data.title }}</a>
         </h3>
         <p>

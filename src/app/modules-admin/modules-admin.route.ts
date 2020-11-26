@@ -3,6 +3,7 @@ import {LostAndFoundAdminComponent} from './lost-and-found-admin/lost-and-found-
 import {FORUM_ADMIN_ROUTE} from './forum-admin/forum-admin.route';
 import {TicketAdminComponent} from './ticket-admin/ticket-admin.component';
 import {USER_MANAGEMENT_ADMIN_ROUTE} from './user-management-admin/user-management-admin.route';
+import {NEWS_ANNOUNCEMENT_ADMIN_ROUTE} from './news-announcement-admin/news-announcement-admin.route';
 
 export const MODULE_ADMIN_ROUTES = [
   // {
@@ -28,10 +29,10 @@ export const MODULE_ADMIN_ROUTES = [
     component: LostAndFoundAdminComponent,
     loadChildren: () => import('./lost-and-found-admin/lost-and-found-admin.module').then(m => m.LostAndFoundAdminModule)
   },
-  // {
-  //   path: 'news-and-announcement',
-  //   loadChildren: () => import('./news-and-announcement/news-and-announcement.module').then(m => m.NewsAndAnnouncementModule)
-  // },
+  {
+    path: 'news-and-announcement',
+    children: NEWS_ANNOUNCEMENT_ADMIN_ROUTE
+  },
   {
     path: 'tickets',
     component: TicketAdminComponent,

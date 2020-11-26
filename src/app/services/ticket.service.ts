@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {AppConstants} from "../shared/app.constant";
-import {SolutionModel, TicketCreateModel} from "../models/ticket.model";
+import {HttpClient} from '@angular/common/http';
+import {AppConstants} from '../shared/app.constant';
+import {SolutionModel, TicketCreateModel} from '../models/ticket.model';
 
 @Injectable({
   providedIn: 'root'

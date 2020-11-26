@@ -1,0 +1,34 @@
+<nz-page-header class="site-page-header" (nzBack)="back()" nzBackIcon nzTitle="Back" >
+</nz-page-header>
+<nz-card-loading *ngIf="pageLoading"></nz-card-loading>
+<nz-carousel nzAutoPlay [nzEffect]="effect" style="margin-top:2vh">
+  <div nz-carousel-content *ngFor="let image of imageUrlArray">
+    <img [src]=image alt="" style="height:50vh;">
+  </div>
+</nz-carousel>
+<div>
+  <div class="title" nz-row>
+    <div nz-col nzSpan="12" >
+      <h1>{{title}}</h1>
+    </div>
+    <div nz-col nzOffset="10" nzSpan="2">
+      <a nz-button nzType="text" nzDanger (click)="deleteNewsAndAnnouncement(this.paramId)">Delete</a>
+    </div>
+  </div>
+  {{createdAt | date}}
+  <div>
+    <p>
+      {{contents}}
+    </p>
+  </div>
+  <div>
+    <h4 *ngIf="imageUrlArray.length>0">Attachment</h4>
+    <div>
+      <div *ngFor="let attachment of attachments">
+        <button (click)="goToLink(attachment.link)" nz-button><i nz-icon nzType="link" nzTheme="outline"></i>
+          {{attachment.fileName}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

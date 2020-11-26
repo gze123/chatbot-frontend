@@ -47,7 +47,7 @@ export class AppConstants {
   // forum content
   public static COMMENT = '/reply';
   public static COMMENT_CREATE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.COMMENT;
-  public static COMMENT_GET = AppConstants.API_WEB + AppConstants.FORUM + '/replies?conversationId=';
+  public static COMMENT_GET = AppConstants.API_WEB + AppConstants.FORUM + '/replies?';
   public static COMMENT_UPDATE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.COMMENT + AppConstants.UPDATE;
   public static COMMENT_DELETE = AppConstants.API_WEB + AppConstants.FORUM + AppConstants.COMMENT + AppConstants.DELETE;
 

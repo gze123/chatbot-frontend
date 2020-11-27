@@ -77,5 +77,8 @@
   "create.role": "Create Role",
   "news.and.announcement": "News and Announcement",
   "manage.news.announcements": "Manage News and Announcements",
-  "add.news.announcements": "Add News and Announcement"
+  "add.news.announcements": "Add News and Announcement",
+  "content": "Content",
+  "upload.image": "Upload Image",
+  "upload.file": "Upload File"
 }

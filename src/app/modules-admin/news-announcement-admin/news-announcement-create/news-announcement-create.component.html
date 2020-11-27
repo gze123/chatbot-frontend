@@ -1,1 +1,39 @@
-<p>news-announcement-create works!</p>
+<nz-spin [nzSpinning]="pageLoading">
+  <form [formGroup]="newsAnnouncementCreateForm" nz-form>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'title' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input title for the news/announcement!">
+        <input formControlName="title" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'content' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input content for the news/announcement!">
+        <ckeditor [editor]="Editor" data="" formControlName="content"></ckeditor>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'upload.image' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <nz-upload [(nzFileList)]="imageList" [nzBeforeUpload]="beforeUploadImage">
+          <button nz-button><i nz-icon nzType="upload"></i>Select Image</button>
+        </nz-upload>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'upload.file' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUploadFile">
+          <button nz-button><i nz-icon nzType="upload"></i>Select File</button>
+        </nz-upload>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="8" nzOffset="3">
+        <button nz-button nzType="primary" [disabled]="!this.newsAnnouncementCreateForm.valid" (click)="submitForm()">{{'submit' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+</nz-spin>

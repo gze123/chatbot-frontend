@@ -1,4 +1,4 @@
-<nz-page-header class="site-page-header" (nzBack)="back()" nzBackIcon nzTitle="Back" >
+<nz-page-header class="site-page-header" (nzBack)="back()" nzBackIcon nzTitle="Back">
 </nz-page-header>
 <nz-card-loading *ngIf="pageLoading"></nz-card-loading>
 <nz-carousel nzAutoPlay [nzEffect]="effect" style="margin-top:2vh">
@@ -8,18 +8,15 @@
 </nz-carousel>
 <div>
   <div class="title" nz-row>
-    <div nz-col nzSpan="12" >
+    <div nz-col nzSpan="12">
       <h1>{{title}}</h1>
     </div>
-    <div nz-col nzOffset="10" nzSpan="2">
+    <div nz-col nzOffset="10" nzSpan="2" *ngIf="isAdminRole()">
       <a nz-button nzType="text" nzDanger (click)="deleteNewsAndAnnouncement(this.paramId)">Delete</a>
     </div>
   </div>
   {{createdAt | date}}
-  <div>
-    <p>
-      {{contents}}
-    </p>
+  <div [innerHTML]="contents">
   </div>
   <div>
     <h4 *ngIf="imageUrlArray.length>0">Attachment</h4>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {Location} from '@angular/common';
@@ -13,6 +13,7 @@ import {NzModalService} from 'ng-zorro-antd';
   styleUrls: ['./new-announcement-view.component.css']
 })
 export class NewAnnouncementViewComponent implements OnInit {
+  @Input() role;
   pageLoading = false;
   private routeSub: Subscription;
   paramId: string;
@@ -41,7 +42,6 @@ export class NewAnnouncementViewComponent implements OnInit {
     });
     this.newsAndAnnouncementService.getNewsAndAnnouncementById(this.paramId).subscribe(res => {
       const response: any = res;
-      console.log(response.result[0]);
       this.pageLoading = false;
       this.title = response.result[0].title;
       this.contents = response.result[0].contents;
@@ -53,7 +53,6 @@ export class NewAnnouncementViewComponent implements OnInit {
         let url = this.processImageToSafeUrl(images[i].data);
         this.imageUrlArray.push(url);
       }
-      console.log(this.imageUrlArray[0]);
     }, err => {
       this.pageLoading = false;
     });
@@ -92,5 +91,12 @@ export class NewAnnouncementViewComponent implements OnInit {
       nzOnCancel: instance => {
       }
     });
+  }
+
+  isAdminRole() {
+    if (this.role === 'student') {
+      return false;
+    }
+    return true;
   }
 }

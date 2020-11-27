@@ -59,5 +59,6 @@ export class LostAndFoundCreateComponent implements OnInit {
       image: file
     });
     this.lostAndFoundCreateForm.get('image').updateValueAndValidity();
+    console.log(this.lostAndFoundCreateForm);
   }
 }

@@ -20,8 +20,8 @@ export class NewsAndAnnouncementService {
     return this.http.get(AppConstants.ANNOUNCEMENT_GET + '?id=' + id);
   }
 
-  addNewsAndAnnouncement(newsAndAnnouncementModel: any) {
-    return this.http.post(AppConstants.ANNOUNCEMENT_CREATE, newsAndAnnouncementModel);
+  addNewsAndAnnouncement(formData: FormData) {
+    return this.http.post(AppConstants.ANNOUNCEMENT_CREATE, formData);
   }
 
   updateNewsAndAnnouncement(newsAndAnnouncementModel: any) {

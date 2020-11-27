@@ -40,7 +40,7 @@ export class ForumService {
   }
 
   getReplyByForumId(id: string) {
-    return this.http.get(AppConstants.COMMENT_GET + id);
+    return this.http.get(AppConstants.COMMENT_GET + `conversationId=${id}`);
   }
 
   getReplyByForumIdAndReplyId(forumId: string, replyId: string) {

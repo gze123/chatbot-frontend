@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
-import {catchError, filter, switchMap, take} from 'rxjs/operators';
+import {catchError, filter, finalize, switchMap, take} from 'rxjs/operators';
 import {NzModalService} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
@@ -20,7 +20,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   private isRefreshing = false;
   private refreshTokenSubject: Subject<any> = new BehaviorSubject<any>(null);
-
 
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -59,9 +58,18 @@ export class ErrorInterceptor implements HttpInterceptor {
       return this.authService.refresh().pipe(
         switchMap((token: any) => {
           this.isRefreshing = false;
-          this.refreshTokenSubject.next(token.result.token);
-          localStorage.setItem('jwtToken', token.result.token);
-          return next.handle(this.addToken(request, token.result.token));
+          if (token.result.token) {
+            this.refreshTokenSubject.next(token.result.token);
+            localStorage.setItem('jwtToken', token.result.token);
+            return next.handle(this.addToken(request, token.result.token));
+          }
+          this.authService.httpErrorModal();
+          return throwError(token.result);
+        }), catchError(error => {
+          this.authService.httpErrorModal();
+          return throwError(error);
+        }), finalize(() => {
+          this.isRefreshing = false;
         }));
 
     } else {

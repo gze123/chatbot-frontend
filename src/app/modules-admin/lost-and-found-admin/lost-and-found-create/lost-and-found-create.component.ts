@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NzMessageService, UploadFile} from "ng-zorro-antd";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {LostAndFoundService} from "../../../services/lost-and-found-service.service";
+import {NzMessageService, UploadFile} from 'ng-zorro-antd';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LostAndFoundService} from '../../../services/lost-and-found-service.service';
 
 
 @Component({
@@ -12,7 +12,6 @@ import {LostAndFoundService} from "../../../services/lost-and-found-service.serv
 export class LostAndFoundCreateComponent implements OnInit {
 
   pageLoading = false;
-  avatarUrl?: string;
   lostAndFoundCreateForm!: FormGroup;
   fileList: UploadFile[] = [];
   form: FormGroup;
@@ -36,14 +35,13 @@ export class LostAndFoundCreateComponent implements OnInit {
     formData.append('location', this.lostAndFoundCreateForm.controls['location'].value);
     formData.append('image', this.lostAndFoundCreateForm.controls['image'].value);
 
-    formData.forEach(x => console.log(x))
+    formData.forEach(x => console.log(x));
     this.lostAndFoundService.addLostAndFound(formData).subscribe(res => {
       this.pageLoading = false;
-      console.log(res)
       location.reload();
     }, error => {
       this.pageLoading = false;
-    })
+    });
 
   }
 
@@ -55,17 +53,11 @@ export class LostAndFoundCreateComponent implements OnInit {
     });
   }
 
-  private getBase64(img: File, callback: (img: string) => void): void {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => callback(reader.result!.toString()));
-    reader.readAsDataURL(img);
-  }
-
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.lostAndFoundCreateForm.patchValue({
       image: file
     });
-    this.lostAndFoundCreateForm.get('image').updateValueAndValidity()
+    this.lostAndFoundCreateForm.get('image').updateValueAndValidity();
   }
 }

@@ -38,7 +38,6 @@ export class ErrorInterceptor implements HttpInterceptor {
       if (error instanceof HttpErrorResponse && (error.status === 401)) {
         return this.handleError(request, next);
       } else {
-        this.authService.httpErrorModal();
         return throwError(error);
       }
     }));

@@ -3,7 +3,7 @@ import {FORUM_ROUTES} from './forum/forum.route';
 export const MODULE_ROUTES = [
   {
     path: '',
-    redirectTo: '/faq',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {

@@ -43,8 +43,8 @@ export class ChatbotComponent implements OnInit {
       }
     )
       .subscribe(res => {
-        const { text } = res.result;
-        this.addBotMessage(text[0]);
+        const text  = res.result;
+        this.addBotMessage(text);
         this.loading = false;
       });
   }

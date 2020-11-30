@@ -14,7 +14,7 @@
             <nz-avatar nz-comment-avatar nzIcon="user"></nz-avatar>
           </div>
           <div>
-            <h3 style="margin-bottom: 0">{{ forumDetail.creatorName }}</h3>
+            <p nz-typography style="margin-bottom: 0; font-weight: bold;">{{ forumDetail.creatorName }}</p>
             <p style="margin-bottom: 0">{{ forumDetail.createdAt }}</p>
           </div>
           <div
@@ -38,9 +38,9 @@
           </div>
         </div>
         <ng-container *ngIf="!showUpdate; else editTemplate">
-          <h2 style="margin-bottom: 0">
+          <h4 nz-typography style="margin-bottom: 0">
             {{ forumDetail.title }}
-          </h2>
+          </h4>
           <p style="margin-bottom: 0">
             {{ forumDetail.description }}
           </p>

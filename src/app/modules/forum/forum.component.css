@@ -5,3 +5,12 @@ nz-list li ul {
 nz-list li {
   margin-top: 30px;
 }
+
+::ng-deep .ant-card-head {
+  background: #073554;
+  color: white;
+}
+
+::ng-deep .ant-card-body {
+  background: #FCFCFC;
+}

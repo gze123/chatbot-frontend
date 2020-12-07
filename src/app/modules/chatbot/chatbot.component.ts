@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AppConstants} from '../../shared/app.constant';
 
@@ -15,7 +15,13 @@ export class ChatbotComponent implements OnInit {
   // Random ID to maintain session with server
   sessionId = Math.random().toString(36).slice(-5);
 
-  constructor(private http: HttpClient) { }
+  image: {
+    url: string,
+    type: string
+  };
+
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit() {
     const name = localStorage.getItem('username');
@@ -43,8 +49,7 @@ export class ChatbotComponent implements OnInit {
       }
     )
       .subscribe(res => {
-        const text  = res.result;
-        this.addBotMessage(text);
+        this.addBotMessage(res.result);
         this.loading = false;
       });
   }
@@ -58,9 +63,24 @@ export class ChatbotComponent implements OnInit {
     });
   }
 
-  addBotMessage(text) {
+  addBotMessage(response: any) {
+    let text = '';
+    let files = [];
+    if (response.includes('responsePayload')) {
+      const result = JSON.parse(response);
+      console.log(result.responsePayload.files);
+      const imageFile = result.responsePayload.files;
+      imageFile.forEach(image => {
+        files.push({url: image, type: 'image/jpeg'});
+      });
+      text = result.responsePayload.texts;
+    } else {
+      text = response;
+    }
     this.messages.push({
       text,
+      type: files.length ? 'file' : 'text',
+      files,
       sender: 'Bot',
       avatar: 'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/robot-face.png',
       date: new Date()

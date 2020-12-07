@@ -1,8 +1,17 @@
-<nz-tabset>
-  <nz-tab nzTitle="{{'manage.news.announcements' | translate}}">
-    <app-news-announcement-manage></app-news-announcement-manage>
-  </nz-tab>
-  <nz-tab nzTitle="{{'add.news.announcements' | translate}}">
-    <app-news-announcement-create></app-news-announcement-create>
-  </nz-tab>
-</nz-tabset>
+<div class="container">
+  <div>
+    <nz-page-header
+      class="site-page-header"
+      nzTitle="{{ 'news.and.announcement' | translate }}"
+    >
+    </nz-page-header>
+  </div>
+  <nz-tabset>
+    <nz-tab nzTitle="{{'manage.news.announcements' | translate}}">
+      <app-news-announcement-manage></app-news-announcement-manage>
+    </nz-tab>
+    <nz-tab nzTitle="{{'add.news.announcements' | translate}}">
+      <app-news-announcement-create></app-news-announcement-create>
+    </nz-tab>
+  </nz-tabset>
+</div>

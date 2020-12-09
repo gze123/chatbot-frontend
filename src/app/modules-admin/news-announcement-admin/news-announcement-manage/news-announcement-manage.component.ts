@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NewsAndAnnouncementService} from '../../../services/news-and-announcement.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-news-announcement-manage',
@@ -11,7 +12,8 @@ export class NewsAnnouncementManageComponent implements OnInit {
   newsAndAnnouncementData: any;
 
   constructor(
-    private newsAndAnnouncementService: NewsAndAnnouncementService
+    private newsAndAnnouncementService: NewsAndAnnouncementService,
+    private router: Router
   ) {
   }
 
@@ -26,7 +28,15 @@ export class NewsAnnouncementManageComponent implements OnInit {
       , err => {
         this.pageLoading = false;
       });
+  }
 
+  delete(id: string) {
+    this.newsAndAnnouncementService.deleteNewsAndAnnouncement(id).subscribe(res => {
+      const response: any = res;
+      console.log(response);
+      this.ngOnInit();
+    }, error => {
 
+    });
   }
 }

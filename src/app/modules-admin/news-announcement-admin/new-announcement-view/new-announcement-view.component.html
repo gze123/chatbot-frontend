@@ -6,25 +6,30 @@
     <img [src]=image alt="" style="height:50vh;">
   </div>
 </nz-carousel>
-<div>
+<div *ngIf="!pageLoading">
   <div class="title" nz-row>
     <div nz-col nzSpan="12">
       <h1>{{title}}</h1>
     </div>
-    <div nz-col nzOffset="10" nzSpan="2" *ngIf="isAdminRole()">
+    <div nz-col nzOffset="9" nzSpan="3" *ngIf="isAdminRole()">
+      <a  style="margin-right:1vw" nz-button nzType="text" [routerLink]="['/admin/news-and-announcement/edit',this.paramId]">Edit</a>
       <a nz-button nzType="text" nzDanger (click)="deleteNewsAndAnnouncement(this.paramId)">Delete</a>
     </div>
   </div>
   {{createdAt | date}}
+  <nz-divider></nz-divider>
   <div [innerHTML]="contents">
   </div>
   <div>
-    <h4 *ngIf="imageUrlArray.length>0">Attachment</h4>
+    <nz-divider nzOrientation="left" nzText="Attachments"></nz-divider>
     <div>
       <div *ngFor="let attachment of attachments">
-        <button (click)="goToLink(attachment.link)" nz-button><i nz-icon nzType="link" nzTheme="outline"></i>
-          {{attachment.fileName}}
-        </button>
+        <div class="attachment-margin" style="margin-bottom: 1vh;">
+          <button (click)="goToLink(attachment.link)" nz-button ><i nz-icon nzType="link" nzTheme="outline"></i>
+            {{attachment.fileName}}
+          </button>
+        </div>
+
       </div>
     </div>
   </div>

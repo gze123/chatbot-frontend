@@ -5,16 +5,6 @@ import {NewsAndAnnouncementService} from '../../../services/news-and-announcemen
 import {UploadFile} from 'ng-zorro-antd/upload';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-
-function getBase64(file: File): Promise<string | ArrayBuffer | null> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
-}
-
 @Component({
   selector: 'app-news-announcement-create',
   templateUrl: './news-announcement-create.component.html',

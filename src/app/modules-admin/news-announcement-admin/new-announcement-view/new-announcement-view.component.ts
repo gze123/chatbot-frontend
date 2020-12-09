@@ -20,7 +20,7 @@ export class NewAnnouncementViewComponent implements OnInit {
   title: string;
   contents: string;
   createdAt: Date;
-  attachments: Attachment[];
+  attachments: Attachment[] = [];
   effect = 'scrollx';
   imageUrl: SafeUrl;
   imageUrlArray: SafeUrl[] = [];

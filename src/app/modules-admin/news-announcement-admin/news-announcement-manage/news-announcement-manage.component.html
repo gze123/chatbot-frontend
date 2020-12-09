@@ -5,6 +5,8 @@
       <h3>
         <a [routerLink]="['/admin/news-and-announcement/',data._id]">{{ data.title }}</a>
       </h3>
+      &nbsp;&nbsp;<a [routerLink]="['/admin/news-and-announcement/edit',data._id]">{{'edit' | translate}}</a>&nbsp;&nbsp;
+      <a (nzOnConfirm)="delete(data._id)" nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">{{'delete' | translate}}</a>
       <ul nz-list-item-actions style="padding-left: 0">
         <i nz-icon nzTheme="outline" nzType="calendar"
            style="margin-right: 8px; margin-left: 8px"></i>{{data.createdAt | date}}

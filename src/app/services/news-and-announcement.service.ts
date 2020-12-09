@@ -24,8 +24,8 @@ export class NewsAndAnnouncementService {
     return this.http.post(AppConstants.ANNOUNCEMENT_CREATE, formData);
   }
 
-  updateNewsAndAnnouncement(newsAndAnnouncementModel: any) {
-    return this.http.post(AppConstants.ANNOUNCEMENT_UPDATE, newsAndAnnouncementModel);
+  updateNewsAndAnnouncement(formData: FormData) {
+    return this.http.post(AppConstants.ANNOUNCEMENT_UPDATE, formData);
   }
 
   deleteNewsAndAnnouncement(id: string) {

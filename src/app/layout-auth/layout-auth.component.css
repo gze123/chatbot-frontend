@@ -3,7 +3,7 @@
   background-color: #cccccc;
   justify-content: center;
   height: 100vh;
-  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url('src/assets/static/img.png');
+  background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),url('src/assets/static/background.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FaqService} from "../../services/faq-service.service";
-import {Faq} from "../../models/faq.model";
+import {FaqService} from '../../services/faq-service.service';
+import {Faq} from '../../models/faq.model';
 
 @Component({
   selector: 'app-faq',
@@ -21,12 +21,14 @@ export class FaqComponent implements OnInit {
         const response: any = res;
         console.log(res);
         this.faqQuestionAndAnswer = response.result;
+        this.faqQuestionAndAnswer.forEach((faq) => faq.active = false
+      );
         this.pageLoading = false;
       },
       error => {
         this.pageLoading = false;
       }
-    )
+    );
   }
 
 }

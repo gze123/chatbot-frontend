@@ -1,4 +1,5 @@
 export interface Faq {
+  active: boolean;
   intentId: string;
   id: string;
   question: string;

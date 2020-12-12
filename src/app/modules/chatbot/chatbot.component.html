@@ -9,20 +9,6 @@
                    [files]="msg.files"
   >
   </nb-chat-message>
-<!--  <nb-chat-message-->
-<!--    message="Group of files message"-->
-<!--    type="file"-->
-<!--    sender="msg.sender"-->
-<!--    [reply]="true"-->
-<!--    [date]="msg.date"-->
-<!--    [files]="[-->
-<!--          { url: 'http://google.com', icon: 'file-text-outline' },-->
-<!--          { url: 'https://picsum.photos/320/240/?image=387', type: 'image/jpeg' },-->
-<!--          { url: 'http://www.reactiongifs.com/r/wnd1.gif', type: 'image/gif' }-->
-<!--         ]"-->
-<!--    avatar="https://i.gifer.com/no.gif">-->
-<!--  </nb-chat-message>-->
-
 
   <nb-chat-message *ngIf="loading" [nbSpinner]="loading" nbSpinnerStatus="info"
                    type="text"

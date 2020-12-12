@@ -35,8 +35,6 @@ export class LoginFormComponent implements OnInit {
       password: this.validateForm.controls.password.value
     };
 
-
-    console.log('username: ', this.validateForm.controls.userName.value);
     this.authService.login(userLogin).subscribe(res => {
       const response: any = res;
       this.pageLoading = false;

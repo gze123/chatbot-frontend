@@ -6,7 +6,7 @@ import {en_US, NgZorroAntdModule, NZ_I18N, NzLayoutModule, NzMenuModule} from 'n
 import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {registerLocaleData} from '@angular/common';
+import {DatePipe, registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -63,6 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule
   ],
   providers: [
+    DatePipe,
     {provide: NZ_I18N, useValue: en_US},
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

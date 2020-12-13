@@ -15,8 +15,8 @@ export class LostAndFoundService {
     return this.http.post(AppConstants.LOST_AND_FOUND_CREATE, formData);
   }
 
-  getLostAndFound() {
-    return this.http.get(AppConstants.LOST_AND_FOUND_GET);
+  getLostAndFound(data: any) {
+    return this.http.get(AppConstants.LOST_AND_FOUND_GET, {params: data});
   }
 
 

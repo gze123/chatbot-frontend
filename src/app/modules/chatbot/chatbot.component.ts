@@ -34,7 +34,7 @@ export class ChatbotComponent implements OnInit {
       const response: any = res;
       if (response.result) {
         const latestNews = response.result.pop();
-        this.addBotMessage('Latest News and Announcement (' + this.datePipe.transform(latestNews.createdAt, 'yyy-MM-dd') + '):');
+        this.addBotMessage('Latest News and Announcement (' + this.datePipe.transform(latestNews.createdAt, 'yyyy-MM-dd') + '):');
         this.addBotMessage(latestNews.title);
         if (latestNews.images) {
           const image = {responsePayload: {files: latestNews.images}};

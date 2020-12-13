@@ -6,10 +6,6 @@ import {USER_MANAGEMENT_ADMIN_ROUTE} from './user-management-admin/user-manageme
 import {NEWS_ANNOUNCEMENT_ADMIN_ROUTE} from './news-announcement-admin/news-announcement-admin.route';
 
 export const MODULE_ADMIN_ROUTES = [
-  // {
-  //   path: 'home',
-  //   loadChildren: () => import('./faq-admin/faq-admin.module').then(m => m.FaqAdminModule)
-  // },
   {
     path: '',
     redirectTo: '/faq',

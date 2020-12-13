@@ -7,7 +7,7 @@
   </div>
   <div class="content-lost-and-found">
 
-    <form (ngSubmit)="search()" [formGroup]="lostAndFoundForm" [nzLayout]="'inline'" nz-form>
+    <form [formGroup]="lostAndFoundForm" [nzLayout]="'inline'" nz-form>
       <nz-form-item>
         <nz-form-control>
           <nz-input-group nzPrefixIcon="search">
@@ -24,12 +24,16 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-control>
-          <button nz-button nzType="primary">{{'search' | translate}}</button>
+          <button nz-button (click)="search()" nzType="primary">{{'Search' | translate}}</button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button (click)="resetTable()">{{'Reset' | translate}}</button>
         </nz-form-control>
       </nz-form-item>
     </form>
-
-    <nz-table #lostAndFoundTable [nzData]="lostAndFoundData" [nzLoading]="pageLoading">
+    <nz-table #lostAndFoundTable [nzData]="lostAndFoundDisplayData" [nzLoading]="pageLoading">
       <thead>
       <tr>
         <th>{{'item' | translate}}</th>
@@ -45,7 +49,7 @@
         <td>{{ data.createdAt| date }}</td>
         <td>
           <app-lost-and-found-image [imageId]="data._id"></app-lost-and-found-image>
-          <a (nzOnConfirm)="deleteRow(data._id)" nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
+          <a (nzOnConfirm)="deleteRow(data._id)"  [nzType]="'link'" nz-button nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
             {{'delete' | translate}}
           </a>
         </td>

@@ -4,6 +4,8 @@ import {NzModalService} from 'ng-zorro-antd';
 import {LostAndFoundService} from '../../../services/lost-and-found-service.service';
 import {LostAndFound} from '../../../models/lost-and-found.model';
 import {DomSanitizer} from '@angular/platform-browser';
+import {DatePipe} from '@angular/common';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-lost-and-found-manage',
@@ -15,8 +17,7 @@ export class LostAndFoundManageComponent implements OnInit {
   lostAndFoundForm: FormGroup;
 
   lostAndFoundData: LostAndFound[];
-
-  // listOfSearchedData = [...this.lostAndFoundData];
+  lostAndFoundDisplayData: LostAndFound[];
 
   isVisible = false;
   pageLoading = false;
@@ -25,16 +26,19 @@ export class LostAndFoundManageComponent implements OnInit {
     private modalService: NzModalService,
     private fb: FormBuilder,
     private lostAndFoundService: LostAndFoundService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private datePipe: DatePipe
   ) {
   }
 
   ngOnInit(): void {
     this.pageLoading = true;
-    this.lostAndFoundService.getLostAndFound().subscribe(res => {
+    const data = {};
+    this.lostAndFoundService.getLostAndFound(data).subscribe(res => {
       const response: any = res;
       console.log(response);
       this.lostAndFoundData = response.result;
+      this.lostAndFoundDisplayData = response.result;
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
@@ -46,17 +50,39 @@ export class LostAndFoundManageComponent implements OnInit {
   }
 
   search() {
-    console.log(this.lostAndFoundForm);
+    const item = this.lostAndFoundForm.controls.item.value;
+    let minDate = '';
+    let maxDate = '';
+    if (this.lostAndFoundForm.controls.date.value) {
+      minDate = this.datePipe.transform(new Date(this.lostAndFoundForm.controls.date.value[0]), 'yyyy/MM/dd');
+      maxDate = this.datePipe.transform(new Date(this.lostAndFoundForm.controls.date.value[1]), 'yyyy/MM/dd');
+    }
+    const data = {
+      item, minDate, maxDate
+    };
     // search function
-    // this.listOfSearchedData = this.lostAndFoundData.filter()
+    this.pageLoading = true;
+    this.lostAndFoundService.getLostAndFound(data).subscribe(res => {
+      const response: any = res;
+      this.lostAndFoundDisplayData = response.result;
+      console.log(response.result);
+      this.pageLoading = false;
+    }, error => {
+      this.pageLoading = false;
+    });
   }
 
   deleteRow(id: string) {
+    this.lostAndFoundDisplayData = this.lostAndFoundDisplayData.filter(d => d._id !== id);
     this.lostAndFoundData = this.lostAndFoundData.filter(d => d._id !== id);
     this.lostAndFoundService.deleteLostAndFound(id).subscribe(res => {
       console.log(res);
     }, error => {
 
     });
+  }
+
+  resetTable() {
+    this.lostAndFoundDisplayData = this.lostAndFoundData;
   }
 }

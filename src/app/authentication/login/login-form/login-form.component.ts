@@ -44,7 +44,7 @@ export class LoginFormComponent implements OnInit {
       localStorage.setItem('id', response.result.user._id);
       localStorage.setItem('username', response.result.user.username);
       if (response.result.user.role === 'staff' || response.result.user.role === 'superadmin') {
-        this.router.navigate(['/admin/forum']).then(r => {
+        this.router.navigate(['/admin/user-management']).then(r => {
           if (r) {
             console.log('navigate admin success');
           } else {

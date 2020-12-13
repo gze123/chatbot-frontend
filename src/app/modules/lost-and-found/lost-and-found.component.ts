@@ -33,7 +33,7 @@ export class LostAndFoundComponent implements OnInit {
       date: [null]
     });
     this.pageLoading = true;
-    this.lostAndFoundService.getLostAndFound().subscribe(res => {
+    this.lostAndFoundService.getLostAndFound(params).subscribe(res => {
       const response: any = res;
       this.lostAndFoundData = response.result;
       console.log(response);

@@ -36,7 +36,7 @@ export class TicketDetailComponent implements OnInit {
   }
 
   getUserRole() {
-    return localStorage.getItem('role') == "staff";
+    return localStorage.getItem('role') == 'staff' || localStorage.getItem('role') == 'superadmin' ;
   }
 
   submitSolution() {

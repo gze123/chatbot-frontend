@@ -48,7 +48,7 @@
         <td>{{ data.location }}</td>
         <td>{{ data.createdAt| date }}</td>
         <td>
-          <app-lost-and-found-image [imageId]="data._id"></app-lost-and-found-image>
+          <app-lost-and-found-image [imageId]="data.fileName"></app-lost-and-found-image>
           <a (nzOnConfirm)="deleteRow(data._id)"  [nzType]="'link'" nz-button nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
             {{'delete' | translate}}
           </a>

@@ -43,6 +43,11 @@
             </button>
           </nz-form-control>
         </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button (click)="resetTable()">{{'Reset' | translate}}</button>
+          </nz-form-control>
+        </nz-form-item>
       </form>
     </nz-card>
     <nz-table
@@ -50,7 +55,7 @@
       nzSize="small"
       nzBordered="true"
       nzOuterBordered="true"
-      [nzData]="lostAndFoundData"
+      [nzData]="lostAndFoundDisplayData"
       [nzLoading]="pageLoading"
     >
       <thead>

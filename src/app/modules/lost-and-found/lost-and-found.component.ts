@@ -3,6 +3,7 @@ import {NzModalService} from 'ng-zorro-antd';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LostAndFoundService} from '../../services/lost-and-found-service.service';
 import {LostAndFound} from '../../models/lost-and-found.model';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-lost-and-found',
@@ -14,8 +15,8 @@ export class LostAndFoundComponent implements OnInit {
   lostAndFoundForm: FormGroup;
 
   lostAndFoundData: LostAndFound[];
+  lostAndFoundDisplayData: LostAndFound[];
 
-  // listOfSearchedData = [...this.lostAndFoundData];
 
   isVisible = false;
   pageLoading: boolean = false;
@@ -24,6 +25,7 @@ export class LostAndFoundComponent implements OnInit {
     private modalService: NzModalService,
     private fb: FormBuilder,
     private lostAndFoundService: LostAndFoundService,
+    private datePipe: DatePipe
   ) {
   }
 
@@ -33,10 +35,11 @@ export class LostAndFoundComponent implements OnInit {
       date: [null]
     });
     this.pageLoading = true;
-    this.lostAndFoundService.getLostAndFound(params).subscribe(res => {
+    const data = {};
+    this.lostAndFoundService.getLostAndFound(data).subscribe(res => {
       const response: any = res;
+      this.lostAndFoundDisplayData = response.result;
       this.lostAndFoundData = response.result;
-      console.log(response);
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
@@ -53,9 +56,27 @@ export class LostAndFoundComponent implements OnInit {
   }
 
   search() {
-    console.log(this.lostAndFoundForm);
-    // search function
-    // this.listOfSearchedData = this.lostAndFoundData.filter()
+    const item = this.lostAndFoundForm.controls.item.value;
+    let minDate = '';
+    let maxDate = '';
+    if (this.lostAndFoundForm.controls.date.value) {
+      minDate = this.datePipe.transform(new Date(this.lostAndFoundForm.controls.date.value[0]), 'yyyy/MM/dd');
+      maxDate = this.datePipe.transform(new Date(this.lostAndFoundForm.controls.date.value[1]), 'yyyy/MM/dd');
+    }
+    const data = {
+      item, minDate, maxDate
+    };
+    this.pageLoading = true;
+    this.lostAndFoundService.getLostAndFound(data).subscribe(res => {
+      const response: any = res;
+      this.lostAndFoundDisplayData = response.result;
+      console.log(response.result);
+      this.pageLoading = false;
+    }, error => {
+      this.pageLoading = false;
+    });
   }
 
-}
+  resetTable() {
+    this.lostAndFoundDisplayData = this.lostAndFoundData;
+  }}

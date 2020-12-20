@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 export class NewsAnnouncementManageComponent implements OnInit {
   pageLoading = false;
   newsAndAnnouncementData: any;
+  pagination: number;
 
   constructor(
     private newsAndAnnouncementService: NewsAndAnnouncementService,
@@ -21,7 +22,8 @@ export class NewsAnnouncementManageComponent implements OnInit {
     this.pageLoading = true;
     this.newsAndAnnouncementService.getNewsAndAnnouncement().subscribe(res => {
       const response: any = res;
-      this.newsAndAnnouncementData = response.result;
+      this.newsAndAnnouncementData = response.result.data;
+      this.pagination = response.result.total;
       console.log(response);
       this.pageLoading = false;
       }
@@ -38,5 +40,19 @@ export class NewsAnnouncementManageComponent implements OnInit {
     }, error => {
 
     });
+  }
+
+  onPageIndexChange($event: number) {
+    console.log($event);
+    this.pageLoading = true;
+    this.newsAndAnnouncementService.getNewsAndAnnouncementByPage($event).subscribe(res => {
+        const response: any = res;
+        this.newsAndAnnouncementData = response.result.data;
+        console.log(response);
+        this.pageLoading = false;
+      }
+      , err => {
+        this.pageLoading = false;
+      });
   }
 }

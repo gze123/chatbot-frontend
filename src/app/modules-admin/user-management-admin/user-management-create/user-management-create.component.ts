@@ -15,10 +15,6 @@ export class UserManagementCreateComponent implements OnInit {
   adminCreateForm!: FormGroup;
   fileList: UploadFile[] = [];
   form: FormGroup;
-  roleOption = [
-    {label: 'Jack', value: 'jack'},
-    {label: 'Lucy', value: 'lucy'}
-  ];
   staffRoleOption: Role[] = [];
 
   constructor(
@@ -71,7 +67,7 @@ export class UserManagementCreateComponent implements OnInit {
   ngOnInit(): void {
     this.userManagementService.getAdminRoles().subscribe(res => {
       const response: any = res;
-      this.staffRoleOption = response.result;
+      this.staffRoleOption = response.result.data;
     });
     this.adminCreateForm = this.fb.group({
       email: [null, [Validators.required]],

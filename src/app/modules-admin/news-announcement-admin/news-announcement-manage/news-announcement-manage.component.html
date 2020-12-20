@@ -1,5 +1,5 @@
 <nz-card-loading *ngIf="pageLoading"></nz-card-loading>
-<div>
+<div *ngIf="!pageLoading">
   <nz-list nzItemLayout="vertical">
     <li *ngFor="let data of newsAndAnnouncementData; let i = index" nz-list-item nzNoFlex>
       <h3>
@@ -14,3 +14,4 @@
     </li>
   </nz-list>
 </div>
+<nz-pagination [nzPageIndex]="1" [nzTotal]="pagination" [nzPageSize]="10" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>

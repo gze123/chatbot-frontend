@@ -56,13 +56,12 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       (res) => {
         let responseReply: any = res[0];
         let responseForum: any = res[1];
-        this.forumDetail = responseForum.result.filter(
+        this.forumDetail = responseForum.result.data.filter(
           (x) => x._id == this.paramId
         )[0];
-        this.commentData = responseReply.result;
+        this.commentData = responseReply.result.data;
         this.getReply();
         this.updateEditCache();
-        console.log(this.commentData);
         this.pageLoading = false;
       },
       (error) => {
@@ -215,15 +214,11 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         data: { ...item },
       };
     });
-    console.log(this.editCache);
   }
 
   saveComment(_id: any, content: string) {
-    console.log(_id, content);
     this.forumService.editReply(_id, content).subscribe(
       (res) => {
-        const response: any = res;
-        console.log(response.result);
       },
       (error) => {}
     );

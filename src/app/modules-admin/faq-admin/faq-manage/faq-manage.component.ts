@@ -22,7 +22,7 @@ export class FaqManageComponent implements OnInit {
     this.pageLoading = true;
     this.faqService.getFaq().subscribe(res => {
       const response: any = res;
-      this.faqData = response.result;
+      this.faqData = response.result.data;
       this.updateEditCache();
       this.pageLoading = false;
     }, error => {

@@ -20,7 +20,7 @@ export class FaqComponent implements OnInit {
     this.faqService.getFaq().subscribe(res => {
         const response: any = res;
         console.log(res);
-        this.faqQuestionAndAnswer = response.result;
+        this.faqQuestionAndAnswer = response.result.data;
         this.faqQuestionAndAnswer.forEach((faq) => faq.active = false
       );
         this.pageLoading = false;

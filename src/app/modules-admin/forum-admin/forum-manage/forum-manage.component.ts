@@ -54,8 +54,8 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     zip(this.forumService.getReplyByForumId(this.paramId), this.forumService.getForumTitle()).subscribe(res => {
       let responseReply: any = res[0];
       let responseForum: any = res[1];
-      this.forumDetail = responseForum.result.filter(x => x._id == this.paramId)[0];
-      this.commentData = responseReply.result;
+      this.forumDetail = responseForum.result.data.filter(x => x._id == this.paramId)[0];
+      this.commentData = responseReply.result.data;
       this.getReply();
       this.updateEditCache();
       console.log(this.commentData);

@@ -10,7 +10,7 @@
   <app-forum-create></app-forum-create>
 
   <nz-card-loading *ngIf="pageLoading"></nz-card-loading>
-  <div style="margin-top: 30px; padding-left: 20px; padding-right: 20px">
+  <div style="margin-top: 30px; padding-left: 20px; padding-right: 20px" *ngIf="!pageLoading">
     <nz-list nzItemLayout="vertical">
       <li
         style="padding-top: 0px; padding-bottom: 0px"
@@ -32,7 +32,7 @@
             style="margin-right: 8px"
           ></i
           >{{
-            data.creatorName
+          data.creatorName
           }}
           <i
             style="margin-right: 8px; margin-left: 30px"
@@ -41,7 +41,7 @@
             nzType="calendar"
           ></i
           >{{
-            data.createdAt | date
+          data.createdAt | date
           }}
           <i
             style="margin-right: 8px; margin-left: 30px"
@@ -50,13 +50,17 @@
             nzType="fire"
           ></i
           >{{
-            data.numberOfReplies
+          data.numberOfReplies
           }}
           {{
-            "replies" | translate
+          "replies" | translate
           }}
         </ul>
       </li>
     </nz-list>
+  </div>
+  <div style="margin-top:1vh">
+    <nz-pagination [nzPageIndex]="1" [nzTotal]="pagination" [nzPageSize]="10"
+                   (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
   </div>
 </div>

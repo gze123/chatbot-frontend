@@ -27,11 +27,11 @@ export class TicketComponent implements OnInit {
     this.pageLoading = true;
     this.ticketService.getTicket().subscribe(res => {
       const response: any = res;
-      this.ticketData = response.result;
+      this.ticketData = response.result.data;
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
-    })
+    });
   }
 
   search() {

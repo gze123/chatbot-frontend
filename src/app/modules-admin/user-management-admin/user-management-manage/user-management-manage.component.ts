@@ -20,7 +20,7 @@ export class UserManagementManageComponent implements OnInit {
     this.pageLoading = true;
     this.userRoleManagementService.getAdminUser().subscribe(res => {
       const response: any = res;
-      this.adminUser = response.result;
+      this.adminUser = response.result.data;
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;

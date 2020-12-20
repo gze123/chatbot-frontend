@@ -12,6 +12,7 @@ import {ForumService} from '../../services/forum-service.service';
 export class ForumComponent implements OnInit {
   forumData: Forum[] = [];
   pageLoading = false;
+  pagination: number;
 
   constructor(
     private http: HttpClient,
@@ -25,7 +26,8 @@ export class ForumComponent implements OnInit {
     this.forumService.getForumTitle().subscribe(res => {
       const response: any = res;
       console.log(response);
-      this.forumData = response.result;
+      this.forumData = response.result.data;
+      this.pagination = response.result.total;
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
@@ -34,6 +36,17 @@ export class ForumComponent implements OnInit {
 
   view(item: any): void {
     this.msg.success(item.email);
+  }
+
+  onPageIndexChange($event: number) {
+    this.pageLoading = true;
+    this.forumService.getForumTitleByPage($event).subscribe(res => {
+      const response: any = res;
+      this.forumData = response.result.data;
+      this.pageLoading = false;
+    }, error => {
+      this.pageLoading = false;
+    });
   }
 }
 

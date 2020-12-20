@@ -22,7 +22,6 @@
         <th>{{'title' | translate}}</th>
         <th>{{'status' | translate}}</th>
         <th>{{'created.date' | translate}}</th>
-        <!--        <th>{{'last.updated.date' | translate}}</th>-->
         <th>{{'view' | translate}}</th>
       </tr>
       </thead>
@@ -32,7 +31,6 @@
         <td>{{ data.title }}</td>
         <td>{{ data.status }}</td>
         <td>{{ data.createdAt | date}}</td>
-        <!--        <td>{{ data.lastUpdatedDate}}</td>-->
         <td>
           <app-ticket-detail (reloadTable)="reloadTable()" [ticketDetail]="data"></app-ticket-detail>
         </td>

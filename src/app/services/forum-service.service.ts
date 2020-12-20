@@ -21,6 +21,10 @@ export class ForumService {
     return this.http.get(AppConstants.FORUM_GET);
   }
 
+  getForumTitleByPage(page: number) {
+    return this.http.get(AppConstants.FORUM_GET + '&page=' + page);
+  }
+
   editForum(forumUpdateModel: ForumUpdateModel) {
     return this.http.post(AppConstants.FORUM_UPDATE, forumUpdateModel);
   }

@@ -37,8 +37,8 @@ export class LostAndFoundManageComponent implements OnInit {
     this.lostAndFoundService.getLostAndFound(data).subscribe(res => {
       const response: any = res;
       console.log(response);
-      this.lostAndFoundData = response.result;
-      this.lostAndFoundDisplayData = response.result;
+      this.lostAndFoundData = response.result.data;
+      this.lostAndFoundDisplayData = response.result.data;
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;

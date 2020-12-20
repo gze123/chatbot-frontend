@@ -43,11 +43,11 @@ export class NewAnnouncementViewComponent implements OnInit {
     this.newsAndAnnouncementService.getNewsAndAnnouncementById(this.paramId).subscribe(res => {
       const response: any = res;
       this.pageLoading = false;
-      this.title = response.result[0].title;
-      this.contents = response.result[0].contents;
-      this.createdAt = response.result[0].createdAt;
-      this.attachments = response.result[0].attachments;
-      const images = response.result[0].images;
+      this.title = response.result.data[0].title;
+      this.contents = response.result.data[0].contents;
+      this.createdAt = response.result.data[0].createdAt;
+      this.attachments = response.result.data[0].attachments;
+      const images = response.result.data[0].images;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < images.length; i++) {
         let url = this.processImageToSafeUrl(images[i].data);

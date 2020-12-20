@@ -20,7 +20,7 @@ export class NewsAndAnnouncementComponent implements OnInit {
     this.pageLoading = true;
     this.newsAndAnnouncementService.getNewsAndAnnouncement().subscribe(res => {
         const response: any = res;
-        this.newsAndAnnouncementData = response.result;
+        this.newsAndAnnouncementData = response.result.data;
         console.log(response);
         this.pageLoading = false;
       }

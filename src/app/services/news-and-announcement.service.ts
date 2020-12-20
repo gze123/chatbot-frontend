@@ -16,6 +16,10 @@ export class NewsAndAnnouncementService {
     return this.http.get(AppConstants.ANNOUNCEMENT_GET);
   }
 
+  getNewsAndAnnouncementByPage(pageNum: number) {
+    return this.http.get(AppConstants.ANNOUNCEMENT_GET + '?page=' + pageNum);
+  }
+
   getNewsAndAnnouncementById(id: string) {
     return this.http.get(AppConstants.ANNOUNCEMENT_GET + '?id=' + id);
   }

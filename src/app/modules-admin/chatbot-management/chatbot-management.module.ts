@@ -7,11 +7,12 @@ import { ChatbotLetterComponent } from './chatbot-letter/chatbot-letter.componen
 import { ChatbotFaqComponent } from './chatbot-faq/chatbot-faq.component';
 import { ChatbotLostAndFoundComponent } from './chatbot-lost-and-found/chatbot-lost-and-found.component';
 import {TranslateModule} from '@ngx-translate/core';
+import { ChatbotViewAttachmentComponent } from './chatbot-view-attachment/chatbot-view-attachment.component';
 
 
 
 @NgModule({
-  declarations: [ChatbotManagementComponent, ChatbotGeneralComponent, ChatbotLetterComponent, ChatbotFaqComponent, ChatbotLostAndFoundComponent],
+  declarations: [ChatbotManagementComponent, ChatbotGeneralComponent, ChatbotLetterComponent, ChatbotFaqComponent, ChatbotLostAndFoundComponent, ChatbotViewAttachmentComponent],
   imports: [
     CommonModule,
     NgZorroAntdModule,

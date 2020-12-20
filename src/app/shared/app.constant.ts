@@ -12,6 +12,12 @@ export class AppConstants {
 
   // chatbot
   public static CHATBOT = AppConstants.API_WEB + '/chatbot';
+  public static CHATBOT_INTENT = AppConstants.CHATBOT + '/intent';
+  public static CHATBOT_INTENT_GET = AppConstants.CHATBOT + '/intents';
+  public static CHATBOT_INTENT_UPDATE = AppConstants.CHATBOT_INTENT + AppConstants.UPDATE;
+  public static CHATBOT_INTENT_DELETE = AppConstants.CHATBOT_INTENT + AppConstants.DELETE;
+  public static CHATBOT_INTENT_TRAIN = AppConstants.CHATBOT_INTENT + '/train';
+  public static CHATBOT_INTENT_DELETE_FILE = AppConstants.CHATBOT_INTENT + '/file' + AppConstants.DELETE;
 
   // auth
   public static AUTH = '/auth';

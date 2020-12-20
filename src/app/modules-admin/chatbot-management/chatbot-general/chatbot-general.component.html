@@ -1,1 +1,30 @@
-<p>chatbot-general works!</p>
+<div>
+  <nz-table #basicTable [nzData]="chatbotIntentData" [nzLoading]="pageLoading">
+    <thead>
+    <tr>
+      <th nzWidth="20%">Topic</th>
+      <th nzWidth="30%">User Question</th>
+      <th nzWidth="30%">Reply</th>
+      <th nzWidth="10%">Attachment</th>
+      <th nzWidth="10%">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.intentName }}</td>
+      <td>{{ data.input }}</td>
+      <td>{{ data.response }}</td>
+      <td>
+        <app-chatbot-view-attachment [attachments]="data.attachments"></app-chatbot-view-attachment>
+      </td>
+      <td>
+        <a>Update</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (nzOnConfirm)="deleteRow(data._id)" nzTooltipPlacement="top" nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
+        {{'delete' | translate}}
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

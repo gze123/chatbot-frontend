@@ -81,5 +81,6 @@
   "content": "Content",
   "upload.image": "Upload Image",
   "upload.file": "Upload File",
-  "chatbot.management": "Chatbot Management"
+  "chatbot.management": "Chatbot Management",
+  "attachments": "Attachments"
 }

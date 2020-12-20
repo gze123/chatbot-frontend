@@ -80,5 +80,6 @@
   "add.news.announcements": "Add News and Announcement",
   "content": "Content",
   "upload.image": "Upload Image",
-  "upload.file": "Upload File"
+  "upload.file": "Upload File",
+  "chatbot.management": "Chatbot Management"
 }

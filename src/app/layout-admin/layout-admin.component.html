@@ -13,12 +13,12 @@
     </div>
     <div>
       <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline" nzTheme="dark">
-        <!--        <li [nzTitle]="isCollapsed ? ('home' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter-->
-        <!--                                                                nzTooltipPlacement="right">-->
-        <!--          <i nz-icon nzType="home"></i>-->
-        <!--          <span>{{'home' | translate}}</span>-->
-        <!--          <a routerLink="/student/home"></a>-->
-        <!--        </li>-->
+                <li [nzTitle]="isCollapsed ? ('chatbot-management' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
+                                                                        nzTooltipPlacement="right">
+                  <i nz-icon nzType="wechat" nzTheme="outline"></i>
+                  <span>{{'chatbot.management' | translate}}</span>
+                  <a routerLink="/admin/chatbot-management"></a>
+                </li>
         <li *ngIf="roleSuperadmin" [nzTitle]="isCollapsed ? ('user.management' | translate) : ''" nz-menu-item
             nz-tooltip nzMatchRouter
             nzTooltipPlacement="right">

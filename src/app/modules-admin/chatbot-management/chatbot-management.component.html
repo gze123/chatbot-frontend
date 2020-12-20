@@ -1,0 +1,34 @@
+
+<div class="container">
+  <div>
+    <nz-page-header
+      class="site-page-header"
+      nzTitle="{{ 'Chatbot Management' | translate }}"
+    >
+    </nz-page-header>
+  </div>
+  <div>
+    <nz-tabset>
+      <nz-tab nzTitle="General">
+        <app-chatbot-general></app-chatbot-general>
+      </nz-tab>
+      <nz-tab nzTitle="FAQ">
+        <ng-template nz-tab>
+          <app-chatbot-faq></app-chatbot-faq>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Lost and Found">
+        <ng-template nz-tab>
+          <app-chatbot-lost-and-found></app-chatbot-lost-and-found>
+        </ng-template>
+      </nz-tab>
+      <nz-tab nzTitle="Letter">
+        <ng-template nz-tab>
+          <app-chatbot-letter></app-chatbot-letter>
+        </ng-template>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+
+</div>
+

@@ -82,5 +82,11 @@
   "upload.image": "Upload Image",
   "upload.file": "Upload File",
   "chatbot.management": "Chatbot Management",
-  "attachments": "Attachments"
+  "attachments": "Attachments",
+  "lost.item": "Lost Item",
+  "found.item": "Found Item",
+  "add.lost.item": "Add Lost Item",
+  "add.found.item":"Add Found Item",
+  "contact": "Contact",
+  "no.image": "No image provided"
 }

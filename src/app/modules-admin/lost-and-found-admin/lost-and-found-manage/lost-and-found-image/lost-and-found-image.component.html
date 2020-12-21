@@ -6,7 +6,16 @@
 
   </nz-spin>
   <!--  <p *ngIf="!imageUrl">Loading...</p>-->
-  <img *ngIf="imageUrl" [src]=imageUrl alt="" style="height:400px;">
+  <div *ngIf="imageUrl == 'null' ; else elseBlock">
+    {{'no.image' | translate}}
+  </div>
+
+  <ng-template #elseBlock>
+    <div>
+      <img [src]=imageUrl alt="" style="height:400px;">
+    </div>
+
+  </ng-template>
 </nz-modal>
 
 

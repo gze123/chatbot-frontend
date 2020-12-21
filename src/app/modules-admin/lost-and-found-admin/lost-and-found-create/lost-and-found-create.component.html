@@ -7,6 +7,18 @@
         <input formControlName="item" nz-input/>
       </nz-form-control>
     </nz-form-item>
+    <nz-form-item *ngIf="lostAndFoundType == 'lost'">
+      <nz-form-label [nzSpan]="3">{{'description' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your description!">
+        <input formControlName="description" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="lostAndFoundType == 'lost'">
+      <nz-form-label [nzSpan]="3">{{'contact' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your contact method (Either email or h/p no.)!">
+        <input formControlName="contact" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="3">{{'location.found' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="16" nzErrorTip="Please input your location!">
@@ -14,17 +26,15 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{'upload' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="16">
+      <nz-form-label [nzSpan]="3" >{{'upload' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzExtra="{{imageInputExtra}}">
         <input (change)="uploadFile($event)" type="file">
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzSpan]="8" nzOffset="3">
-        <button nz-button nzType="primary">{{'submit' | translate}}</button>
+        <button [disabled]="!lostAndFoundCreateForm.valid" nz-button nzType="primary">{{'submit' | translate}}</button>
       </nz-form-control>
     </nz-form-item>
   </form>
-
-
 </nz-spin>

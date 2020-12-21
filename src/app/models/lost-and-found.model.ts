@@ -4,4 +4,6 @@ export interface LostAndFound {
   location: string;
   createdAt: string;
   fileName: string;
+  description: string;
+  contact: string;
 }

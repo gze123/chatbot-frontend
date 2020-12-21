@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NzMessageService, UploadFile} from 'ng-zorro-antd';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LostAndFoundService} from '../../../services/lost-and-found-service.service';
@@ -11,7 +11,10 @@ import {LostAndFoundService} from '../../../services/lost-and-found-service.serv
 })
 export class LostAndFoundCreateComponent implements OnInit {
 
+  @Input()
+  lostAndFoundType: string;
   pageLoading = false;
+  imageInputExtra: string;
   lostAndFoundCreateForm!: FormGroup;
   fileList: UploadFile[] = [];
   form: FormGroup;
@@ -34,6 +37,9 @@ export class LostAndFoundCreateComponent implements OnInit {
     formData.append('item', this.lostAndFoundCreateForm.controls['item'].value);
     formData.append('location', this.lostAndFoundCreateForm.controls['location'].value);
     formData.append('image', this.lostAndFoundCreateForm.controls['image'].value);
+    formData.append('description', this.lostAndFoundCreateForm.controls['description'].value);
+    formData.append('contact', this.lostAndFoundCreateForm.controls['contact'].value);
+    formData.append('type', this.lostAndFoundType);
 
     formData.forEach(x => console.log(x));
     this.lostAndFoundService.addLostAndFound(formData).subscribe(res => {
@@ -42,15 +48,24 @@ export class LostAndFoundCreateComponent implements OnInit {
     }, error => {
       this.pageLoading = false;
     });
-
   }
 
   ngOnInit(): void {
     this.lostAndFoundCreateForm = this.fb.group({
       item: [null, [Validators.required]],
+      description: [null],
       location: [null, [Validators.required]],
-      image: [null, [Validators.required]]
+      contact: [null],
+      image: [null]
     });
+    if (this.lostAndFoundType === 'lost') {
+      this.lostAndFoundCreateForm.get('description').setValidators(Validators.required);
+      this.lostAndFoundCreateForm.get('contact').setValidators(Validators.required);
+      this.imageInputExtra = 'Image is not necessary';
+    } else {
+      this.lostAndFoundCreateForm.get('image').setValidators(Validators.required);
+      this.imageInputExtra = '';
+    }
   }
 
   uploadFile(event) {

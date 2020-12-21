@@ -1,0 +1,81 @@
+<div class="content-lost-and-found">
+  <nz-card [nzBordered]="true" nzTitle="Search For Item">
+    <form
+      style="align-items: center; justify-content: center; display: flex;"
+      (ngSubmit)="search()"
+      [formGroup]="lostAndFoundForm"
+      [nzLayout]="'inline'"
+      nz-form
+    >
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group nzPrefixIcon="search">
+            <input
+              formControlName="item"
+              nz-input
+              placeholder="{{ 'item' | translate }}"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-form-control>
+            <nz-range-picker
+              nzSize="large"
+              formControlName="date"
+            ></nz-range-picker>
+          </nz-form-control>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button class="search-button" nz-button nzType="primary">
+            Search
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button (click)="resetTable()">{{'Reset' | translate}}</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-card>
+  <nz-table
+    #lostAndFoundTable
+    nzSize="small"
+    nzBordered="true"
+    nzOuterBordered="true"
+    [nzData]="lostAndFoundDisplayData"
+    [nzLoading]="pageLoading"
+  >
+    <thead>
+    <tr>
+      <th>{{ "item" | translate }}</th>
+      <th *ngIf="lostAndFoundType.includes('lost')">{{ "description" | translate}}</th>
+      <th>{{ "location" | translate }}</th>
+      <th *ngIf="lostAndFoundType.includes('lost')">{{ "contact" | translate}}</th>
+      <th>{{ "date" | translate }}</th>
+      <th>{{ "image" | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of lostAndFoundTable.data; let i = index">
+      <td>{{ data.item }}</td>
+      <td *ngIf="lostAndFoundType.includes('lost')">{{ data.description }}</td>
+      <td>{{ data.location }}</td>
+      <td *ngIf="lostAndFoundType.includes('lost')">{{ data.contact }}</td>
+      <td class="image-link">{{ data.createdAt | date }}</td>
+      <td class="image-link">
+        <app-lost-and-found-image
+          [imageId]="data.fileName"
+        ></app-lost-and-found-image>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+<ng-template #elseBlock>
+  <div>{{'-'}}</div>
+</ng-template>

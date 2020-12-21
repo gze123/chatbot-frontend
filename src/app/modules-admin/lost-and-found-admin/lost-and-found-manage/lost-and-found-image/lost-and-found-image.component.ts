@@ -14,6 +14,7 @@ export class LostAndFoundImageComponent implements OnInit {
   imageId: string;
   imageUrl: SafeUrl;
   isVisible: boolean;
+  imageUnavailable = false;
 
   constructor(
     private lostAndFoundService: LostAndFoundService,
@@ -34,6 +35,8 @@ export class LostAndFoundImageComponent implements OnInit {
       const base64String = btoa(STRING_CHAR);
       this.imageUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64, ' + base64String);
     }, error => {
+      this.imageUnavailable = true;
+      this.imageUrl = 'null';
     });
   }
 

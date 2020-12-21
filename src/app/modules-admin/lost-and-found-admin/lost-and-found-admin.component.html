@@ -5,8 +5,11 @@
   </nz-page-header>
 </div>
 <nz-tabset>
-  <nz-tab nzTitle="{{'manage.lost.and.found' | translate}}">
-    <app-lost-and-found-manage></app-lost-and-found-manage>
+  <nz-tab nzTitle="{{'manage.lost' | translate}}">
+    <app-lost-manage></app-lost-manage>
+  </nz-tab>
+  <nz-tab nzTitle="{{'manage.found' | translate}}">
+    <app-found-manage></app-found-manage>
   </nz-tab>
   <nz-tab nzTitle="{{'add.found.item' | translate}}">
     <app-lost-and-found-create [lostAndFoundType]="type"></app-lost-and-found-create>

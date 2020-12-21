@@ -88,5 +88,7 @@
   "add.lost.item": "Add Lost Item",
   "add.found.item":"Add Found Item",
   "contact": "Contact",
-  "no.image": "No image provided"
+  "no.image": "No image provided",
+  "manage.lost": "Manage Lost Item",
+  "manage.found": "Manage Found Item"
 }

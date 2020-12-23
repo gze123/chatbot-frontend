@@ -57,7 +57,7 @@
       <th>{{ "location" | translate }}</th>
       <th *ngIf="lostAndFoundType.includes('lost')">{{ "contact" | translate}}</th>
       <th>{{ "date" | translate }}</th>
-      <th>{{ "image" | translate }}</th>
+      <th>{{ "action" | translate }}</th>
     </tr>
     </thead>
     <tbody>
@@ -71,6 +71,17 @@
         <app-lost-and-found-image
           [imageId]="data.fileName"
         ></app-lost-and-found-image>
+        <nz-divider nzType="vertical"
+                    *ngIf="showDelete(data.createdBy)">
+        </nz-divider>
+        <a *ngIf="showDelete(data.createdBy)"
+           (nzOnConfirm)="deleteRow(data._id)"
+           [nzType]="'link'"
+           nz-button
+           nzTooltipPlacement="top"
+           nz-popconfirm
+           nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
+          {{'delete' | translate}}</a>
       </td>
     </tr>
     </tbody>

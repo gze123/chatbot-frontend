@@ -74,4 +74,20 @@ export class LostAndFoundTemplateComponent implements OnInit {
     this.lostAndFoundDisplayData = this.lostAndFoundData;
   }
 
+  deleteRow(id: string) {
+    this.lostAndFoundDisplayData = this.lostAndFoundDisplayData.filter(d => d._id !== id);
+    this.lostAndFoundData = this.lostAndFoundData.filter(d => d._id !== id);
+    this.lostAndFoundService.deleteLostAndFound(id).subscribe(res => {
+      console.log(res);
+    }, error => {
+
+    });
+  }
+
+  showDelete(id: string) {
+    if (this.lostAndFoundType.includes('lost') && (localStorage.getItem('id') === id)) {
+      return true;
+    }
+    return false;
+  }
 }

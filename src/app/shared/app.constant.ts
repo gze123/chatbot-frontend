@@ -65,10 +65,13 @@ export class AppConstants {
 
   // news and announcement
   public static ANNOUNCEMENT = '/announcement';
+  public static FILE = '/file';
   public static ANNOUNCEMENT_CREATE = AppConstants.API_WEB + AppConstants.ANNOUNCEMENT;
   public static ANNOUNCEMENT_UPDATE = AppConstants.API_WEB + AppConstants.ANNOUNCEMENT + AppConstants.UPDATE;
   public static ANNOUNCEMENT_GET = AppConstants.API_WEB + '/announcements';
   public static ANNOUNCEMENT_DELETE = AppConstants.API_WEB + AppConstants.ANNOUNCEMENT + AppConstants.DELETE;
+  public static ANNOUNCEMENT_FILE_DELETE = AppConstants.API_WEB + AppConstants.ANNOUNCEMENT + AppConstants.FILE + AppConstants.DELETE;
+
 
   // user management
   public static USER_MANAGEMENT = '/management';

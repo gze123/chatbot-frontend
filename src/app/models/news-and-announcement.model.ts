@@ -20,3 +20,8 @@ export interface AttachmentsImage {
   filePath: string;
   url: string;
 }
+
+export interface DeleteFile {
+  id: string;
+  filePath: string;
+}

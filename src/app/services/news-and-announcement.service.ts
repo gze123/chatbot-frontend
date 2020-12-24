@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AppConstants} from '../shared/app.constant';
+import {DeleteFile} from '../models/news-and-announcement.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,9 @@ export class NewsAndAnnouncementService {
     const arrayId = [];
     arrayId.push(id);
     return this.http.post(AppConstants.ANNOUNCEMENT_DELETE, {id: arrayId});
+  }
+
+  deleteFile(file: DeleteFile) {
+    return this.http.post(AppConstants.ANNOUNCEMENT_FILE_DELETE, file);
   }
 }

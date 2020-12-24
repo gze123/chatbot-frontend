@@ -49,7 +49,6 @@ export class NewsAnnouncementUpdateComponent implements OnInit {
       this.newsAndAnnouncement = response.result.data[0];
       this.images = response.result.data[0].images;
       this.attachments = response.result.data[0].attachments;
-      console.log(this.images.length)
       this.newsAnnouncementUpdateForm.controls.title.setValue(this.newsAndAnnouncement.title);
       this.newsAnnouncementUpdateForm.controls.content.setValue(this.newsAndAnnouncement.contents);
       this.pageLoading = false;
@@ -107,7 +106,7 @@ export class NewsAnnouncementUpdateComponent implements OnInit {
 
   deleteFile(filePath: string) {
     const id = this.newsAndAnnouncement._id;
-    let deleteFile = {id, filePath};
+    const deleteFile = {id, filePath};
     this.newsAndAnnouncementService.deleteFile(deleteFile).subscribe(res => {
     }, err => {
     });

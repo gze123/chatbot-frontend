@@ -72,7 +72,7 @@ export class NewAnnouncementViewComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64, ' + base64String);
   }
 
-  goToLink(url: string) {
+    goToLink(url) {
     window.open(url, '_blank');
   }
 

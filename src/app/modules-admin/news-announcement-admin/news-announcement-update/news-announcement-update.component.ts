@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {NewsAndAnnouncementService} from '../../../services/news-and-announcement.service';
-import {NewsAndAnnouncementModel} from '../../../models/news-and-announcement.model';
+import {DeleteFile, NewsAndAnnouncementModel} from '../../../models/news-and-announcement.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {UploadFile} from 'ng-zorro-antd/upload';
@@ -22,6 +22,8 @@ export class NewsAnnouncementUpdateComponent implements OnInit {
   fileList: UploadFile[] = [];
   imageList: UploadFile[] = [];
   public Editor = ClassicEditor;
+  images = [];
+  attachments = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,27 +46,12 @@ export class NewsAnnouncementUpdateComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.newsAndAnnouncementService.getNewsAndAnnouncementById(this.id).subscribe(res => {
       const response: any = res;
-      this.newsAndAnnouncement = response.result[0];
+      this.newsAndAnnouncement = response.result.data[0];
+      this.images = response.result.data[0].images;
+      this.attachments = response.result.data[0].attachments;
+      console.log(this.images.length)
       this.newsAnnouncementUpdateForm.controls.title.setValue(this.newsAndAnnouncement.title);
       this.newsAnnouncementUpdateForm.controls.content.setValue(this.newsAndAnnouncement.contents);
-      this.newsAndAnnouncement.images.forEach((image) => {
-        console.log(image);
-        // this.imageList.push(
-        //   {
-        //     size: 0, type: '',
-        //     // status: 'done',
-        //     // uid: image.filePath,
-        //     // name: image.fileName,
-        //     // url: image.url
-        //     uid: '1',
-        //     name: 'xxx.png',
-        //     status: 'done',
-        //     response: 'Server Error 500', // custom error message to show
-        //     url: 'http://www.baidu.com/xxx.png'
-        //   }
-        // );
-      });
-      console.log(this.imageList);
       this.pageLoading = false;
     }, err => {
       this.pageLoading = false;
@@ -113,7 +100,21 @@ export class NewsAnnouncementUpdateComponent implements OnInit {
       this.msg.create('success', 'News/Announcement updated successfully');
       this.back();
     }, error => {
+      console.log(error);
       this.pageLoading = false;
     });
   }
+
+  deleteFile(filePath: string) {
+    const id = this.newsAndAnnouncement._id;
+    let deleteFile = {id, filePath};
+    this.newsAndAnnouncementService.deleteFile(deleteFile).subscribe(res => {
+    }, err => {
+    });
+  }
+
+  viewFile(file) {
+    window.open(file, '_blank');
+  }
 }
+

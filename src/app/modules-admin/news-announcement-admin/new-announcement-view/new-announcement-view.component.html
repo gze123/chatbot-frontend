@@ -13,14 +13,14 @@
     </div>
     <div nz-col nzOffset="9" nzSpan="3" *ngIf="isAdminRole()">
       <a  style="margin-right:1vw" nz-button nzType="text" [routerLink]="['/admin/news-and-announcement/edit',this.paramId]">Edit</a>
-      <a nz-button nzType="text" nzDanger (click)="deleteNewsAndAnnouncement(this.paramId)">Delete</a>
+      <button nz-button nzType="text" class="btn danger" nzDanger (click)="deleteNewsAndAnnouncement(this.paramId)">Delete</button>
     </div>
   </div>
   {{createdAt | date}}
   <nz-divider></nz-divider>
   <div [innerHTML]="contents">
   </div>
-  <div>
+  <div *ngIf="attachments.length">
     <nz-divider nzOrientation="left" nzText="Attachments"></nz-divider>
     <div>
       <div *ngFor="let attachment of attachments">

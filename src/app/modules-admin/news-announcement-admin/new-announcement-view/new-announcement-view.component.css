@@ -20,3 +20,22 @@ img {
 .title {
   margin-top: 1vh;
 }
+
+
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  /*font-size: 16px;*/
+  cursor: pointer;
+}
+
+.danger {
+  border-color: #f44336;
+  color: red
+}
+
+.danger:hover {
+  background: #f44336;
+  color: white;
+}

@@ -1,0 +1,26 @@
+th {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.image-link {
+  text-align: center !important;
+}
+
+nz-table {
+  margin-top: 30px;
+}
+
+::ng-deep .ant-table-thead {
+  background: #073554;
+}
+
+::ng-deep .ant-table-small > .ant-table-content > .ant-table-body {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+::ng-deep .ant-table-column-title {
+  color: white
+}

@@ -2,8 +2,8 @@
 <nz-modal
   (nzOnOk)="closeModel()"
   [(nzVisible)]="isVisible"
-  [nzCancelText]="null"
-  nzClosable="true"
+  (nzOnCancel)="handleCancel()"
+  nzClosable="false"
   nzTitle="{{'Update Intent' | translate}}" nzWidth="650">
   <form [formGroup]="chatbotIntentUpdateForm" nz-form>
 

@@ -27,6 +27,7 @@
                   [input]="data.input"
                   [response]="data.response"
                   [attachments]="data.attachments"
+                  [id]="data._id"
                 ></app-chatbot-update-intent>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a (nzOnConfirm)="deleteRow(data._id)" nzTooltipPlacement="top" nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">

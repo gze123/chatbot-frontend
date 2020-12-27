@@ -18,6 +18,8 @@ export class ChatbotUpdateIntentComponent implements OnInit {
   response: string;
   @Input()
   attachments: [];
+  @Input()
+  id: string;
   attachmentList: UploadFile[] = [];
   isVisible: boolean;
   chatbotIntentUpdateForm!: FormGroup;
@@ -63,8 +65,6 @@ export class ChatbotUpdateIntentComponent implements OnInit {
     this.attachmentList.forEach((file: any) => {
       formData.append('attachments', file);
     });
-    console.log(this.chatbotIntentUpdateForm.controls.intentName.value);
-    console.log(this.chatbotIntentUpdateForm);
     formData.forEach(x => console.log(x));
     this.chatbotManagementService.updateIntent(formData).subscribe(res => {
       this.pageLoading = false;
@@ -74,16 +74,24 @@ export class ChatbotUpdateIntentComponent implements OnInit {
     });
   }
 
-  deleteFile(attachment: never) {
-
+  deleteFile(filePath: string) {
+    const id = this.id;
+    const deleteFile = {id, filePath};
+    this.chatbotManagementService.deleteFileIntent(deleteFile).subscribe(res => {
+    }, err => {
+    });
   }
 
-  viewFile(attachment: never) {
-
+  viewFile(attachment: string) {
+    window.open(attachment, '_blank');
   }
 
   beforeUploadFile = (file: UploadFile): boolean => {
     this.attachmentList = this.attachmentList.concat(file);
     return false;
+  }
+
+  handleCancel() {
+    this.isVisible = false;
   }
 }

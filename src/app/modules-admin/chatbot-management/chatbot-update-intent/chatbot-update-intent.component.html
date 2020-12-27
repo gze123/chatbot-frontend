@@ -8,26 +8,26 @@
   <form [formGroup]="chatbotIntentUpdateForm" nz-form>
 
     <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{'intent.name' | translate}}</nz-form-label>
+      <nz-form-label [nzSpan]="4">{{'topic' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="16" nzErrorTip="">
         <input formControlName="intentName" nz-input/>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{'intent.name' | translate}}</nz-form-label>
+      <nz-form-label [nzSpan]="4">{{'user.question' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="16" nzErrorTip="">
         <input formControlName="input" nz-input/>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{'intent.name' | translate}}</nz-form-label>
+      <nz-form-label [nzSpan]="4">{{'reply' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="16" nzErrorTip="">
         <input formControlName="response" nz-input/>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngFor="let attachment of attachments; let i = index">
-      <nz-form-label [nzSpan]="3" *ngIf="i == 0 ">{{'upload.file' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="15" [nzOffset]="i == 0 ? 0 : 3">
+      <nz-form-label [nzSpan]="4" *ngIf="i == 0 ">{{'upload.file' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="15" [nzOffset]="i == 0 ? 0 : 4">
         <a nz-button nzType="link" (click)="viewFile(attachment)"><i nz-icon nzType="link" nzTheme="outline"></i>{{attachment}}</a>
         <a nz-button nzType="link"
            nzDanger
@@ -37,15 +37,15 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3" *ngIf="attachments.length < 1">{{'upload.file' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="8" [nzOffset]="attachments.length > 0 ? 3 : 0">
+      <nz-form-label [nzSpan]="4" *ngIf="attachments.length < 1">{{'upload.file' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="8" [nzOffset]="attachments.length > 0 ? 4 : 0">
         <nz-upload [(nzFileList)]="attachmentList" [nzBeforeUpload]="beforeUploadFile">
           <button nz-button><i nz-icon nzType="upload"></i>Select File</button>
         </nz-upload>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-control [nzSpan]="8" nzOffset="3">
+      <nz-form-control [nzSpan]="8" nzOffset="4">
         <button nz-button nzType="primary" (click)="submitForm()">{{'submit' | translate}}</button>
       </nz-form-control>
     </nz-form-item>

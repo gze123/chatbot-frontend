@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AppConstants} from '../shared/app.constant';
-import {ChatbotFileDelete, ChatbotIntentDelete} from '../models/chatbot.model';
+import {ChatbotFileDelete, ChatbotIntentDelete, ChatbotTrainIntent} from '../models/chatbot.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class ChatbotManagementService {
     return this.http.post(AppConstants.CHATBOT_INTENT_DELETE_FILE, deleteFile);
   }
 
-  trainIntent() {
-    return this.http.post(AppConstants.CHATBOT_INTENT_TRAIN, {});
+  trainIntent(trainData: ChatbotTrainIntent) {
+    return this.http.post(AppConstants.CHATBOT_INTENT_TRAIN, trainData);
   }
 }

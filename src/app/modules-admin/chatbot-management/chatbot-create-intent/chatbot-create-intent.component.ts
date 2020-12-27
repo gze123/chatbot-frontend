@@ -60,6 +60,5 @@ export class ChatbotCreateIntentComponent implements OnInit {
       attachments: file
     });
     this.chatbotIntentForm.get('attachments').updateValueAndValidity();
-    console.log(this.chatbotIntentForm);
   }
 }

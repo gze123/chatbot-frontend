@@ -90,5 +90,11 @@
   "contact": "Contact",
   "no.image": "No image provided",
   "manage.lost": "Manage Lost Item",
-  "manage.found": "Manage Found Item"
+  "manage.found": "Manage Found Item",
+  "topic": "Topic",
+  "user.question": "User Question",
+  "reply": "Reply",
+  "train":"Train",
+  "training.phrases": "Training Phrases",
+  "view": "View"
 }

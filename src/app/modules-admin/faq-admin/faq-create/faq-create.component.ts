@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FaqService} from "../../../services/faq-service.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FaqService} from '../../../services/faq-service.service';
 
 @Component({
   selector: 'app-faq-create',
@@ -22,11 +22,10 @@ export class FaqCreateComponent implements OnInit {
       this.faqCreateForm.controls[i].markAsDirty();
       this.faqCreateForm.controls[i].updateValueAndValidity();
     }
-    console.log(this.faqCreateForm)
     let faqCreateModel = {
       question: this.faqCreateForm.controls.question.value,
       answer: this.faqCreateForm.controls.answer.value
-    }
+    };
     this.faqService.addFaq(faqCreateModel).subscribe(res => {
       const response: any = res;
       // console.log(response.result)
@@ -34,7 +33,7 @@ export class FaqCreateComponent implements OnInit {
       location.reload();
     }, error => {
 
-    })
+    });
   }
 
   ngOnInit(): void {

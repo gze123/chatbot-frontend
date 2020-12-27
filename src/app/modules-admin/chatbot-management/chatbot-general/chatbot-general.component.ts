@@ -52,4 +52,8 @@ export class ChatbotGeneralComponent implements OnInit {
     }, error => {
     });
   }
+
+  reloadData($event: any) {
+    this.ngOnInit();
+  }
 }

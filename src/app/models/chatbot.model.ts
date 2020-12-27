@@ -21,3 +21,9 @@ export interface ChatbotFileDelete {
   id: string;
   filePath: string;
 }
+
+export interface ChatbotTrainIntent {
+  intentId: string;
+  trainingPhrases: string[];
+  responseTexts: string[];
+}

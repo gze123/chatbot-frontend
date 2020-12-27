@@ -1,0 +1,33 @@
+<nz-spin [nzSpinning]="pageLoading">
+  <form (ngSubmit)="submitForm()" [formGroup]="chatbotIntentForm" nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'intent.name' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your intent name!">
+        <input formControlName="intentName" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item >
+      <nz-form-label [nzSpan]="3">{{'input' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please enter your input!">
+        <input formControlName="input" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'response' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your response!">
+        <input formControlName="response" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3" >{{'upload' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzExtra="{{imageInputExtra}}">
+        <input (change)="uploadFile($event)" type="file">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="8" nzOffset="3">
+        <button [disabled]="!chatbotIntentForm.valid" nz-button nzType="primary">{{'submit' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-spin>

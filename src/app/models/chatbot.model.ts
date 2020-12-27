@@ -16,3 +16,8 @@ export interface ChatbotIntentDelete {
   intentId: string;
   intentName: string;
 }
+
+export interface ChatbotFileDelete {
+  id: string;
+  filePath: string;
+}

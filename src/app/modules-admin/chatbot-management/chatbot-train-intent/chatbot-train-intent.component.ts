@@ -22,23 +22,20 @@ export class ChatbotTrainIntentComponent implements OnInit {
   isVisible: boolean;
   chatbotIntentTrainForm!: FormGroup;
   pageLoading = false;
-  listOfControl: Array<{ id: number; controlInstance: string }> = [];
+  listOfTrainingControl: Array<{ id: number; controlInstance: string }> = [];
+  listOfResponseControl: Array<{ id: number; controlInstance: string }> = [];
 
   constructor(
     private fb: FormBuilder,
     private chatbotManagementService: ChatbotManagementService,
     private msg: NzMessageService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.chatbotIntentTrainForm = this.fb.group({
-      trainingPhrases: [null, [Validators.required]],
-      responseTexts: [null]
-    });
-    // this.addField();
-    // this.chatbotIntentTrainForm.controls.intentName.setValue(this.intentName);
-    // this.chatbotIntentUpdateForm.controls.input.setValue(this.input);
-    // this.chatbotIntentUpdateForm.controls.response.setValue(this.response);
+    this.chatbotIntentTrainForm = this.fb.group({});
+    this.addField();
+    this.addResponseField();
   }
 
   showModal() {
@@ -56,10 +53,22 @@ export class ChatbotTrainIntentComponent implements OnInit {
       this.chatbotIntentTrainForm.controls[i].markAsDirty();
       this.chatbotIntentTrainForm.controls[i].updateValueAndValidity();
     }
+    let trainingPhrasesControlInstance = [];
     let trainingPhrases: string[] = [];
-    trainingPhrases.push(this.chatbotIntentTrainForm.controls.trainingPhrases.value);
+    this.listOfTrainingControl.forEach(x => {
+      trainingPhrasesControlInstance.push(x.controlInstance);
+    });
+    trainingPhrasesControlInstance.forEach(x => {
+      trainingPhrases.push(this.chatbotIntentTrainForm.controls[x].value);
+    });
+    let responsePhrasesControlInstance = [];
     let responseTexts: string[] = [];
-    responseTexts.push(this.chatbotIntentTrainForm.controls.responseTexts.value);
+    this.listOfResponseControl.forEach(x => {
+      responsePhrasesControlInstance.push(x.controlInstance);
+    });
+    responsePhrasesControlInstance.forEach(x => {
+      responseTexts.push(this.chatbotIntentTrainForm.controls[x].value);
+    });
     const trainData = {
       intentId: this.intentId,
       trainingPhrases,
@@ -80,30 +89,56 @@ export class ChatbotTrainIntentComponent implements OnInit {
     this.isVisible = false;
   }
 
+  addField(e?: MouseEvent): void {
+    if (e) {
+      e.preventDefault();
+    }
+    const id = this.listOfTrainingControl.length > 0 ? this.listOfTrainingControl[this.listOfTrainingControl.length - 1].id + 1 : 0;
 
-  //
-  // addField(e?: MouseEvent): void {
-  //   if (e) {
-  //     e.preventDefault();
-  //   }
-  //   const id = this.listOfControl.length > 0 ? this.listOfControl[this.listOfControl.length - 1].id + 1 : 0;
-  //
-  //   const control = {
-  //     id,
-  //     controlInstance: `passenger${id}`
-  //   };
-  //   const index = this.listOfControl.push(control);
-  //   console.log(this.listOfControl[this.listOfControl.length - 1]);
-  //   this.chatbotIntentTrainForm.addControl(this.listOfControl[index - 1].controlInstance, new FormControl(null, Validators.required));
-  // }
-  //
-  // removeField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
-  //   e.preventDefault();
-  //   if (this.listOfControl.length > 1) {
-  //     const index = this.listOfControl.indexOf(i);
-  //     this.listOfControl.splice(index, 1);
-  //     console.log(this.listOfControl);
-  //     this.chatbotIntentTrainForm.removeControl(i.controlInstance);
-  //   }
-  // }
+    const control = {
+      id,
+      controlInstance: `training${id}`
+    };
+    const index = this.listOfTrainingControl.push(control);
+    this.chatbotIntentTrainForm.addControl(
+      this.listOfTrainingControl[index - 1].controlInstance,
+      new FormControl(null, Validators.required)
+    );
+  }
+
+  removeField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
+    e.preventDefault();
+    if (this.listOfTrainingControl.length > 1) {
+      const index = this.listOfTrainingControl.indexOf(i);
+      this.listOfTrainingControl.splice(index, 1);
+      console.log(this.listOfTrainingControl);
+      this.chatbotIntentTrainForm.removeControl(i.controlInstance);
+    }
+  }
+
+  addResponseField(e?: MouseEvent): void {
+    if (e) {
+      e.preventDefault();
+    }
+    const id = this.listOfResponseControl.length > 0 ? this.listOfResponseControl[this.listOfResponseControl.length - 1].id + 1 : 0;
+
+    const control = {
+      id,
+      controlInstance: `response${id}`
+    };
+    const index = this.listOfResponseControl.push(control);
+    this.chatbotIntentTrainForm.addControl(
+      this.listOfResponseControl[index - 1].controlInstance,
+      new FormControl(null, Validators.required)
+    );
+  }
+
+  removeResponseField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
+    e.preventDefault();
+    if (this.listOfResponseControl.length > 1) {
+      const index = this.listOfResponseControl.indexOf(i);
+      this.listOfResponseControl.splice(index, 1);
+      this.chatbotIntentTrainForm.removeControl(i.controlInstance);
+    }
+  }
 }

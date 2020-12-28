@@ -7,45 +7,56 @@
   nzTitle="{{'Update Intent' | translate}}" nzWidth="650">
   <nz-spin [nzSpinning]="pageLoading">
   <form [formGroup]="chatbotIntentTrainForm" nz-form>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="5">{{'training.phrases' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="19" nzErrorTip="">
-        <input formControlName="trainingPhrases" nz-input/>
+
+    <nz-form-item *ngFor="let control of listOfTrainingControl; let i = index">
+      <nz-form-label [nzSpan]="5"  *ngIf="i == 0" [nzFor]="control.controlInstance">{{'training.phrases' | translate}}</nz-form-label>
+      <nz-form-control
+        [nzSpan]="17"
+        [nzOffset]="i == 0 ? 0 : 5"
+        nzErrorTip="Please input training phrases."
+      >
+        <input
+          class="passenger-input"
+          nz-input
+          [attr.id]="control.id"
+          [formControlName]="control.controlInstance"
+        />
+        <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeField(control, $event)"></i>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="5">{{'reply' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="19" nzErrorTip="">
-        <input formControlName="responseTexts" nz-input/>
+      <nz-form-control [nzSpan]="17" [nzOffset]="5">
+        <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+          <i nz-icon nzType="plus"></i>
+          Add field
+        </button>
       </nz-form-control>
     </nz-form-item>
 
-<!--    <nz-form-item *ngFor="let control of listOfControl; let i = index">-->
-<!--      <nz-form-label [nzXs]="24" [nzSm]="4" *ngIf="i == 0" [nzFor]="control.controlInstance">Passengers </nz-form-label>-->
-<!--      <nz-form-control-->
-<!--        [nzXs]="24"-->
-<!--        [nzSm]="20"-->
-<!--        [nzOffset]="i == 0 ? 0 : 4"-->
-<!--        nzErrorTip="Please input passenger's name or delete this field."-->
-<!--      >-->
-<!--        <input-->
-<!--          class="passenger-input"-->
-<!--          nz-input-->
-<!--          placeholder="placeholder"-->
-<!--          [attr.id]="control.id"-->
-<!--          [formControlName]="control.controlInstance"-->
-<!--        />-->
-<!--        <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeField(control, $event)"></i>-->
-<!--      </nz-form-control>-->
-<!--    </nz-form-item>-->
-<!--    <nz-form-item>-->
-<!--      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">-->
-<!--        <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">-->
-<!--          <i nz-icon nzType="plus"></i>-->
-<!--          Add field-->
-<!--        </button>-->
-<!--      </nz-form-control>-->
-<!--    </nz-form-item>-->
+    <nz-form-item *ngFor="let control of listOfResponseControl; let i = index">
+      <nz-form-label [nzSpan]="5"  *ngIf="i == 0" [nzFor]="control.controlInstance">{{'reply' | translate}}</nz-form-label>
+      <nz-form-control
+        [nzSpan]="17"
+        [nzOffset]="i == 0 ? 0 : 5"
+        nzErrorTip="Please input reply."
+      >
+        <input
+          class="passenger-input"
+          nz-input
+          [attr.id]="control.id"
+          [formControlName]="control.controlInstance"
+        />
+        <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeResponseField(control, $event)"></i>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="17" [nzOffset]="5">
+        <button nz-button nzType="dashed" class="add-button" (click)="addResponseField($event)">
+          <i nz-icon nzType="plus"></i>
+          Add field
+        </button>
+      </nz-form-control>
+    </nz-form-item>
 
     <nz-form-item>
       <nz-form-control [nzSpan]="8" nzOffset="5">

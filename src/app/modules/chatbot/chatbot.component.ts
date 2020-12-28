@@ -32,11 +32,13 @@ export class ChatbotComponent implements OnInit {
     this.addBotMessage('Hi ' + name + '. How can I help you? ');
     this.newsAndAnnouncementService.getNewsAndAnnouncement().subscribe(res => {
       const response: any = res;
-      if (response.result) {
-        const latestNews = response.result.pop();
-        this.addBotMessage('Latest News and Announcement (' + this.datePipe.transform(latestNews.createdAt, 'yyyy-MM-dd') + '):');
-        this.addBotMessage(latestNews.title);
-        if (latestNews.images) {
+      if (response.result.total > 0) {
+        const latestNews = response.result.data.pop();
+        this.addBotMessage('Latest News and Announcement (' +
+          this.datePipe.transform(latestNews.createdAt, 'yyyy-MM-dd') +
+          '): ' +
+          latestNews.title);
+        if (latestNews.images.length > 0) {
           const image = {responsePayload: {files: latestNews.images}};
           this.addBotMessage(JSON.stringify(image));
         }
@@ -85,12 +87,24 @@ export class ChatbotComponent implements OnInit {
     let text = '';
     let files = [];
     if (response.includes('responsePayload')) {
-      const result = JSON.parse(response);
-      const imageFile = result.responsePayload.files;
+      const responsePayload = JSON.parse(response);
+      if (responsePayload.responsePayload.texts.length > 0) {
+        if (responsePayload.responsePayload.texts[0].includes('responsePayload')) {
+          const resultAfterStringify = JSON.parse(responsePayload.responsePayload.texts[0]);
+          const imageFile = resultAfterStringify.responsePayload.files;
+          imageFile.forEach(image => {
+            files.push({url: image, type: 'image/jpeg'});
+          });
+          text = resultAfterStringify.responsePayload.texts;
+        }
+      }
+      const imageFile = responsePayload.responsePayload.files;
       imageFile.forEach(image => {
         files.push({url: image, type: 'image/jpeg'});
       });
-      text = result.responsePayload.texts;
+      if (text === '') {
+        text = responsePayload.responsePayload.texts;
+      }
     } else {
       text = response;
     }

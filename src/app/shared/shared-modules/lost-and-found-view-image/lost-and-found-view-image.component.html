@@ -1,0 +1,18 @@
+<button nz-button [nzSize]="'large'" (click)="showModal()" nzType="default"><span>{{'show.image' | translate}}</span></button>
+<nz-modal
+  (nzOnOk)="closeModel()" [(nzVisible)]="isVisible" [nzCancelText]="null" nzClosable="false"
+  nzTitle="{{'image' | translate}}" nzWidth="650">
+  <nz-spin [nzSpinning]="!imageUrl">
+
+  </nz-spin>
+  <div *ngIf="imageUrl == 'null' ; else elseBlock">
+    {{'no.image' | translate}}
+  </div>
+
+  <ng-template #elseBlock>
+    <div>
+      <img [src]=imageUrl alt="" style="height:400px;">
+    </div>
+
+  </ng-template>
+</nz-modal>

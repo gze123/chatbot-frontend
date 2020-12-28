@@ -33,7 +33,6 @@ export class ChatbotGeneralComponent implements OnInit {
     this.chatbotManagementService.getIntent().subscribe(res => {
       const response: any = res;
       this.chatbotIntentData = response.result.data;
-      console.log(this.chatbotIntentData);
       this.pageLoading = false;
     }, err => {
       this.pageLoading = false;

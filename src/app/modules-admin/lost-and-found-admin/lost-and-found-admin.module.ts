@@ -7,13 +7,20 @@ import {LostAndFoundManageComponent} from './lost-and-found-manage/lost-and-foun
 import {LostAndFoundCreateComponent} from './lost-and-found-create/lost-and-found-create.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LostAndFoundImageComponent} from './lost-and-found-manage/lost-and-found-image/lost-and-found-image.component';
-import { LostAndFoundAdminTemplateComponent } from './lost-and-found-admin-template/lost-and-found-admin-template.component';
-import { LostManageComponent } from './lost-and-found-manage/lost-manage/lost-manage.component';
-import { FoundManageComponent } from './lost-and-found-manage/found-manage/found-manage.component';
+import {LostAndFoundAdminTemplateComponent} from './lost-and-found-admin-template/lost-and-found-admin-template.component';
+import {LostManageComponent} from './lost-and-found-manage/lost-manage/lost-manage.component';
+import {FoundManageComponent} from './lost-and-found-manage/found-manage/found-manage.component';
+import {SharedModulesModule} from '../../shared/shared-modules/shared-modules.module';
 
 
 @NgModule({
-  declarations: [LostAndFoundAdminComponent, LostAndFoundManageComponent, LostAndFoundCreateComponent, LostAndFoundImageComponent, LostAndFoundAdminTemplateComponent, LostManageComponent, FoundManageComponent],
+  declarations: [LostAndFoundAdminComponent,
+    LostAndFoundManageComponent,
+    LostAndFoundCreateComponent,
+    LostAndFoundImageComponent,
+    LostAndFoundAdminTemplateComponent,
+    LostManageComponent,
+    FoundManageComponent],
   exports: [
     LostAndFoundImageComponent,
     LostAndFoundCreateComponent
@@ -22,7 +29,8 @@ import { FoundManageComponent } from './lost-and-found-manage/found-manage/found
     CommonModule,
     NgZorroAntdModule,
     TranslateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModulesModule
   ]
 })
 export class LostAndFoundAdminModule {

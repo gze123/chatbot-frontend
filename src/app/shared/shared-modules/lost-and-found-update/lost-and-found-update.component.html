@@ -1,0 +1,44 @@
+<a (click)="showModal()" [nzType]="'link'" nz-button><span>{{'update' | translate}}</span></a>
+<nz-modal
+  (nzOnOk)="closeModel()"
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="handleCancel()"
+  nzClosable="false"
+  nzTitle="{{'Update Item' | translate}}"
+  nzWidth="650">
+  <nz-spin [nzSpinning]="pageLoading">
+
+  <form [formGroup]="lostAndFoundUpdateForm" nz-form>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5">{{'item' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your item!">
+        <input formControlName="item" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5">{{'location.found' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your location!">
+        <input formControlName="location" nz-input/>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5">{{'view.image' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" >
+        <app-lost-and-found-view-image [imageId]="data.fileName"></app-lost-and-found-view-image>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" >{{'replace.image' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <input (change)="uploadFile($event)" type="file">
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="8" nzOffset="5">
+        <button (click)="submitForm()" [disabled]="!lostAndFoundUpdateForm.valid" nz-button nzType="primary">{{'submit' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  </nz-spin>
+</nz-modal>

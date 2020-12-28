@@ -24,8 +24,8 @@ export class LostAndFoundService {
     return this.http.get(AppConstants.LOST_AND_FOUND_GET_IMAGE + id);
   }
 
-  editLostAndFound() {
-
+  updateLostAndFound(formData: FormData) {
+    return this.http.post(AppConstants.LOST_AND_FOUND_UPDATE, formData);
   }
 
   deleteLostAndFound(id: string) {

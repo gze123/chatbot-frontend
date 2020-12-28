@@ -72,6 +72,8 @@
           [imageId]="data.fileName"
         ></app-lost-and-found-image>
         <nz-divider nzType="vertical"></nz-divider>
+        <app-lost-and-found-update *ngIf="lostAndFoundType == 'found'" [data]="data" (reloadData)="reloadData($event)"></app-lost-and-found-update>
+        <nz-divider nzType="vertical" *ngIf="lostAndFoundType == 'found'" ></nz-divider>
         <a (nzOnConfirm)="deleteRow(data._id)"  [nzType]="'link'" nz-button nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
           {{'delete' | translate}}</a>
       </td>

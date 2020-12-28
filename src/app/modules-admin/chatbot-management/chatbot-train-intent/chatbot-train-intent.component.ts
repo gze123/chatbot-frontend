@@ -115,7 +115,6 @@ export class ChatbotTrainIntentComponent implements OnInit {
     if (this.listOfTrainingControl.length > 1) {
       const index = this.listOfTrainingControl.indexOf(i);
       this.listOfTrainingControl.splice(index, 1);
-      console.log(this.listOfTrainingControl);
       this.chatbotIntentTrainForm.removeControl(i.controlInstance);
     }
   }

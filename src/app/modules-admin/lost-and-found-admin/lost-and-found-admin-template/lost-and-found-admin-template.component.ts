@@ -83,4 +83,8 @@ export class LostAndFoundAdminTemplateComponent implements OnInit {
 
     });
   }
+
+  reloadData($event: any) {
+    this.ngOnInit();
+  }
 }

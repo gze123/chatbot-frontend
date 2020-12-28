@@ -5,18 +5,21 @@ import { ProfileUpdateComponent } from './profile-update/profile-update.componen
 import {TranslateModule} from '@ngx-translate/core';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {ReactiveFormsModule} from '@angular/forms';
+import { LostAndFoundUpdateComponent } from './lost-and-found-update/lost-and-found-update.component';
+import { LostAndFoundViewImageComponent } from './lost-and-found-view-image/lost-and-found-view-image.component';
 
 
 @NgModule({
-    declarations: [SharedModulesComponent, ProfileUpdateComponent],
-    exports: [
-        ProfileUpdateComponent
-    ],
+    declarations: [SharedModulesComponent, ProfileUpdateComponent, LostAndFoundUpdateComponent, LostAndFoundViewImageComponent],
+  exports: [
+    ProfileUpdateComponent,
+    LostAndFoundUpdateComponent
+  ],
   imports: [
     CommonModule,
     TranslateModule,
     NgZorroAntdModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class SharedModulesModule {

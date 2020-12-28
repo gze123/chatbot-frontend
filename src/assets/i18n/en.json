@@ -101,5 +101,7 @@
   "ticket.management": "Ticket Management",
   "intent.name": "Intent Name",
   "input": "Input",
-  "response": "Response"
+  "response": "Response",
+  "view.image": "View Image",
+  "replace.image": "Replace Image"
 }

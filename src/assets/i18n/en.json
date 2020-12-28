@@ -97,5 +97,9 @@
   "train":"Train",
   "training.phrases": "Training Phrases",
   "view": "View",
-  "profile": "Profile"
+  "profile": "Profile",
+  "ticket.management": "Ticket Management",
+  "intent.name": "Intent Name",
+  "input": "Input",
+  "response": "Response"
 }

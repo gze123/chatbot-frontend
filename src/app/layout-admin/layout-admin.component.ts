@@ -29,7 +29,6 @@ export class LayoutAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('layout admin component');
     this.username = localStorage.getItem('username');
     if (localStorage.getItem('role') === 'superadmin') {
       this.roleSuperadmin = true;
@@ -40,7 +39,6 @@ export class LayoutAdminComponent implements OnInit {
     this.pageLoading = true;
     this.authService.logout().subscribe(res => {
       localStorage.clear();
-      console.log(res);
       this.pageLoading = false;
       this.router.navigate(['/auth/login']).then();
     }, error => {

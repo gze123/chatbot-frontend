@@ -56,7 +56,12 @@
           <span>{{'tickets' | translate}}</span>
           <a routerLink="/admin/tickets"></a>
         </li>
-
+        <li [nzTitle]="isCollapsed ? ('profile' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
+            nzTooltipPlacement="right">
+          <i nz-icon nzType="user" nzTheme="outline"></i>
+          <span>{{'profile' | translate}}</span>
+          <a routerLink="/admin/profile"></a>
+        </li>
       </ul>
     </div>
 

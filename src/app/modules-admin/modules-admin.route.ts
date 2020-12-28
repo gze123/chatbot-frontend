@@ -5,6 +5,7 @@ import {TicketAdminComponent} from './ticket-admin/ticket-admin.component';
 import {USER_MANAGEMENT_ADMIN_ROUTE} from './user-management-admin/user-management-admin.route';
 import {NEWS_ANNOUNCEMENT_ADMIN_ROUTE} from './news-announcement-admin/news-announcement-admin.route';
 import {ChatbotManagementComponent} from './chatbot-management/chatbot-management.component';
+import {ProfileComponent} from './profile/profile.component';
 
 export const MODULE_ADMIN_ROUTES = [
   {
@@ -43,5 +44,10 @@ export const MODULE_ADMIN_ROUTES = [
   {
     path: 'user-management',
     children: USER_MANAGEMENT_ADMIN_ROUTE
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
   }
 ];

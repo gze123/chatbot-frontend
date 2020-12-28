@@ -13,23 +13,23 @@
   <div style="margin-top: 30px; padding-left: 20px; padding-right: 20px" *ngIf="!pageLoading">
     <nz-list nzItemLayout="vertical">
       <li
-        style="padding-top: 0px; padding-bottom: 0px"
+        style="padding: 20px; background-color: #e6eeff; border-radius: 10px;"
         *ngFor="let data of forumData; let i = index"
         nz-list-item
         nzNoFlex
       >
-        <h4 nz-typography style="margin-bottom: 0px;">
+        <h4 nz-typography>
           <a [routerLink]="['/student/forum/', data._id]">{{ data.title }}</a>
         </h4>
         <p>
           {{ data.description }}
         </p>
-        <ul nz-list-item-actions style="margin-bottom: 5px; padding-left: 0">
+        <ul nz-list-item-actions style="margin-bottom: 5px; padding-left: 0; font-weight: bold;">
           <i
             nz-icon
             nzTheme="outline"
             nzType="user"
-            style="margin-right: 8px"
+            style="margin-right: 8px;"
           ></i
           >{{
           data.creatorName

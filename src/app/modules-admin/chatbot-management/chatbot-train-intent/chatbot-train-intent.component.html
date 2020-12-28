@@ -8,12 +8,25 @@
   <nz-spin [nzSpinning]="pageLoading">
   <form [formGroup]="chatbotIntentTrainForm" nz-form>
 
-    <nz-form-item *ngFor="let control of listOfTrainingControl; let i = index">
-      <nz-form-label [nzSpan]="5"  *ngIf="i == 0" [nzFor]="control.controlInstance">{{'training.phrases' | translate}}</nz-form-label>
+    <nz-form-item *ngFor="let control of trainingPhrases; let i = index">
+      <nz-form-label [nzSpan]="5"  *ngIf="i == 0" >{{'training.phrases' | translate}}</nz-form-label>
       <nz-form-control
         [nzSpan]="17"
         [nzOffset]="i == 0 ? 0 : 5"
-        nzErrorTip="Please input training phrases."
+      >
+        <input
+          class="passenger-input"
+          nz-input
+          [disabled]="true"
+          placeholder= "{{control}}"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngFor="let control of listOfTrainingControl; let i = index">
+      <nz-form-label [nzSpan]="5"  *ngIf="i == 0 && trainingPhrases.length == 0" [nzFor]="control.controlInstance">{{'training.phrases' | translate}}</nz-form-label>
+      <nz-form-control
+        [nzSpan]="17"
+        [nzOffset]="i == 0 && trainingPhrases.length == 0 ? 0 : 5"
       >
         <input
           class="passenger-input"
@@ -33,12 +46,26 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item *ngFor="let control of listOfResponseControl; let i = index">
-      <nz-form-label [nzSpan]="5"  *ngIf="i == 0" [nzFor]="control.controlInstance">{{'reply' | translate}}</nz-form-label>
+
+    <nz-form-item *ngFor="let control of similarResponses; let i = index">
+      <nz-form-label [nzSpan]="5"  *ngIf="i == 0" >{{'reply' | translate}}</nz-form-label>
       <nz-form-control
         [nzSpan]="17"
         [nzOffset]="i == 0 ? 0 : 5"
-        nzErrorTip="Please input reply."
+      >
+        <input
+          class="passenger-input"
+          nz-input
+          [disabled]="true"
+          placeholder= "{{control}}"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngFor="let control of listOfResponseControl; let i = index">
+      <nz-form-label [nzSpan]="5"  *ngIf="i == 0 && similarResponses.length == 0" [nzFor]="control.controlInstance">{{'reply' | translate}}</nz-form-label>
+      <nz-form-control
+        [nzSpan]="17"
+        [nzOffset]="i == 0 && similarResponses.length == 0 ? 0 : 5"
       >
         <input
           class="passenger-input"

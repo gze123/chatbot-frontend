@@ -14,9 +14,9 @@ export class ChatbotTrainIntentComponent implements OnInit {
   @Input()
   intentId: string;
   @Input()
-  trainingPhrases: [];
+  trainingPhrases: string[];
   @Input()
-  similarResponses: [];
+  similarResponses: string[];
   @Output()
   trainAdded = new EventEmitter<any>();
   isVisible: boolean;
@@ -34,8 +34,12 @@ export class ChatbotTrainIntentComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatbotIntentTrainForm = this.fb.group({});
-    this.addField();
-    this.addResponseField();
+    if (this.trainingPhrases.length < 1) {
+      this.addField();
+    }
+    if (this.similarResponses.length < 1) {
+      this.addResponseField();
+    }
   }
 
   showModal() {

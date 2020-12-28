@@ -44,6 +44,3 @@ nz-table {
   background: #FCFCFC;
 }
 
-::ng-deep .ant-tabs-nav-container {
-  font-size: 17px;
-}

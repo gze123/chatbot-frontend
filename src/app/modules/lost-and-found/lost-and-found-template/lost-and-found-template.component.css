@@ -1,5 +1,5 @@
 th {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-align: center !important;
 }
@@ -23,4 +23,14 @@ nz-table {
 
 ::ng-deep .ant-table-column-title {
   color: white
+}
+
+button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}
+
+input {
+  height: 40px;
 }

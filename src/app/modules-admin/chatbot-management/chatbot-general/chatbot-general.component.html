@@ -1,30 +1,62 @@
 <div>
-  <nz-table #basicTable [nzData]="chatbotIntentData" [nzLoading]="pageLoading">
-    <thead>
-    <tr>
-      <th nzWidth="20%">Topic</th>
-      <th nzWidth="30%">User Question</th>
-      <th nzWidth="30%">Reply</th>
-      <th nzWidth="10%">Attachment</th>
-      <th nzWidth="10%">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of basicTable.data">
-      <td>{{ data.intentName }}</td>
-      <td>{{ data.input }}</td>
-      <td>{{ data.response }}</td>
-      <td>
-        <app-chatbot-view-attachment [attachments]="data.attachments"></app-chatbot-view-attachment>
-      </td>
-      <td>
-        <a>Update</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a (nzOnConfirm)="deleteRow(data._id)" nzTooltipPlacement="top" nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
-        {{'delete' | translate}}
-        </a>
-      </td>
-    </tr>
-    </tbody>
-  </nz-table>
+  <nz-tabset>
+    <nz-tab nzTitle="View">
+      <ng-template nz-tab>
+        <div>
+          <nz-table #basicTable [nzData]="chatbotIntentData" [nzLoading]="pageLoading">
+            <thead>
+            <tr>
+              <th nzWidth="20%">Topic</th>
+              <th nzWidth="25%">User Question</th>
+              <th nzWidth="25%">Reply</th>
+              <th nzWidth="10%">Attachment</th>
+              <th nzWidth="20%">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{ data.intentName }}</td>
+              <td>{{ data.input }}</td>
+              <td>{{ data.response }}</td>
+              <td>
+                <app-chatbot-view-attachment [attachments]="data.attachments"></app-chatbot-view-attachment>
+              </td>
+              <td>
+                <app-chatbot-update-intent
+                  [intentName]="data.intentName"
+                  [input]="data.input"
+                  [response]="data.response"
+                  [attachments]="data.attachments"
+                  [id]="data._id"
+                ></app-chatbot-update-intent>
+                <nz-divider nzType="vertical"></nz-divider>
+                <app-chatbot-train-intent
+                  [intentId]="data.intentId"
+                  [similarResponses]="data.similarResponses"
+                  [trainingPhrases]="data.trainingPhrases"
+                  (trainAdded)="reloadData($event)"
+                ></app-chatbot-train-intent>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a (nzOnConfirm)="deleteRow(data._id)" nzTooltipPlacement="top" nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">
+                  {{'delete' | translate}}
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </nz-table>
+        </div>
+
+      </ng-template>
+    </nz-tab>
+    <nz-tab nzTitle="Add">
+      <ng-template nz-tab>
+        <app-chatbot-create-intent></app-chatbot-create-intent>
+      </ng-template>
+    </nz-tab>
+    <nz-tab nzTitle="Train">
+      <ng-template nz-tab>
+        <app-chatbot-train-intent></app-chatbot-train-intent>
+      </ng-template>
+    </nz-tab>
+  </nz-tabset>
 </div>

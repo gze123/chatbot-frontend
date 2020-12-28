@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {AppConstants} from '../shared/app.constant';
-import {RoleCreate,  UserCreate} from '../models/user-role-management.model';
+import {RoleCreate, UserCreate, UserUpdate} from '../models/user-role-management.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,10 @@ export class UserRoleManagementService {
 
   createAdminUser(userCreate: UserCreate) {
     return this.http.post(AppConstants.USER_MANAGEMENT_USERS_CREATE, userCreate);
+  }
+
+  updateUser(userUpdate: UserUpdate) {
+    return this.http.post(AppConstants.USER_MANAGEMENT_USERS_UPDATE, userUpdate);
   }
 }
 

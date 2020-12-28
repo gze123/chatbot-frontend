@@ -63,7 +63,6 @@ export class NewsAnnouncementUpdateComponent implements OnInit {
 
   beforeUploadFile = (file: UploadFile): boolean => {
     this.fileList = this.fileList.concat(file);
-    console.log(file);
     return false;
   }
 

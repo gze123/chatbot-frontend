@@ -72,7 +72,6 @@ export class AppConstants {
   public static ANNOUNCEMENT_DELETE = AppConstants.API_WEB + AppConstants.ANNOUNCEMENT + AppConstants.DELETE;
   public static ANNOUNCEMENT_FILE_DELETE = AppConstants.API_WEB + AppConstants.ANNOUNCEMENT + AppConstants.FILE + AppConstants.DELETE;
 
-
   // user management
   public static USER_MANAGEMENT = '/management';
   public static ROLE = '/role';
@@ -82,4 +81,6 @@ export class AppConstants {
   public static USER_MANAGEMENT_USERS = AppConstants.API_WEB + '/users';
   public static USER_MANAGEMENT_USERS_CREATE = AppConstants.API_WEB + AppConstants.USER;
   public static USER_MANAGEMENT_USERS_DELETE = AppConstants.API_WEB + AppConstants.USER + AppConstants.DELETE;
+  public static USER_MANAGEMENT_USERS_UPDATE = AppConstants.API_WEB + AppConstants.USER + AppConstants.UPDATE;
+
 }

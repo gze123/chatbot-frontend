@@ -39,4 +39,9 @@ export interface UserDelete {
   id: [];
 }
 
+export interface UserUpdate {
+  username: string;
+  password: string;
+}
+
 

@@ -4,22 +4,26 @@ import {ModulesComponent} from './modules.component';
 import {RouterModule} from '@angular/router';
 import { ChatbotComponent } from './chatbot/chatbot.component';
 import {NbChatModule, NbSpinnerModule} from '@nebular/theme';
+import { ProfileComponent } from './profile/profile.component';
+import {SharedModulesModule} from '../shared/shared-modules/shared-modules.module';
 
 
 @NgModule({
     declarations: [
         ModulesComponent,
-        ChatbotComponent
+        ChatbotComponent,
+        ProfileComponent
     ],
     exports: [
         ChatbotComponent
     ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        NbChatModule,
-        NbSpinnerModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    NbChatModule,
+    NbSpinnerModule,
+    SharedModulesModule
+  ]
 })
 export class ModulesModule {
 }

@@ -18,7 +18,7 @@
     <nz-form-item *ngFor="let image of images; let i = index">
       <nz-form-label [nzSpan]="3" *ngIf="i == 0 ">{{'upload.image' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="10" [nzOffset]="i == 0 ? 0 : 3">
-        <a nz-button nzType="link" (click)="viewFile(image)"><i nz-icon nzType="link" nzTheme="outline"></i>{{image}}</a>
+        <a nz-button nzType="link" (click)="viewFile(image.url)"><i nz-icon nzType="link" nzTheme="outline"></i>{{image.fileName}}</a>
         <a nz-button nzType="link"
            nzDanger
            nz-popconfirm
@@ -37,7 +37,7 @@
     <nz-form-item *ngFor="let attachment of attachments; let i = index">
       <nz-form-label [nzSpan]="3" *ngIf="i == 0 ">{{'upload.file' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="15" [nzOffset]="i == 0 ? 0 : 3">
-        <a nz-button nzType="link" (click)="viewFile(attachment)"><i nz-icon nzType="link" nzTheme="outline"></i>{{attachment}}</a>
+        <a nz-button nzType="link" (click)="viewFile(attachment.url)"><i nz-icon nzType="link" nzTheme="outline"></i>{{attachment.fileName}}</a>
         <a nz-button nzType="link"
            nzDanger
            nz-popconfirm

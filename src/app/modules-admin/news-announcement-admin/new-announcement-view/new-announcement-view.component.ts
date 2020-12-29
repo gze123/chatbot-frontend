@@ -24,6 +24,7 @@ export class NewAnnouncementViewComponent implements OnInit {
   effect = 'scrollx';
   imageUrl: SafeUrl;
   imageUrlArray: SafeUrl[] = [];
+  imageList = [];
 
   constructor(
     private router: Router,
@@ -50,6 +51,7 @@ export class NewAnnouncementViewComponent implements OnInit {
       const images = response.result.data[0].images;
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < images.length; i++) {
+        this.imageList.push(images[i].url);
         let url = this.processImageToSafeUrl(images[i].data);
         this.imageUrlArray.push(url);
       }

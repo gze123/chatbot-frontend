@@ -22,7 +22,7 @@
         <ul nz-list-item-actions style="padding-left: 0">
           <i nz-icon nzTheme="outline" nzType="user" style="margin-right: 8px;"></i>{{data.creatorName}}
           <i nz-icon nzTheme="outline" nzType="calendar"
-             style="margin-right: 8px; margin-left: 8px"></i>{{data.createdAt}}
+             style="margin-right: 8px; margin-left: 8px"></i>{{data.createdAt | date}}
           <i nz-icon nzTheme="outline" nzType="fire"
              style="margin-right: 8px; margin-left: 8px"></i>{{data.numberOfReplies}} {{'replies' | translate}}
         </ul>

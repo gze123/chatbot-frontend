@@ -6,18 +6,30 @@
     >
     </nz-page-header>
   </div>
-  <nz-card-loading *ngIf="pageLoading"></nz-card-loading>
-  <div>
-    <nz-list nzItemLayout="vertical">
-      <li *ngFor="let data of newsAndAnnouncementData; let i = index" nz-list-item nzNoFlex>
-        <h3 nz-typography>
-          <a [routerLink]="['/student/news-and-announcement/',data._id]">{{ data.title }}</a>
-        </h3>
-        <ul nz-list-item-actions style="padding-left: 0">
-          <i nz-icon nzTheme="outline" nzType="calendar"
-             style="margin-right: 8px; margin-left: 8px"></i>{{data.createdAt | date}}
-        </ul>
-      </li>
-    </nz-list>
-  </div>
+  <nz-table
+    #basicTable
+    nzSize="small"
+    nzBordered="true"
+    nzOuterBordered="true"
+    [nzData]="newsAndAnnouncementData"
+    [nzLoading]="pageLoading">
+    <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Date</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>
+        <a [routerLink]="['/student/news-and-announcement/',data._id]">{{ data.title }}</a>
+      </td>
+      <td>
+        <i nz-icon nzTheme="outline" nzType="calendar"
+           style="margin-right: 8px; margin-left: 8px"></i>{{data.createdAt | date}}
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
 </div>

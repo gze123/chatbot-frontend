@@ -109,6 +109,7 @@
   "my.forum.topic": "My Forum Topic",
   "search": "Search",
   "reset": "Reset",
-  "search.form": "Search Forum",
-  "keyword": "Keyword"
+  "search.forum": "Search Forum",
+  "keyword": "Keyword",
+  "search.faq": "Search FAQ"
 }

@@ -19,6 +19,10 @@ export class FaqService {
     return this.http.get(AppConstants.FAQ_GET);
   }
 
+  getFaqByKeyword(keyword: string) {
+    return this.http.get(AppConstants.FAQ_GET + '?search=' + keyword);
+  }
+
   editFaq(faqUpdateModel: FaqUpdateModel) {
     return this.http.post(AppConstants.FAQ_UPDATE, faqUpdateModel);
   }
@@ -28,6 +32,4 @@ export class FaqService {
     arrayId.push(id);
     return this.http.post(AppConstants.FAQ_DELETE, {id: arrayId});
   }
-
-
 }

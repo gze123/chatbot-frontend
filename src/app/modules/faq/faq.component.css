@@ -1,0 +1,44 @@
+.create-button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+input {
+  height: 40px;
+}
+
+nz-form-item {
+  margin-bottom: 10px;
+}
+
+.create-button-container {
+  margin-bottom: 0px;
+}
+
+.create-button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}
+
+
+button {
+  margin-left: 8px;
+}
+
+.search-area {
+  text-align: right;
+}
+
+.content-faq {
+  margin-top: 8px;
+}
+
+::ng-deep .ant-card-head {
+  background: #073554;
+  color: white;
+}
+
+::ng-deep .ant-card-body {
+  background: #FCFCFC;
+}

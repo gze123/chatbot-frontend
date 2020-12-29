@@ -5,6 +5,7 @@ import {RouterModule} from "@angular/router";
 import {FAQ_ROUTES} from "./faq.route";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgZorroAntdModule} from "ng-zorro-antd";
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -12,12 +13,13 @@ import {NgZorroAntdModule} from "ng-zorro-antd";
   exports: [
     FaqComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(FAQ_ROUTES),
-    TranslateModule,
-    NgZorroAntdModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(FAQ_ROUTES),
+        TranslateModule,
+        NgZorroAntdModule,
+        ReactiveFormsModule
+    ]
 })
 export class FaqModule {
 }

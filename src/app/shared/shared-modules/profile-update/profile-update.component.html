@@ -14,7 +14,7 @@
           <nz-form-label [nzSpan]="3">Username</nz-form-label>
           <nz-form-control [nzSpan]="8" nzErrorTip="Please input your username!">
             <nz-input-group nzPrefixIcon="user">
-              <input formControlName="username" id="username" nz-input type="text"/>
+              <input formControlName="username" id="username" [disabled]="true" nz-input type="text"/>
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>

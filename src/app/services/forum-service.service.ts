@@ -67,4 +67,7 @@ export class ForumService {
   }
 
 
+  getForumTitleByKeyword(keyword: string) {
+    return this.http.get(AppConstants.FORUM_GET + '&search=' + keyword);
+  }
 }

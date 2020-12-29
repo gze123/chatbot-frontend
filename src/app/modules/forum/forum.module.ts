@@ -7,6 +7,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {ForumManageModule} from './forum-manage/forum-manage.module';
 import {ForumManageComponent} from './forum-manage/forum-manage.component';
 import {FormsModule} from '@angular/forms';
+import {SharedModulesModule} from '../../shared/shared-modules/shared-modules.module';
 
 
 @NgModule({
@@ -14,14 +15,15 @@ import {FormsModule} from '@angular/forms';
     exports: [
         ForumComponent
     ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        NgZorroAntdModule,
-        TranslateModule,
-        FormsModule,
-        ForumManageModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgZorroAntdModule,
+    TranslateModule,
+    FormsModule,
+    ForumManageModule,
+    SharedModulesModule
+  ]
 })
 export class ForumModule {
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ForumService} from "../../../../services/forum-service.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ForumService} from '../../../../services/forum-service.service';
 
 @Component({
   selector: 'app-forum-create',
@@ -32,13 +32,12 @@ export class ForumCreateComponent implements OnInit {
     let forumCreateModel = {
       title: this.createForumForm.controls.title.value,
       description: this.createForumForm.controls.description.value
-    }
+    };
     this.forumService.addForumTitle(forumCreateModel).subscribe(res => {
-      console.log(res)
       location.reload();
     }, error => {
 
-    })
+    });
   }
 }
 

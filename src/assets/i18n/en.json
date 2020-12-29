@@ -104,5 +104,11 @@
   "response": "Response",
   "view.image": "View Image",
   "replace.image": "Replace Image",
-  "my.lost.item": "My Lost Item"
+  "my.lost.item": "My Lost Item",
+  "forum.topic": "Forum Topic",
+  "my.forum.topic": "My Forum Topic",
+  "search": "Search",
+  "reset": "Reset",
+  "search.form": "Search Forum",
+  "keyword": "Keyword"
 }

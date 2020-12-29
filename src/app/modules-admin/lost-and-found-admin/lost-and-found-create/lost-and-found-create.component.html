@@ -1,5 +1,6 @@
 <nz-spin [nzSpinning]="pageLoading">
-  <form (ngSubmit)="submitForm()" [formGroup]="lostAndFoundCreateForm" nz-form>
+  <form (ngSubmit)="submitForm()" [formGroup]="lostAndFoundCreateForm" nz-form
+        *ngIf="lostAndFoundType !== 'lost';else elseBlock">
 
     <nz-form-item>
       <nz-form-label [nzSpan]="3">{{'item' | translate}}</nz-form-label>
@@ -26,7 +27,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3" >{{'upload' | translate}}</nz-form-label>
+      <nz-form-label [nzSpan]="3">{{'upload' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="16" nzExtra="{{imageInputExtra}}">
         <input (change)="uploadFile($event)" type="file">
       </nz-form-control>
@@ -37,4 +38,53 @@
       </nz-form-control>
     </nz-form-item>
   </form>
+  <ng-template #elseBlock>
+    <div class="content-lost-and-found">
+      <nz-card [nzBordered]="true" nzTitle="Add Lost Item">
+        <form style="align-items: center; justify-content: center;"
+              (ngSubmit)="submitForm()"
+              [formGroup]="lostAndFoundCreateForm"
+              [nzLayout]="'vertical'"
+              nz-form>
+          <nz-form-item class="field-center">
+            <nz-form-label [nzSpan]="2">{{'item' | translate}}</nz-form-label>
+            <nz-form-control [nzSpan]="9" nzErrorTip="Please input your item!">
+              <input formControlName="item" nz-input/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item class="field-center" *ngIf="lostAndFoundType == 'lost'">
+            <nz-form-label [nzSpan]="2">{{'description' | translate}}</nz-form-label>
+            <nz-form-control [nzSpan]="9" nzErrorTip="Please input your description!">
+              <input formControlName="description" nz-input/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item class="field-center" *ngIf="lostAndFoundType == 'lost'">
+            <nz-form-label [nzSpan]="2">{{'contact' | translate}}</nz-form-label>
+            <nz-form-control [nzSpan]="9" nzErrorTip="Please input your contact method (Either email or h/p no.)!">
+              <input formControlName="contact" nz-input/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item class="field-center">
+            <nz-form-label [nzSpan]="2">{{'location.found' | translate}}</nz-form-label>
+            <nz-form-control [nzSpan]="9" nzErrorTip="Please input your location!">
+              <input formControlName="location" nz-input/>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item class="field-center">
+            <nz-form-label [nzSpan]="2">{{'upload' | translate}}</nz-form-label>
+            <nz-form-control [nzSpan]="9" nzExtra="{{imageInputExtra}}">
+              <input (change)="uploadFile($event)" type="file">
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item class="field-center">
+            <nz-form-control [nzSpan]="8" nzOffset="1">
+              <button [disabled]="!lostAndFoundCreateForm.valid" nz-button nzType="primary">{{'submit' | translate}}</button>
+            </nz-form-control>
+          </nz-form-item>
+
+        </form>
+      </nz-card>
+    </div>
+
+  </ng-template>
 </nz-spin>

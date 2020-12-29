@@ -2,3 +2,23 @@
   width: 128px;
   height: 128px;
 }
+
+input {
+  height: 40px;
+}
+
+.field-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[nz-form-label] {
+  overflow: visible;
+}
+
+button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}

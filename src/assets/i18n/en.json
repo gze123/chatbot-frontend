@@ -103,5 +103,6 @@
   "input": "Input",
   "response": "Response",
   "view.image": "View Image",
-  "replace.image": "Replace Image"
+  "replace.image": "Replace Image",
+  "my.lost.item": "My Lost Item"
 }

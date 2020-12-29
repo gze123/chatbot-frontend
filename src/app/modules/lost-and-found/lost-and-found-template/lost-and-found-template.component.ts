@@ -14,6 +14,8 @@ export class LostAndFoundTemplateComponent implements OnInit {
 
   @Input()
   lostAndFoundType: string;
+  @Input()
+  filterData: boolean;
   lostAndFoundForm: FormGroup;
 
   lostAndFoundData: LostAndFound[];
@@ -41,6 +43,10 @@ export class LostAndFoundTemplateComponent implements OnInit {
       const response: any = res;
       this.lostAndFoundDisplayData = response.result.data;
       this.lostAndFoundData = response.result.data;
+      if (this.filterData) {
+        this.lostAndFoundDisplayData = this.lostAndFoundDisplayData.filter(d => d.createdBy === localStorage.getItem('id'));
+        this.lostAndFoundData = this.lostAndFoundData.filter(d => d.createdBy === localStorage.getItem('id'));
+      }
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;

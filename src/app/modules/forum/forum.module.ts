@@ -10,15 +10,18 @@ import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ForumComponent, ForumManageComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgZorroAntdModule,
-    TranslateModule,
-    FormsModule,
-    ForumManageModule
-  ]
+    declarations: [ForumComponent, ForumManageComponent],
+    exports: [
+        ForumComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        NgZorroAntdModule,
+        TranslateModule,
+        FormsModule,
+        ForumManageModule
+    ]
 })
 export class ForumModule {
 }

@@ -58,7 +58,6 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       this.commentData = responseReply.result.data;
       this.getReply();
       this.updateEditCache();
-      console.log(this.commentData);
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
@@ -177,8 +176,8 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     });
   }
 
-  editComment(_id: any) {
-    this.editCache[_id].edit = true;
+  editComment(id: any) {
+    this.editCache[id].edit = true;
   }
 
   updateEditCache(): void {
@@ -197,18 +196,20 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       localStorage.getItem('id') == id;
   }
 
-  saveComment(_id: any, content: string) {
-    console.log(_id, content);
-    this.forumService.editReply(_id, content).subscribe(res => {
+  saveComment(id: any, content: string) {
+    this.forumService.editReply(id, content).subscribe(res => {
       const response: any = res;
-      console.log(res);
     }, error => {
 
     });
-    this.editCache[_id].edit = false;
+    this.editCache[id].edit = false;
   }
 
-  isEditable(createdBy: string) {
-    return localStorage.getItem('id') == createdBy;
+  cancelEditComment(id: string) {
+    this.editCache[id].edit = false;
+  }
+
+  cancelUpdate() {
+    this.showUpdate = false;
   }
 }

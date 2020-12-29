@@ -19,7 +19,8 @@
         nzNoFlex
       >
         <h4 nz-typography>
-          <a [routerLink]="['/student/forum/', data._id]">{{ data.title }}</a>
+          <a *ngIf="role !== 'admin'" [routerLink]="['/student/forum/', data._id]">{{ data.title }}</a>
+          <a *ngIf="role == 'admin'" [routerLink]="['/admin/forum/',data._id]">{{ data.title }}</a>
         </h4>
         <p>
           {{ data.description }}

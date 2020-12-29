@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {NzMessageService} from 'ng-zorro-antd';
 import {Forum} from '../../models/forum.model';
@@ -11,6 +11,8 @@ import {ForumService} from '../../services/forum-service.service';
 })
 export class ForumComponent implements OnInit {
   forumData: Forum[] = [];
+  @Input()
+  role: string;
   pageLoading = false;
   pagination: number;
 

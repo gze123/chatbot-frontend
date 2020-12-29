@@ -184,12 +184,6 @@
             </button>
           </nz-form-item>
         </nz-comment-content>
-        <!--        <nz-comment-action *ngIf="editCache[comment._id].edit"><a-->
-        <!--          (click)="saveComment(comment._id)">{{'save' | translate}}</a></nz-comment-action>-->
-        <!--        <nz-comment-action *ngIf="editCache[comment._id].edit"><a-->
-        <!--          (click)="cancelEditComment(comment._id)">{{'cancel' | translate}}</a></nz-comment-action>-->
-        <!--        <app-forum-comment-box-->
-        <!--          [replyDetail]="{conversationId: comment.conversationId, replyId: comment._id}"></app-forum-comment-box>-->
 
         <ng-container *ngIf="comment.reply && comment.reply.length">
           <ng-template [ngForOf]="comment.reply" let-child ngFor>

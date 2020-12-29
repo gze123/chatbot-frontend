@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ForumAdminComponent} from './forum-admin.component';
-import {NgZorroAntdModule} from "ng-zorro-antd";
-import {TranslateModule} from "@ngx-translate/core";
-import {RouterModule} from "@angular/router";
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {TranslateModule} from '@ngx-translate/core';
+import {RouterModule} from '@angular/router';
 import {ForumManageComponent} from './forum-manage/forum-manage.component';
-import {FormsModule} from "@angular/forms";
-import {ForumManageModule} from "./forum-manage/forum-manage.module";
+import {FormsModule} from '@angular/forms';
+import {ForumManageModule} from './forum-manage/forum-manage.module';
+import {ForumModule} from '../../modules/forum/forum.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {ForumManageModule} from "./forum-manage/forum-manage.module";
     TranslateModule,
     RouterModule,
     FormsModule,
-    ForumManageModule
+    ForumManageModule,
+    ForumModule
   ]
 })
 export class ForumAdminModule {

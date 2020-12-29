@@ -14,6 +14,7 @@ export class ForumAdminComponent implements OnInit {
   forumData: Forum[] = [];
   pageLoading = false;
   pagination: number;
+  role = 'admin';
 
   constructor(
     private http: HttpClient,

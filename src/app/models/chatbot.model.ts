@@ -1,4 +1,5 @@
 export interface ChatbotIntent {
+  intentType: string;
   attachments: [];
   createdAt: Date;
   input: string;

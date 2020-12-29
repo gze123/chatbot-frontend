@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ChatbotIntent} from '../../../models/chatbot.model';
 
 @Component({
   selector: 'app-chatbot-lost-and-found',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatbotLostAndFoundComponent implements OnInit {
 
+  intentType = 'lnfIntent';
+  @Input()
+  chatbotIntentData: ChatbotIntent[];
+
   constructor() { }
 
   ngOnInit(): void {
+    if (this.chatbotIntentData.length > 0) {
+      this.chatbotIntentData = this.chatbotIntentData.filter(x => x.intentType === this.intentType);
+    }
   }
 
 }

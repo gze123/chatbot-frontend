@@ -19,6 +19,10 @@ export class ChatbotTrainIntentComponent implements OnInit {
   similarResponses: string[];
   @Output()
   trainAdded = new EventEmitter<any>();
+  @Input()
+  intentType: string;
+  @Input()
+  response: string;
   isVisible: boolean;
   chatbotIntentTrainForm!: FormGroup;
   pageLoading = false;

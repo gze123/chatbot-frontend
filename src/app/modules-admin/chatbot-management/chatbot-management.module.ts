@@ -12,11 +12,12 @@ import { ChatbotCreateIntentComponent } from './chatbot-create-intent/chatbot-cr
 import {ReactiveFormsModule} from '@angular/forms';
 import { ChatbotTrainIntentComponent } from './chatbot-train-intent/chatbot-train-intent.component';
 import { ChatbotUpdateIntentComponent } from './chatbot-update-intent/chatbot-update-intent.component';
+import { ChatbotManagementTemplateComponent } from './chatbot-management-template/chatbot-management-template.component';
 
 
 
 @NgModule({
-  declarations: [ChatbotManagementComponent, ChatbotGeneralComponent, ChatbotLetterComponent, ChatbotFaqComponent, ChatbotLostAndFoundComponent, ChatbotViewAttachmentComponent, ChatbotCreateIntentComponent, ChatbotTrainIntentComponent, ChatbotUpdateIntentComponent],
+  declarations: [ChatbotManagementComponent, ChatbotGeneralComponent, ChatbotLetterComponent, ChatbotFaqComponent, ChatbotLostAndFoundComponent, ChatbotViewAttachmentComponent, ChatbotCreateIntentComponent, ChatbotTrainIntentComponent, ChatbotUpdateIntentComponent, ChatbotManagementTemplateComponent],
     imports: [
         CommonModule,
         NgZorroAntdModule,

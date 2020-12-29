@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ChatbotIntent} from '../../../models/chatbot.model';
 
 @Component({
   selector: 'app-chatbot-faq',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatbotFaqComponent implements OnInit {
 
-  constructor() { }
+  intentType = 'faqIntent';
+  @Input()
+  chatbotIntentData: ChatbotIntent[];
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    if (this.chatbotIntentData.length > 0) {
+      this.chatbotIntentData = this.chatbotIntentData.filter(x => x.intentType === this.intentType);
+    }
   }
 
 }

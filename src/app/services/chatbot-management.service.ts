@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {AppConstants} from '../shared/app.constant';
 import {ChatbotFileDelete, ChatbotIntentDelete, ChatbotTrainIntent} from '../models/chatbot.model';
 
@@ -19,6 +19,11 @@ export class ChatbotManagementService {
 
   getIntent() {
     return this.http.get(AppConstants.CHATBOT_INTENT_GET);
+  }
+
+  getIntentById(id: string) {
+    let params = new HttpParams().set('id', id);
+    return this.http.get(AppConstants.CHATBOT_INTENT_GET, {params});
   }
 
   updateIntent(formData: FormData) {

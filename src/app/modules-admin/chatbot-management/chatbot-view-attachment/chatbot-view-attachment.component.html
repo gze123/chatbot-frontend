@@ -1,10 +1,10 @@
-<a *ngIf="attachments.length > 0  ;else elseBlock" (click)="viewAttachment(attachments)">View</a>
+<a *ngIf="attachmentList.length > 0  ;else elseBlock" (click)="viewAttachment(attachmentList)">View</a>
 <nz-modal
   (nzOnOk)="closeModel()" [(nzVisible)]="isVisible" [nzCancelText]="null" nzClosable="false"
   nzTitle="{{'attachments' | translate}}" nzWidth="650">
-  <div *ngFor="let attachment of attachments">
-    <button (click)="goToLink(attachment)" nz-button ><i nz-icon nzType="link" nzTheme="outline"></i>
-      {{attachment}}
+  <div *ngFor="let attachment of attachmentList">
+    <button (click)="goToLink(attachment.url)" nz-button ><i nz-icon nzType="link" nzTheme="outline"></i>
+      {{attachment.fileName}}
     </button>
   </div>
 

@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ChatbotManagementService} from '../../../services/chatbot-management.service';
 
 @Component({
   selector: 'app-chatbot-view-attachment',
@@ -7,14 +8,26 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ChatbotViewAttachmentComponent implements OnInit {
 
+
   @Input()
   attachments: [];
+  @Input()
+  id: string;
+  attachmentList = [];
   isVisible: boolean;
 
-  constructor() {
+  constructor(
+    private chatbotManagementService: ChatbotManagementService
+  ) {
   }
 
   ngOnInit(): void {
+    if (this.attachments.length > 0) {
+      this.chatbotManagementService.getIntentById(this.id).subscribe(res => {
+        const response: any = res;
+        this.attachmentList = response.result.data[0].attachments;
+      });
+    }
   }
 
   viewAttachment(attachments: any) {

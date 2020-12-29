@@ -19,7 +19,7 @@
               <td>{{ data.input }}</td>
               <td>{{ data.response }}</td>
               <td *ngIf="!isGeneral()">
-                <app-chatbot-view-attachment [attachments]="data.attachments"></app-chatbot-view-attachment>
+                <app-chatbot-view-attachment [id]="data._id" [attachments]="data.attachments"></app-chatbot-view-attachment>
               </td>
               <td>
                 <app-chatbot-update-intent

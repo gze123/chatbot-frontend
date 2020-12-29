@@ -32,7 +32,6 @@ export class ForumComponent implements OnInit {
     this.pageLoading = true;
     this.forumService.getForumTitle().subscribe(res => {
       const response: any = res;
-      console.log(response);
       this.forumData = response.result.data;
       this.forumDisplayData = response.result.data;
       this.ownForumData = this.forumData.filter(x => x.createdBy === localStorage.getItem('id'));

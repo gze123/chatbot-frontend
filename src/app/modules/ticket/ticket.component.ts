@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {TicketService} from "../../services/ticket.service";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {TicketService} from '../../services/ticket.service';
 
 @Component({
   selector: 'app-ticket',
@@ -10,6 +10,7 @@ import {TicketService} from "../../services/ticket.service";
 export class TicketComponent implements OnInit {
 
   ticketData = [];
+  ticketDisplayData = [];
 
   searchTicketForm: FormGroup;
   pageLoading = false;
@@ -28,6 +29,7 @@ export class TicketComponent implements OnInit {
     this.ticketService.getTicket().subscribe(res => {
       const response: any = res;
       this.ticketData = response.result.data;
+      this.ticketDisplayData = response.result.data;
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;
@@ -35,10 +37,21 @@ export class TicketComponent implements OnInit {
   }
 
   search() {
-    console.log(this.searchTicketForm)
+    this.pageLoading = true;
+    this.ticketService.getTicketByKeyword(this.searchTicketForm.controls.ticketNo.value).subscribe(res => {
+      const response: any = res;
+      this.ticketData = response.result.data;
+      this.pageLoading = false;
+    }, error => {
+      this.pageLoading = false;
+    });
   }
 
   reloadTable() {
     this.ngOnInit();
+  }
+
+  resetTable() {
+    this.ticketData = this.ticketDisplayData;
   }
 }

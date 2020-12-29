@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TicketService} from '../../../services/ticket.service';
 import {NzModalService} from 'ng-zorro-antd';
+import {UserRoleManagementService} from '../../../services/user-role-management-service.service';
 
 @Component({
   selector: 'app-add-ticket',
@@ -11,7 +12,7 @@ import {NzModalService} from 'ng-zorro-antd';
 export class AddTicketComponent implements OnInit {
 
   addTicketForm: FormGroup;
-  categories = ['registration', 'timetable'];
+  categories = [];
   @Output()
   triggerReloadTable = new EventEmitter<any>();
   formLoading = false;
@@ -19,7 +20,8 @@ export class AddTicketComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private ticketService: TicketService,
-    private nzModalService: NzModalService
+    private nzModalService: NzModalService,
+    private userRoleManagement: UserRoleManagementService
   ) {
   }
 
@@ -29,6 +31,12 @@ export class AddTicketComponent implements OnInit {
       description: [null, [Validators.required]],
       category: [null, [Validators.required]]
     });
+    this.userRoleManagement.getAdminRoles().subscribe( res => {
+      const response: any = res;
+      response.result.data.forEach( x => {
+        this.categories.push(x.role);
+      });
+    }, error => {});
   }
 
   submitForm() {

@@ -28,7 +28,8 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-control [nzErrorTip]="titleErrorTpl">
+        <nz-form-label style="text-align: center; margin-bottom: 10px;" [nzSpan]="3">{{ "ticket.title" | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="titleErrorTpl">
           <input formControlName="title" nz-input placeholder="Ticket Title" />
           <ng-template #titleErrorTpl let-control>
             <ng-container *ngIf="control.hasError('required')">
@@ -38,7 +39,8 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="{{ 'write.something' | translate }}">
+        <nz-form-label style="text-align: center; margin-bottom: 10px;" [nzSpan]="3">{{ "description" | translate }}</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="{{ 'write.something' | translate }}">
           <input
             formControlName="description"
             nz-input

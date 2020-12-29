@@ -12,7 +12,6 @@
         <nz-card [nzBordered]="true" nzTitle="Track Your Ticket">
           <form
             style="align-items: center; justify-content: center; display: flex"
-            (ngSubmit)="search()"
             [formGroup]="searchTicketForm"
             [nzLayout]="'inline'"
             nz-form
@@ -23,15 +22,22 @@
                   <input
                     formControlName="ticketNo"
                     nz-input
-                    placeholder="{{ 'ticket.no' | translate }}"
+                    placeholder="{{ 'keyword' | translate }}"
                   />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
             <nz-form-item>
               <nz-form-control>
-                <button nz-button nzType="primary">
+                <button nz-button nzType="primary" (click)="search()">
                   Search
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <button nz-button (click)="resetTable()">
+                  Reset
                 </button>
               </nz-form-control>
             </nz-form-item>

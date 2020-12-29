@@ -25,4 +25,7 @@ export class TicketService {
     return this.http.post(AppConstants.TICKET_UPDATE, solutionModel);
   }
 
+  getTicketByKeyword(keyword: string) {
+    return this.http.get(AppConstants.TICKET_GET + '?search=' + keyword);
+  }
 }

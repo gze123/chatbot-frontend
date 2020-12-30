@@ -8,10 +8,6 @@ th {
   text-align: center !important;
 }
 
-nz-table {
-  margin-top: 30px;
-}
-
 ::ng-deep .ant-table-thead {
   background: #073554;
 }

@@ -1,9 +1,17 @@
 input {
   height: 40px;
+  margin-left: 10px;
+}
+
+nz-form-label {
+  text-align: left;
 }
 
 nz-form-item {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .create-button-container {

@@ -1,5 +1,5 @@
 <nz-spin [nzSpinning]="formLoading">
-  <nz-card [nzBordered]="true" nzTitle="Add New Ticket">
+  <nz-card style="width: 60%;" [nzBordered]="true" nzTitle="Add New Ticket">
     <form
       (ngSubmit)="submitForm()"
       [formGroup]="addTicketForm"
@@ -7,9 +7,13 @@
       nz-form
     >
       <nz-form-item>
-        <nz-form-label style="text-align: center; margin-bottom: 10px;" [nzSpan]="3">{{ "category" | translate }}</nz-form-label>
+        <nz-form-label
+          [nzSpan]="4"
+          >{{ "category" | translate }}</nz-form-label
+        >
         <nz-form-control
-          [nzSpan]="12"
+          style="padding-left: 10px;"
+          [nzSpan]="15"
           nzErrorTip="{{ 'select.category' | translate }}"
         >
           <nz-select
@@ -28,8 +32,11 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label style="text-align: center; margin-bottom: 10px;" [nzSpan]="3">{{ "ticket.title" | translate }}</nz-form-label>
-        <nz-form-control [nzSpan]="12" [nzErrorTip]="titleErrorTpl">
+        <nz-form-label
+          [nzSpan]="4"
+          >{{ "ticket.title" | translate }}</nz-form-label
+        >
+        <nz-form-control [nzSpan]="15" [nzErrorTip]="titleErrorTpl">
           <input formControlName="title" nz-input placeholder="Ticket Title" />
           <ng-template #titleErrorTpl let-control>
             <ng-container *ngIf="control.hasError('required')">
@@ -39,8 +46,14 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label style="text-align: center; margin-bottom: 10px;" [nzSpan]="3">{{ "description" | translate }}</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzErrorTip="{{ 'write.something' | translate }}">
+        <nz-form-label
+          [nzSpan]="4"
+          >{{ "description" | translate }}</nz-form-label
+        >
+        <nz-form-control
+          [nzSpan]="15"
+          nzErrorTip="{{ 'write.something' | translate }}"
+        >
           <input
             formControlName="description"
             nz-input

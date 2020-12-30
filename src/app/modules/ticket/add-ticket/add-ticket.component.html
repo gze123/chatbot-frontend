@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: center; align-items: center;">
-  <nz-card style="width: 60%;" [nzBordered]="true" nzTitle="Add New Ticket">
+  <nz-card style="width: 100%;" [nzBordered]="true" nzTitle="Add New Ticket">
     <form
       (ngSubmit)="submitForm()"
       [formGroup]="addTicketForm"
@@ -13,7 +13,7 @@
         >
         <nz-form-control
           style="padding-left: 10px;"
-          [nzSpan]="15"
+          [nzSpan]="12"
           nzErrorTip="{{ 'select.category' | translate }}"
         >
           <nz-select
@@ -34,9 +34,9 @@
       <nz-form-item>
         <nz-form-label
           [nzSpan]="4"
-          >{{ "ticket.title" | translate }}</nz-form-label
-        >
-        <nz-form-control [nzSpan]="15" [nzErrorTip]="titleErrorTpl">
+          >{{ "ticket.title" | translate }}
+        </nz-form-label>
+        <nz-form-control [nzSpan]="12" [nzErrorTip]="titleErrorTpl">
           <input formControlName="title" nz-input placeholder="Ticket Title" />
           <ng-template #titleErrorTpl let-control>
             <ng-container *ngIf="control.hasError('required')">
@@ -51,7 +51,7 @@
           >{{ "description" | translate }}</nz-form-label
         >
         <nz-form-control
-          [nzSpan]="15"
+          [nzSpan]="12"
           nzErrorTip="{{ 'write.something' | translate }}"
         >
           <input
@@ -61,8 +61,8 @@
           />
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item class="create-button-container">
-        <nz-form-control>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="5" nzOffset="17">
           <button
             class="create-button"
             [disabled]="!addTicketForm.valid"

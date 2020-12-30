@@ -4,7 +4,7 @@
           nzTitle="{{'ticket.detail' | translate}}: {{ticketDetail._id}}"
           nzWidth="900">
   <div nz-row nzAlign="middle" nzJustify="space-around">
-    <div nz-col nzSpan="15">
+    <div nz-col nzSpan="24">
       <nz-card nzTitle="{{'ticket.title' | translate}}">
         <h4>{{'description' | translate}}:</h4>
         <p>
@@ -57,23 +57,6 @@
           </div>
         </div>
 
-      </nz-card>
-    </div>
-    <div nz-col nzOffset="1" nzSpan="8">
-      <nz-card nzTitle="{{'transaction.log' | translate}}">
-        <div *ngFor="let transactionLog of ticketDetail.transactionLog">
-          <nz-card style="margin-bottom: 4px">
-            <p>
-              {{'status' | translate}} : {{transactionLog.status}}
-            </p>
-            <p *ngIf="transactionLog.assignedTo">
-              {{'assigned.to' | translate}} : {{transactionLog.assignedTo}}
-            </p>
-            <p>
-              {{'date' | translate}} : {{transactionLog.date}}
-            </p>
-          </nz-card>
-        </div>
       </nz-card>
     </div>
   </div>

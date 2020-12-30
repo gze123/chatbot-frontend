@@ -1,17 +1,31 @@
-<nz-card-loading *ngIf="pageLoading"></nz-card-loading>
-<div *ngIf="!pageLoading">
-  <nz-list nzItemLayout="vertical">
-    <li *ngFor="let data of newsAndAnnouncementData; let i = index" nz-list-item nzNoFlex>
-      <h3>
-        <a [routerLink]="['/admin/news-and-announcement/',data._id]">{{ data.title }}</a>
-      </h3>
-      &nbsp;&nbsp;<a [routerLink]="['/admin/news-and-announcement/edit',data._id]">{{'edit' | translate}}</a>&nbsp;&nbsp;
-      <a (nzOnConfirm)="delete(data._id)" nz-popconfirm nzPopconfirmTitle="{{'sure.to.delete' | translate}}">{{'delete' | translate}}</a>
-      <ul nz-list-item-actions style="padding-left: 0">
-        <i nz-icon nzTheme="outline" nzType="calendar"
-           style="margin-right: 8px; margin-left: 8px"></i>{{data.createdAt | date}}
-      </ul>
-    </li>
-  </nz-list>
-</div>
-<nz-pagination [nzPageIndex]="1" [nzTotal]="pagination" [nzPageSize]="10" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
+<nz-table
+  #basicTable
+  nzSize="small"
+  nzBordered="true"
+  nzOuterBordered="true"
+  [nzData]="newsAndAnnouncementData"
+  [nzLoading]="pageLoading">
+  <thead>
+  <tr>
+    <th>Topic</th>
+    <th>Date</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td class="image-link">
+      <a [routerLink]="['/admin/news-and-announcement/',data._id]">{{ data.title }}</a>
+    </td>
+    <td class="image-link">
+      {{data.createdAt | date}}
+    </td>
+    <td class="image-link">
+      <a [routerLink]="['/admin/news-and-announcement/edit',data._id]">{{'edit' | translate}}</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a (nzOnConfirm)="delete(data._id)" nz-popconfirm
+         nzPopconfirmTitle="{{'sure.to.delete' | translate}}">{{'delete' | translate}}</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -1,66 +1,66 @@
 <div>
-  <nz-tabset>
-    <nz-tab nzTitle="View">
-      <ng-template nz-tab>
-        <div>
-          <nz-table #basicTable [nzData]="chatbotIntentData" [nzLoading]="pageLoading">
-            <thead>
-            <tr>
-              <th nzWidth="20%">Topic</th>
-              <th nzWidth="25%">User Question</th>
-              <th nzWidth="25%">Reply</th>
-              <th nzWidth="10%" *ngIf="!isGeneral()">Attachment</th>
-              <th nzWidth="20%">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let data of basicTable.data">
-              <td>{{ data.intentName }}</td>
-              <td>{{ data.input }}</td>
-              <td>{{ data.response }}</td>
-              <td *ngIf="!isGeneral()">
-                <app-chatbot-view-attachment [id]="data._id" [attachments]="data.attachments"></app-chatbot-view-attachment>
-              </td>
-              <td>
-                <app-chatbot-update-intent
-                  [intentName]="data.intentName"
-                  [input]="data.input"
-                  [response]="data.response"
-                  [attachments]="data.attachments"
-                  [id]="data._id"
-                  *ngIf="!isGeneral()"
-                ></app-chatbot-update-intent>
-                <nz-divider nzType="vertical" *ngIf="!isGeneral()"></nz-divider>
-                <app-chatbot-train-intent
-                  [intentId]="data.intentId"
-                  [response]="data.response"
-                  [similarResponses]="data.similarResponses"
-                  [trainingPhrases]="data.trainingPhrases"
-                  (trainAdded)="reloadData($event)"
-                  [intentType]="intentType"
-                ></app-chatbot-train-intent>
-                <nz-divider nzType="vertical" *ngIf="!isGeneral()"></nz-divider>
-                <a (nzOnConfirm)="deleteRow(data._id)"
-                   [nzType]="'link'"
-                   nz-button
-                   nzTooltipPlacement="top"
-                   nz-popconfirm
-                   nzPopconfirmTitle="{{'sure.to.delete' | translate}}"
-                   *ngIf="!isGeneral()">
-                  {{'delete' | translate}}
-                </a>
-              </td>
-            </tr>
-            </tbody>
-          </nz-table>
-        </div>
+  <div *ngIf="!isGeneral()" style="margin-bottom: 1vh">
+    <nz-card [nzBordered]="true" nzTitle="{{'create.intent' | translate}}">
+      <app-chatbot-create-intent></app-chatbot-create-intent>
+    </nz-card>
+  </div>
 
-      </ng-template>
-    </nz-tab>
-    <nz-tab nzTitle="Add" *ngIf="!isGeneral()">
-      <ng-template nz-tab>
-        <app-chatbot-create-intent></app-chatbot-create-intent>
-      </ng-template>
-    </nz-tab>
-  </nz-tabset>
+  <div>
+    <nz-table
+      nzSize="small"
+      nzBordered="true"
+      nzOuterBordered="true"
+      #basicTable
+      [nzData]="chatbotIntentData"
+      [nzLoading]="pageLoading">
+      <thead>
+      <tr>
+        <th nzWidth="20%">Topic</th>
+        <th nzWidth="20%">User Question</th>
+        <th nzWidth="20%">Reply</th>
+        <th nzWidth="10%" *ngIf="!isGeneral()">Attachment</th>
+        <th nzWidth="30%">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.intentName }}</td>
+        <td>{{ data.input }}</td>
+        <td>{{ data.response }}</td>
+        <td *ngIf="!isGeneral()">
+          <app-chatbot-view-attachment [id]="data._id" [attachments]="data.attachments"></app-chatbot-view-attachment>
+        </td>
+        <td>
+          <app-chatbot-update-intent
+            [intentName]="data.intentName"
+            [input]="data.input"
+            [response]="data.response"
+            [attachments]="data.attachments"
+            [id]="data._id"
+            *ngIf="!isGeneral()"
+          ></app-chatbot-update-intent>
+          <nz-divider nzType="vertical" *ngIf="!isGeneral()"></nz-divider>
+          <app-chatbot-train-intent
+            [intentId]="data.intentId"
+            [response]="data.response"
+            [similarResponses]="data.similarResponses"
+            [trainingPhrases]="data.trainingPhrases"
+            (trainAdded)="reloadData($event)"
+            [intentType]="intentType"
+          ></app-chatbot-train-intent>
+          <nz-divider nzType="vertical" *ngIf="!isGeneral()"></nz-divider>
+          <a (nzOnConfirm)="deleteRow(data._id)"
+             [nzType]="'link'"
+             nz-button
+             nzTooltipPlacement="top"
+             nz-popconfirm
+             nzPopconfirmTitle="{{'sure.to.delete' | translate}}"
+             *ngIf="!isGeneral()">
+            {{'delete' | translate}}
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
 </div>

@@ -112,5 +112,6 @@
   "search.forum": "Search Forum",
   "keyword": "Keyword",
   "search.faq": "Search FAQ",
-  "update.profile": "Update Profile"
+  "update.profile": "Update Profile",
+  "create.intent": "Create Intent"
 }

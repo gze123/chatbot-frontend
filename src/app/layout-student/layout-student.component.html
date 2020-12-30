@@ -49,12 +49,6 @@
           <span>{{'my.tickets' | translate}}</span>
           <a routerLink="/student/my-tickets"></a>
         </li>
-        <li [nzTitle]="isCollapsed ? ('profile' | translate) : ''" nz-menu-item nz-tooltip nzMatchRouter
-            nzTooltipPlacement="right">
-          <i nz-icon nzType="user" nzTheme="outline"></i>
-          <span>{{'profile' | translate}}</span>
-          <a routerLink="/student/profile"></a>
-        </li>
       </ul>
     </div>
   </nz-sider>
@@ -73,6 +67,11 @@
         </a>
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul nz-menu nzSelectable>
+            <li nz-menu-item>
+              <a routerLink="/student/profile" [nzType]="'link'" nz-button>
+                <span>{{'update.profile' | translate}}</span>
+              </a>
+            </li>
             <li nz-menu-item>
               <a (click)="logout()" [nzType]="'link'" nz-button>
                 <span>{{'logout' | translate}}</span>

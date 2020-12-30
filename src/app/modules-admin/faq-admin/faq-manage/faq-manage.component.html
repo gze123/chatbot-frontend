@@ -1,4 +1,11 @@
-<nz-table #editRowTable [nzData]="faqData" [nzLoading]="pageLoading" nzBordered nzTableLayout="fixed">
+<nz-table
+  #editRowTable
+  [nzData]="faqData"
+  [nzLoading]="pageLoading"
+  nzSize="small"
+  nzBordered="true"
+  nzOuterBordered="true"
+  nzTableLayout="fixed">
   <thead>
   <tr>
     <th nzWidth="40%">{{'question' | translate}}</th>

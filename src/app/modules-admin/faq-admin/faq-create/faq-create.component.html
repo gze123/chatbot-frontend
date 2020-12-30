@@ -1,20 +1,22 @@
-<form (ngSubmit)="submitForm()" [formGroup]="faqCreateForm" nz-form>
+<nz-card [nzBordered]="true" nzTitle="{{'create.faq' | translate}}">
+  <form (ngSubmit)="submitForm()" [formGroup]="faqCreateForm" nz-form>
 
-  <nz-form-item>
-    <nz-form-label [nzSpan]="3">{{'question' | translate}}</nz-form-label>
-    <nz-form-control [nzSpan]="16" nzErrorTip="Please input your question!">
-      <textarea formControlName="question" nz-input></textarea>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSpan]="3">{{'answer' | translate}}</nz-form-label>
-    <nz-form-control [nzSpan]="16" nzErrorTip="Please input your answer!">
-      <textarea formControlName="answer" nz-input></textarea>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control [nzSpan]="8" nzOffset="3">
-      <button nz-button nzType="primary">{{'submit' | translate}}</button>
-    </nz-form-control>
-  </nz-form-item>
-</form>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'question' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your question!">
+        <textarea formControlName="question" nz-input></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="3">{{'answer' | translate}}</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your answer!">
+        <textarea formControlName="answer" nz-input></textarea>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzSpan]="8" nzOffset="3">
+        <button class="create-button" nz-button nzType="primary">{{'submit' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>

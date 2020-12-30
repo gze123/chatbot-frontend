@@ -113,5 +113,7 @@
   "keyword": "Keyword",
   "search.faq": "Search FAQ",
   "update.profile": "Update Profile",
-  "create.intent": "Create Intent"
+  "create.intent": "Create Intent",
+  "f.a.q": "Frequently Asked Questions",
+  "create.faq": "Add FAQ"
 }

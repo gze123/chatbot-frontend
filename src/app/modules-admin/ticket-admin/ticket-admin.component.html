@@ -1,11 +1,11 @@
 <div>
-<!--  <div>-->
-<!--    <nz-page-header-->
-<!--      class="site-page-header"-->
-<!--      nzTitle="{{ 'ticket.management' | translate }}"-->
-<!--    >-->
-<!--    </nz-page-header>-->
-<!--  </div>-->
+  <div>
+    <nz-page-header
+      class="site-page-header"
+      nzTitle="{{ 'ticket.management' | translate }}"
+    >
+    </nz-page-header>
+  </div>
   <nz-tabset>
     <nz-tab nzTitle="{{'manage.ticket' | translate}}">
       <!--    <form (ngSubmit)="search()" [formGroup]="searchTicketForm" [nzLayout]="'inline'" nz-form>-->
@@ -23,7 +23,13 @@
       <!--      </nz-form-item>-->
       <!--    </form>-->
 
-      <nz-table #ticketTable [nzData]="ticketData" [nzLoading]="pageLoading">
+      <nz-table
+        nzSize="small"
+        nzBordered="true"
+        nzOuterBordered="true"
+        #ticketTable
+        [nzData]="ticketData"
+        [nzLoading]="pageLoading">
         <thead>
         <tr>
           <th>{{'id' | translate}}</th>

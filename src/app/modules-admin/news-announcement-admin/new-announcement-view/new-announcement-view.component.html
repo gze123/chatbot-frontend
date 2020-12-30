@@ -24,8 +24,8 @@
     <nz-divider nzOrientation="left" nzText="Attachments"></nz-divider>
     <div>
       <div *ngFor="let attachment of attachments">
-        <div class="attachment-margin" style="margin-bottom: 1vh;">
-          <button (click)="goToLink(attachment.url)" nz-button ><i nz-icon nzType="link" nzTheme="outline"></i>
+        <div style="margin-bottom: 1vh;">
+          <button class="attachment-link" (click)="goToLink(attachment.url)" nz-button ><i nz-icon nzType="link" nzTheme="outline"></i>
             {{attachment.fileName}}
           </button>
         </div>

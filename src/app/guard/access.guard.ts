@@ -17,7 +17,7 @@ export class AccessGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'superadmin') {
+    if (localStorage.getItem('role') === 'staff' || localStorage.getItem('role') === 'superadmin') {
       return true;
     }
     this.router.navigate(['/auth/login']).then();

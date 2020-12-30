@@ -41,7 +41,6 @@ export class UserManagementCreateComponent implements OnInit {
       password: this.adminCreateForm.controls.password.value,
       retypePassword: this.adminCreateForm.controls.retypePassword.value
     };
-    console.log(user);
     this.userManagementService.createAdminUser(user).subscribe(res => {
       this.nzModalService.info({
         nzTitle: 'New admin created successfully',

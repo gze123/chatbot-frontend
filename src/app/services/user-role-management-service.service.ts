@@ -40,8 +40,12 @@ export class UserRoleManagementService {
     return this.http.post(AppConstants.USER_MANAGEMENT_USERS_CREATE, userCreate);
   }
 
-  updateUser(userUpdate: UserUpdate) {
+  updateUser(userUpdate: any) {
     return this.http.post(AppConstants.USER_MANAGEMENT_USERS_UPDATE, userUpdate);
+  }
+
+  getUserInformation(id: string) {
+    return this.http.get(AppConstants.USER_MANAGEMENT_USERS + '?search=' + id);
   }
 }
 

@@ -30,7 +30,7 @@
   "status": "Status",
   "created.date": "Created Date",
   "view": "View",
-  "ticket.detail": "TicketDetail",
+  "ticket.detail": "Ticket ID",
   "ticket.title": "Ticket Title",
   "category": "Category",
   "assigned.to": "Assigned to",

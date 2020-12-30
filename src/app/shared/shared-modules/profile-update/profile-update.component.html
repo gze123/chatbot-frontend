@@ -9,13 +9,42 @@
     </div>
 
     <div>
-      <form (ngSubmit)="submitForm()" [formGroup]="validateForm"  nz-form>
+      <form (ngSubmit)="submitForm()" [formGroup]="validateForm" nz-form>
         <nz-form-item>
           <nz-form-label [nzSpan]="3">Username</nz-form-label>
           <nz-form-control [nzSpan]="8" nzErrorTip="Please input your username!">
             <nz-input-group nzPrefixIcon="user">
-              <input formControlName="username" id="username" [disabled]="true" nz-input type="text"/>
+              <input formControlName="username" id="username" nz-input type="text"/>
             </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="3">Full Name</nz-form-label>
+          <nz-form-control [nzSpan]="8" nzErrorTip="Please input your username!">
+            <nz-input-group nzPrefixIcon="user">
+              <input formControlName="fullname" nz-input type="text"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="3">Email</nz-form-label>
+          <nz-form-control [nzSpan]="8" nzErrorTip="Please input your username!">
+            <nz-input-group nzPrefixIcon="user">
+              <input formControlName="email" nz-input type="text"/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngIf="isAdmin()">
+          <nz-form-label [nzSpan]="3" nzFor="staffRole">{{'staff.role' | translate}}</nz-form-label>
+          <nz-form-control [nzSpan]="8" nzErrorTip="Please select staff role!">
+            <nz-select
+              id="staffRole"
+              formControlName="staffRole"
+              nzPlaceHolder="Select staff role"
+              nzAllowClear
+            >
+              <nz-option *ngFor="let options of staffRoleOption" nzLabel="{{options.role}}" nzValue="{{options.role}}"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>

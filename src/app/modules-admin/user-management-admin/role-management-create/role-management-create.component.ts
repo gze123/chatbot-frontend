@@ -48,7 +48,7 @@ export class RoleManagementCreateComponent implements OnInit {
         nzTitle: 'Create role Failed',
         nzContent: errorMsg,
         nzOnOk: () => {
-          window.location.reload();
+          this.roleCreateForm.reset();
         }
       });
       this.pageLoading = false;

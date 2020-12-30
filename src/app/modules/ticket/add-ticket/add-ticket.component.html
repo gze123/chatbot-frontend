@@ -1,78 +1,84 @@
 <div style="display: flex; justify-content: center; align-items: center;">
-  <nz-card style="width: 100%;" [nzBordered]="true" nzTitle="Add New Ticket">
-    <form
-      (ngSubmit)="submitForm()"
-      [formGroup]="addTicketForm"
-      [nzLayout]="'horizontal'"
-      nz-form
-    >
-      <nz-form-item>
-        <nz-form-label
-          [nzSpan]="4"
-          >{{ "category" | translate }}</nz-form-label
-        >
-        <nz-form-control
-          style="padding-left: 10px;"
-          [nzSpan]="12"
-          nzErrorTip="{{ 'select.category' | translate }}"
-        >
-          <nz-select
-            formControlName="category"
-            nzAllowClear
-            nzPlaceHolder="{{ 'select.category' | translate }}"
-            nzShowSearch
-          >
-            <nz-option
-              *ngFor="let category of categories"
-              nzLabel="{{ category }}"
-              nzValue="{{ category }}"
-            ></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-label
-          [nzSpan]="4"
-          >{{ "ticket.title" | translate }}
-        </nz-form-label>
-        <nz-form-control [nzSpan]="12" [nzErrorTip]="titleErrorTpl">
-          <input formControlName="title" nz-input placeholder="Ticket Title" />
-          <ng-template #titleErrorTpl let-control>
-            <ng-container *ngIf="control.hasError('required')">
-              {{ "no.blank" | translate }}
-            </ng-container>
-          </ng-template>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label
-          [nzSpan]="4"
-          >{{ "description" | translate }}</nz-form-label
+  <nz-card style="width: 100%;" [nzBordered]="true" nzTitle="Add New Ticket">
+    <div nz-row nzJustify="center">
+      <div nz-col nzSpan="12" nzOffset="6">
+        <form
+          (ngSubmit)="submitForm()"
+          [formGroup]="addTicketForm"
+          [nzLayout]="'horizontal'"
+          nz-form
         >
-        <nz-form-control
-          [nzSpan]="12"
-          nzErrorTip="{{ 'write.something' | translate }}"
-        >
-          <input
-            formControlName="description"
-            nz-input
-            placeholder="Ticket description (Please write your problem description here.)"
-          />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control [nzSpan]="5" nzOffset="17">
-          <button
-            class="create-button"
-            [disabled]="!addTicketForm.valid"
-            nz-button
-            nzType="primary"
-          >
-            {{ "add" | translate }}
-          </button>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
+          <nz-form-item>
+            <nz-form-label
+              [nzSpan]="4"
+            >{{ "category" | translate }}</nz-form-label
+            >
+            <nz-form-control
+              style="padding-left: 10px;"
+              [nzSpan]="20"
+              nzErrorTip="{{ 'select.category' | translate }}"
+            >
+              <nz-select
+                formControlName="category"
+                nzAllowClear
+                nzPlaceHolder="{{ 'select.category' | translate }}"
+                nzShowSearch
+              >
+                <nz-option
+                  *ngFor="let category of categories"
+                  nzLabel="{{ category }}"
+                  nzValue="{{ category }}"
+                ></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label
+              [nzSpan]="4"
+            >{{ "ticket.title" | translate }}
+            </nz-form-label>
+            <nz-form-control [nzSpan]="20" [nzErrorTip]="titleErrorTpl">
+              <input formControlName="title" nz-input placeholder="Ticket Title"/>
+              <ng-template #titleErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  {{ "no.blank" | translate }}
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label
+              [nzSpan]="4"
+            >{{ "description" | translate }}</nz-form-label
+            >
+            <nz-form-control
+              [nzSpan]="20"
+              nzErrorTip="{{ 'write.something' | translate }}"
+            >
+              <input
+                formControlName="description"
+                nz-input
+                placeholder="Ticket description (Please write your problem description here.)"
+              />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item class="create-button-container">
+            <nz-form-control>
+              <button
+                class="create-button"
+                [disabled]="!addTicketForm.valid"
+                nz-button
+                nzType="primary"
+              >
+                {{ "add" | translate }}
+              </button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </div>
+    </div>
+
   </nz-card>
 </div>

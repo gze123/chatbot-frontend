@@ -27,10 +27,10 @@
         <td>{{ data.intentName }}</td>
         <td>{{ data.input }}</td>
         <td>{{ data.response }}</td>
-        <td *ngIf="!isGeneral()">
+        <td class="image-link" *ngIf="!isGeneral()">
           <app-chatbot-view-attachment [id]="data._id" [attachments]="data.attachments"></app-chatbot-view-attachment>
         </td>
-        <td>
+        <td class="image-link">
           <app-chatbot-update-intent
             [intentName]="data.intentName"
             [input]="data.input"
@@ -49,7 +49,7 @@
             [intentType]="intentType"
           ></app-chatbot-train-intent>
           <nz-divider nzType="vertical" *ngIf="!isGeneral()"></nz-divider>
-          <a (nzOnConfirm)="deleteRow(data._id)"
+          <a style="color: red;" (nzOnConfirm)="deleteRow(data._id)"
              [nzType]="'link'"
              nz-button
              nzTooltipPlacement="top"

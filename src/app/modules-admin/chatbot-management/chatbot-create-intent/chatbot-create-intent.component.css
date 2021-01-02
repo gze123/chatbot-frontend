@@ -1,4 +1,26 @@
-button {
+input {
+  height: 40px;
+  margin-left: 10px;
+}
+
+nz-form-label {
+  text-align: left;
+}
+
+nz-form-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-button-container {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.create-button {
   height: 40px;
   border-radius: 5px;
   min-width: 100px;

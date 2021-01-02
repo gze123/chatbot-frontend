@@ -24,9 +24,9 @@
         <input (change)="uploadFile($event)" type="file">
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzSpan]="8" nzOffset="3">
-        <button [disabled]="!chatbotIntentForm.valid" nz-button nzType="primary">{{'submit' | translate}}</button>
+    <nz-form-item style="justify-content: flex-end;">
+      <nz-form-control class="create-button-container" [nzSpan]="8" nzOffset="3">
+        <button class="create-button" [disabled]="!chatbotIntentForm.valid" nz-button nzType="primary">{{'submit' | translate}}</button>
       </nz-form-control>
     </nz-form-item>
   </form>

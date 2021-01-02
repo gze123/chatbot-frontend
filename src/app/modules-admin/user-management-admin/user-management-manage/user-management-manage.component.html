@@ -19,8 +19,8 @@
       <td>{{ data.fullname }}</td>
       <td>{{ data.userId }}</td>
       <td>{{ data.staffRole }}</td>
-      <td>
-        <a (nzOnConfirm)="deleteUser(data._id)" nz-popconfirm
+      <td class="image-link">
+        <a style="color: red" (nzOnConfirm)="deleteUser(data._id)" nz-popconfirm
            nzPopconfirmTitle="{{'sure.to.delete' | translate}}"> {{'delete' | translate}}
         </a>
       </td>

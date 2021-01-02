@@ -29,3 +29,7 @@ nz-table {
 ::ng-deep .ant-table-column-title {
   color: white
 }
+
+.image-link {
+  text-align: center !important;
+}

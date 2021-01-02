@@ -74,7 +74,9 @@
         <nz-divider nzType="vertical"
                     *ngIf="showDelete(data.createdBy)">
         </nz-divider>
-        <a *ngIf="showDelete(data.createdBy)"
+        <a
+          style="color: red;" 
+          *ngIf="showDelete(data.createdBy)"
            (nzOnConfirm)="deleteRow(data._id)"
            [nzType]="'link'"
            nz-button

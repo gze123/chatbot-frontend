@@ -61,19 +61,19 @@
             nz-icon
           ></i>
         </span>
-        <a [nzDropdownMenu]="menu" nz-dropdown style="right: -90%">
+        <a [nzDropdownMenu]="menu" nz-dropdown style="right: -90%; text-decoration: none;">
           {{username}}
           <i nz-icon nzType="down"></i>
         </a>
         <nz-dropdown-menu #menu="nzDropdownMenu">
-          <ul nz-menu nzSelectable>
+          <ul class="option" nz-menu nzSelectable>
             <li nz-menu-item>
-              <a routerLink="/student/profile" [nzType]="'link'" nz-button>
+              <a class="option-item" routerLink="/student/profile" [nzType]="'link'" nz-button>
                 <span>{{'update.profile' | translate}}</span>
               </a>
             </li>
             <li nz-menu-item>
-              <a (click)="logout()" [nzType]="'link'" nz-button>
+              <a class="option-item" (click)="logout()" [nzType]="'link'" nz-button>
                 <span>{{'logout' | translate}}</span>
               </a>
             </li>

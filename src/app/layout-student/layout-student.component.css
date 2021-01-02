@@ -89,3 +89,7 @@ nz-header div a {
   float: right;
   margin-right: 16px;
 }
+
+.option {
+  padding: 10px; min-width: 180px;
+}

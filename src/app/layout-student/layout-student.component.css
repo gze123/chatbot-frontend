@@ -93,3 +93,9 @@ nz-header div a {
 .option {
   padding: 10px; min-width: 180px;
 }
+
+.option-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

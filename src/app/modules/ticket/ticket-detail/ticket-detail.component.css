@@ -1,0 +1,10 @@
+.create-button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}
+
+.nz-item-end {
+  display: flex;
+  justify-content: flex-end;
+}

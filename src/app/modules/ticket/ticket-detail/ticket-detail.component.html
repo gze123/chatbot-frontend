@@ -44,8 +44,8 @@
             <nz-form-item>
               <textarea [(ngModel)]="solution" nz-input rows="4"></textarea>
             </nz-form-item>
-            <nz-form-item>
-              <button (click)="submitSolution()" [nzLoading]="" nz-button
+            <nz-form-item class="nz-item-end">
+              <button class="create-button" (click)="submitSolution()" [nzLoading]="" nz-button
                       nzType="primary">{{'submit'|translate}}</button>
             </nz-form-item>
 

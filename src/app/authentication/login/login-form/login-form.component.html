@@ -21,7 +21,13 @@
             <a class="login-form-forgot" (click)="resetPasswordVisible()">Forgot Password?</a>
           </div>
         </div>
-        <button [nzType]="'primary'" class="login-form-button login-form-margin" nz-button>Log in</button>
+        <button
+          [nzType]="'primary'"
+          [disabled]="!validateForm.valid"
+          class="login-form-button login-form-margin"
+          nz-button>
+          Log in
+        </button>
       </form>
 
     </div>

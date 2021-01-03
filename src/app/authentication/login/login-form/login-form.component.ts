@@ -57,7 +57,6 @@ export class LoginFormComponent implements OnInit {
         });
       } else {
         this.router.navigate(['/student/home']).then(r => {
-          console.log(r);
         });
       }
 
@@ -67,6 +66,7 @@ export class LoginFormComponent implements OnInit {
         nzTitle: 'Login Failed',
         nzContent: errorMsg,
         nzOnOk: () => {
+          this.validateForm.controls.password.reset();
         }
       });
       this.pageLoading = false;

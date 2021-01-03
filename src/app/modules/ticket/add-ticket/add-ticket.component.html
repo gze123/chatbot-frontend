@@ -15,7 +15,6 @@
             >{{ "category" | translate }}</nz-form-label
             >
             <nz-form-control
-              style="padding-left: 10px;"
               [nzSpan]="20"
               nzErrorTip="{{ 'select.category' | translate }}"
             >
@@ -43,7 +42,7 @@
               <input formControlName="title" nz-input placeholder="Ticket Title"/>
               <ng-template #titleErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                  {{ "no.blank" | translate }}
+                  Please input your ticket title!
                 </ng-container>
               </ng-template>
             </nz-form-control>
@@ -55,7 +54,7 @@
             >
             <nz-form-control
               [nzSpan]="20"
-              nzErrorTip="{{ 'write.something' | translate }}"
+              nzErrorTip="Please input your problem description!"
             >
               <input
                 formControlName="description"

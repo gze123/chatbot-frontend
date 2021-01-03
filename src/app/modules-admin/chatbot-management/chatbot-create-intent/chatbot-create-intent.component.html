@@ -1,20 +1,20 @@
 <nz-spin [nzSpinning]="pageLoading">
   <form (ngSubmit)="submitForm()" [formGroup]="chatbotIntentForm" nz-form>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{'intent.name' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your intent name!">
+      <nz-form-label [nzSpan]="3">Keyword</nz-form-label>
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input the keyword!">
         <input formControlName="intentName" nz-input/>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item >
       <nz-form-label [nzSpan]="3">{{'input' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="16" nzErrorTip="Please enter your input!">
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please enter the input!">
         <input formControlName="input" nz-input/>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="3">{{'response' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="16" nzErrorTip="Please input your response!">
+      <nz-form-control [nzSpan]="16" nzErrorTip="Please input the response!">
         <input formControlName="response" nz-input/>
       </nz-form-control>
     </nz-form-item>

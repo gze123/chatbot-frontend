@@ -43,9 +43,9 @@
         <tr *ngFor="let data of ticketTable.data">
           <td>{{ data._id}}</td>
           <td>{{ data.title }}</td>
-          <td>{{ data.status }}</td>
-          <td>{{ data.createdAt | date}}</td>
-          <td>
+          <td class="image-link">{{ data.status }}</td>
+          <td class="image-link">{{ data.createdAt | date}}</td>
+          <td class="image-link">
             <app-ticket-detail (reloadTable)="reloadTable()" [ticketDetail]="data"></app-ticket-detail>
           </td>
         </tr>

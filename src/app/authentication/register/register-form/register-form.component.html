@@ -2,7 +2,7 @@
   <div>
     <form (ngSubmit)="submitForm()" [formGroup]="validateForm" class="register-form" nz-form>
       <nz-form-item>
-        <nz-form-control nzErrorTip="The input is not valid siswamail!">
+        <nz-form-control nzErrorTip="The email is not a valid siswamail!">
           <nz-input-group nzPrefixIcon="mail">
             <input formControlName="email" nz-input placeholder="Email" type="text"/>
           </nz-input-group>
@@ -25,10 +25,10 @@
           </nz-input-group>
           <ng-template #errorTpl let-control>
             <ng-container *ngIf="control.hasError('required')">
-              Please confirm your password!
+              Please retype your password!
             </ng-container>
             <ng-container *ngIf="control.hasError('confirm')">
-              Two passwords that you enter is inconsistent!
+              Passwords do not match!
             </ng-container>
           </ng-template>
         </nz-form-control>
@@ -48,7 +48,7 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your matric no!">
+        <nz-form-control nzErrorTip="Please input your matric number!">
           <nz-input-group nzPrefixIcon="number">
             <input formControlName="matricNo" id="matricNo" nz-input placeholder="Matric No" type="text"/>
           </nz-input-group>

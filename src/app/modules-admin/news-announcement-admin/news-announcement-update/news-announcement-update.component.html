@@ -1,63 +1,108 @@
-<nz-page-header class="site-page-header" (nzBack)="back()" nzBackIcon nzTitle="Back">
+<nz-page-header
+  class="site-page-header"
+  (nzBack)="back()"
+  nzBackIcon
+  nzTitle="Back"
+>
 </nz-page-header>
 <nz-spin [nzSpinning]="pageLoading">
   <form [formGroup]="newsAnnouncementUpdateForm" nz-form>
-
     <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{'title' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="16" nzErrorTip="Please input title for the news/announcement!">
-        <input formControlName="title" nz-input/>
+      <nz-form-label [nzSpan]="3">{{ "title" | translate }}</nz-form-label>
+      <nz-form-control
+        [nzSpan]="16"
+        nzErrorTip="Please input title for the news/announcement!"
+      >
+        <input formControlName="title" nz-input />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{'content' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="16" nzErrorTip="Please input content for the news/announcement!">
-        <ckeditor [editor]="Editor" data="" formControlName="content"></ckeditor>
+      <nz-form-label [nzSpan]="3">{{ "content" | translate }}</nz-form-label>
+      <nz-form-control
+        [nzSpan]="16"
+        nzErrorTip="Please input content for the news/announcement!"
+      >
+        <ckeditor
+          [editor]="Editor"
+          data=""
+          formControlName="content"
+        ></ckeditor>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngFor="let image of images; let i = index">
-      <nz-form-label [nzSpan]="3" *ngIf="i == 0 ">{{'upload.image' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="10" [nzOffset]="i == 0 ? 0 : 3">
-        <a nz-button nzType="link" (click)="viewFile(image.url)"><i nz-icon nzType="link" nzTheme="outline"></i>{{image.fileName}}</a>
-        <a nz-button nzType="link"
-           nzDanger
-           nz-popconfirm
-           nzPopconfirmTitle="{{'sure.to.delete' | translate}}"
-           (nzOnConfirm)="deleteFile(image)"><i nz-icon nzType="close" nzTheme="outline"></i></a>
+      <nz-form-label [nzSpan]="3" *ngIf="i == 0">{{
+        "upload.image" | translate
+      }}</nz-form-label>
+      <nz-form-control class="attachment-link" [nzSpan]="10" [nzOffset]="i == 0 ? 0 : 3">
+        <a nz-button nzType="link" (click)="viewFile(image.url)"
+          ><i nz-icon nzType="link" nzTheme="outline"></i
+          >{{ image.fileName }}</a
+        >
+        <a
+          style="color: red;"
+          nz-button
+          nzType="link"
+          nzDanger
+          nz-popconfirm
+          nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
+          (nzOnConfirm)="deleteFile(image)"
+          ><i nz-icon nzType="close" nzTheme="outline"></i
+        ></a>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3" *ngIf="images.length < 1">{{'upload.image' | translate}}</nz-form-label>
+      <nz-form-label [nzSpan]="3" *ngIf="images.length < 1">{{
+        "upload.image" | translate
+      }}</nz-form-label>
       <nz-form-control [nzSpan]="8" [nzOffset]="images.length > 0 ? 3 : 0">
-        <nz-upload [(nzFileList)]="imageList" [nzBeforeUpload]="beforeUploadImage">
+        <nz-upload
+          [(nzFileList)]="imageList"
+          [nzBeforeUpload]="beforeUploadImage"
+        >
           <button nz-button><i nz-icon nzType="upload"></i>Select Image</button>
         </nz-upload>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item *ngFor="let attachment of attachments; let i = index">
-      <nz-form-label [nzSpan]="3" *ngIf="i == 0 ">{{'upload.file' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="15" [nzOffset]="i == 0 ? 0 : 3">
-        <a nz-button nzType="link" (click)="viewFile(attachment.url)"><i nz-icon nzType="link" nzTheme="outline"></i>{{attachment.fileName}}</a>
-        <a nz-button nzType="link"
-           nzDanger
-           nz-popconfirm
-           nzPopconfirmTitle="{{'sure.to.delete' | translate}}"
-           (nzOnConfirm)="deleteFile(attachment)"><i nz-icon nzType="close" nzTheme="outline"></i></a>
+      <nz-form-label [nzSpan]="3" *ngIf="i == 0">{{
+        "upload.file" | translate
+      }}</nz-form-label>
+      <nz-form-control class="attachment-link" [nzSpan]="15" [nzOffset]="i == 0 ? 0 : 3">
+        <a nz-button nzType="link" (click)="viewFile(attachment.url)"
+          ><i nz-icon nzType="link" nzTheme="outline"></i
+          >{{ attachment.fileName }}</a
+        >
+        <a
+          style="color: red;"
+          nz-button
+          nzType="link"
+          nzDanger
+          nz-popconfirm
+          nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
+          (nzOnConfirm)="deleteFile(attachment)"
+          ><i nz-icon nzType="close" nzTheme="outline"></i
+        ></a>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSpan]="3" *ngIf="attachments.length < 1">{{'upload.file' | translate}}</nz-form-label>
+      <nz-form-label [nzSpan]="3" *ngIf="attachments.length < 1">{{
+        "upload.file" | translate
+      }}</nz-form-label>
       <nz-form-control [nzSpan]="8" [nzOffset]="attachments.length > 0 ? 3 : 0">
-        <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUploadFile">
+        <nz-upload
+          [(nzFileList)]="fileList"
+          [nzBeforeUpload]="beforeUploadFile"
+        >
           <button nz-button><i nz-icon nzType="upload"></i>Select File</button>
         </nz-upload>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzSpan]="8" nzOffset="3">
-        <button nz-button nzType="primary" (click)="submitForm()">{{'submit' | translate}}</button>
+        <button nz-button nzType="primary" (click)="submitForm()">
+          {{ "submit" | translate }}
+        </button>
       </nz-form-control>
     </nz-form-item>
   </form>
-
 </nz-spin>

@@ -7,9 +7,9 @@
   [nzLoading]="pageLoading">
   <thead>
   <tr>
-    <th>Topic</th>
-    <th>Date</th>
-    <th>Action</th>
+    <th style="width: 60%;">Topic</th>
+    <th style="width: 20%;">Date</th>
+    <th style="width: 20%;">Action</th>
   </tr>
   </thead>
   <tbody>
@@ -23,7 +23,7 @@
     <td class="image-link">
       <a [routerLink]="['/admin/news-and-announcement/edit',data._id]">{{'edit' | translate}}</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a (nzOnConfirm)="delete(data._id)" nz-popconfirm
+      <a style="color: red;" (nzOnConfirm)="delete(data._id)" nz-popconfirm
          nzPopconfirmTitle="{{'sure.to.delete' | translate}}">{{'delete' | translate}}</a>
     </td>
   </tr>

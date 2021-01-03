@@ -68,12 +68,12 @@
         <nz-dropdown-menu #menu="nzDropdownMenu">
           <ul class="option" nz-menu nzSelectable>
             <li nz-menu-item>
-              <a class="option-item" routerLink="/student/profile" [nzType]="'link'" nz-button>
+              <a class="option-item" routerLink="/student/profile" [nzType]="'link'" nz-button style="text-decoration: none;">
                 <span>{{'update.profile' | translate}}</span>
               </a>
             </li>
             <li nz-menu-item>
-              <a class="option-item" (click)="logout()" [nzType]="'link'" nz-button>
+              <a class="option-item" (click)="logout()" [nzType]="'link'" nz-button style="text-decoration: none;">
                 <span>{{'logout' | translate}}</span>
               </a>
             </li>

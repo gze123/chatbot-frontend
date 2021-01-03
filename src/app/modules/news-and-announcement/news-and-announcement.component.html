@@ -15,15 +15,15 @@
     [nzLoading]="pageLoading">
     <thead>
     <tr>
-      <th>Topic</th>
-      <th>Date</th>
+      <th style="width: 80%;">Topic</th>
+      <th style="width: 20%;">Date</th>
 
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let data of basicTable.data">
       <td>
-        <a [routerLink]="['/student/news-and-announcement/',data._id]">{{ data.title }}</a>
+        <a style="text-decoration: none;" [routerLink]="['/student/news-and-announcement/',data._id]">{{ data.title }}</a>
       </td>
       <td class="image-link">
         <i nz-icon nzTheme="outline" nzType="calendar"

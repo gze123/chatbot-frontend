@@ -71,17 +71,17 @@
             </nz-input-group>
             <ng-template #errorTpl let-control>
               <ng-container *ngIf="control.hasError('required')">
-                Please confirm your password!
+                Please retype your password!
               </ng-container>
               <ng-container *ngIf="control.hasError('confirm')">
-                Two passwords that you enter is inconsistent!
+                Passwords do not match!
               </ng-container>
             </ng-template>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control [nzSpan]="8" nzOffset="3">
-            <button [disabled]="!validateForm.valid" nz-button nzType="primary">{{'update' | translate}}</button>
+          <nz-form-control class="create-button-container" [nzSpan]="8" nzOffset="3">
+            <button class="create-button" [disabled]="!validateForm.valid" nz-button nzType="primary">{{'update' | translate}}</button>
           </nz-form-control>
         </nz-form-item>
 

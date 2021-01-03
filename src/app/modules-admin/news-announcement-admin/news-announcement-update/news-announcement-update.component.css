@@ -2,6 +2,10 @@
   margin-bottom: 1vh;
 }
 
+input {
+  height: 40px;
+}
+
 .attachment-link {
   min-height: 40px;
   max-width: 300px;
@@ -26,4 +30,16 @@ nz-form-item {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.create-button-container {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.create-button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
 }

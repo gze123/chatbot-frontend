@@ -15,7 +15,7 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="3">{{'upload.image' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="8">
+      <nz-form-control [nzSpan]="16">
         <nz-upload [(nzFileList)]="imageList" [nzBeforeUpload]="beforeUploadImage">
           <button nz-button><i nz-icon nzType="upload"></i>Select Image</button>
         </nz-upload>
@@ -23,15 +23,15 @@
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSpan]="3">{{'upload.file' | translate}}</nz-form-label>
-      <nz-form-control [nzSpan]="8">
+      <nz-form-control [nzSpan]="16">
         <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUploadFile">
           <button nz-button><i nz-icon nzType="upload"></i>Select File</button>
         </nz-upload>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
-      <nz-form-control [nzSpan]="8" nzOffset="3">
-        <button nz-button nzType="primary" [disabled]="!this.newsAnnouncementCreateForm.valid" (click)="submitForm()">{{'submit' | translate}}</button>
+    <nz-form-item style="justify-content: flex-end;">
+      <nz-form-control class="create-button-container" [nzSpan]="8" nzOffset="4">
+        <button class="create-button" nz-button nzType="primary" [disabled]="!this.newsAnnouncementCreateForm.valid" (click)="submitForm()">{{'submit' | translate}}</button>
       </nz-form-control>
     </nz-form-item>
   </form>

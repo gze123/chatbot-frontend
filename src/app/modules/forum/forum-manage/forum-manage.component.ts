@@ -4,7 +4,8 @@ import { Subscription, zip } from 'rxjs';
 import { ForumCommentBoxComponent } from '../../../modules-admin/forum-admin/forum-manage/forum-comment-box/forum-comment-box.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ForumService } from '../../../services/forum-service.service';
-import { NzModalService } from 'ng-zorro-antd';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-forum-manage',
@@ -41,7 +42,9 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private forumService: ForumService,
     private nzModalService: NzModalService,
-    private router: Router
+    private router: Router,
+    private location: Location,
+    private msg: NzMessageService
   ) {}
 
   ngOnInit(): void {
@@ -136,7 +139,8 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         this.forumService.deleteForum(id).subscribe(
           (res) => {
             const response: any = res;
-            console.log(response);
+            this.msg.success('Forum deleted.');
+            this.location.back();
             this.router.navigate(['/student/forum/title']).then();
           },
           (error) => {}
@@ -223,5 +227,9 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       (error) => {}
     );
     this.editCache[_id].edit = false;
+  }
+
+  back() {
+    this.location.back();
   }
 }

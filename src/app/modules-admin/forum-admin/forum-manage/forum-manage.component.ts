@@ -5,6 +5,7 @@ import {ForumService} from '../../../services/forum-service.service';
 import {Comment, Forum} from '../../../models/forum.model';
 import {ForumCommentBoxComponent} from './forum-comment-box/forum-comment-box.component';
 import {NzModalService} from 'ng-zorro-antd';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-forum-manage',
@@ -42,7 +43,8 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private forumService: ForumService,
     private nzModalService: NzModalService,
-    private router: Router
+    private router: Router,
+    private location: Location,
   ) {
   }
 
@@ -125,7 +127,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         this.forumService.deleteForum(id).subscribe(res => {
           const response: any = res;
           console.log(response);
-          this.router.navigate(['/admin/forum']).then();
+          this.back();
         }, error => {
 
         });
@@ -211,5 +213,9 @@ export class ForumManageComponent implements OnInit, OnDestroy {
 
   cancelUpdate() {
     this.showUpdate = false;
+  }
+
+  back() {
+    this.location.back();
   }
 }

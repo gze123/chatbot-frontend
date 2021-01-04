@@ -19,8 +19,8 @@
       <tbody>
       <tr *ngFor="let data of basicTable.data">
         <td>{{ data.role }}</td>
-        <td>
-          <a (nzOnConfirm)="deleteRole(data._id)" nz-popconfirm
+        <td class="image-link">
+          <a style="color: red;"(nzOnConfirm)="deleteRole(data._id)" nz-popconfirm
              nzPopconfirmTitle="{{'sure.to.delete' | translate}}"> {{'delete' | translate}}
           </a>
         </td>

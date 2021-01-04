@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UploadFile} from 'ng-zorro-antd/upload';
 import {ChatbotManagementService} from '../../../services/chatbot-management.service';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-chatbot-update-intent',
@@ -20,6 +21,8 @@ export class ChatbotUpdateIntentComponent implements OnInit {
   attachments: [];
   @Input()
   id: string;
+  @Output()
+  reloadTable = new EventEmitter();
   attachmentList: UploadFile[] = [];
   isVisible: boolean;
   chatbotIntentUpdateForm!: FormGroup;
@@ -27,7 +30,8 @@ export class ChatbotUpdateIntentComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private chatbotManagementService: ChatbotManagementService
+    private chatbotManagementService: ChatbotManagementService,
+    private msg: NzMessageService
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +55,7 @@ export class ChatbotUpdateIntentComponent implements OnInit {
   }
 
   submitForm() {
+    this.pageLoading = true;
     this.chatbotIntentUpdateForm.patchValue({
       attachments: this.attachmentList
     });
@@ -59,17 +64,19 @@ export class ChatbotUpdateIntentComponent implements OnInit {
       this.chatbotIntentUpdateForm.controls[i].markAsDirty();
       this.chatbotIntentUpdateForm.controls[i].updateValueAndValidity();
     }
+    formData.append('id', this.id);
     formData.append('intentName', this.chatbotIntentUpdateForm.controls.intentName.value);
     formData.append('input', this.chatbotIntentUpdateForm.controls.input.value);
     formData.append('response', this.chatbotIntentUpdateForm.controls.response.value);
     this.attachmentList.forEach((file: any) => {
       formData.append('attachments', file);
     });
-    formData.forEach(x => console.log(x));
     this.chatbotManagementService.updateIntent(formData).subscribe(res => {
       this.pageLoading = false;
+      this.msg.success('Intent updated successfully');
     }, error => {
       console.log(error);
+      this.msg.error(error.error.error);
       this.pageLoading = false;
     });
   }

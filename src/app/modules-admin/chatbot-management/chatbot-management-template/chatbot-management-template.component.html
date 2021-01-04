@@ -37,6 +37,7 @@
             [response]="data.response"
             [attachments]="data.attachments"
             [id]="data._id"
+            (reloadTable)="reloadData($event)"
             *ngIf="!isGeneral()"
           ></app-chatbot-update-intent>
           <nz-divider nzType="vertical" *ngIf="!isGeneral()"></nz-divider>

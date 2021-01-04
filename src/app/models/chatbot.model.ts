@@ -13,7 +13,6 @@ export interface ChatbotIntent {
 }
 
 export interface ChatbotIntentDelete {
-  id: string;
   intentId: string;
   intentName: string;
 }

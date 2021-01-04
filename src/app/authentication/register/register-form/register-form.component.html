@@ -2,10 +2,18 @@
   <div>
     <form (ngSubmit)="submitForm()" [formGroup]="validateForm" class="register-form" nz-form>
       <nz-form-item>
-        <nz-form-control nzErrorTip="The email is not a valid siswamail!">
+        <nz-form-control [nzErrorTip]="emailErrorTpl">
           <nz-input-group nzPrefixIcon="mail">
             <input formControlName="email" nz-input placeholder="Email" type="text"/>
           </nz-input-group>
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              Please input yout email!
+            </ng-container>
+            <ng-container *ngIf="control.hasError('pattern')">
+              The email is not a valid siswamail!
+            </ng-container>
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -28,7 +36,7 @@
               Please retype your password!
             </ng-container>
             <ng-container *ngIf="control.hasError('confirm')">
-              Passwords do not match!
+              The passwords are not matched
             </ng-container>
           </ng-template>
         </nz-form-control>
@@ -55,7 +63,13 @@
         </nz-form-control>
       </nz-form-item>
       <div>
-        <button class="register-form-button" nz-button nzType="primary">Register</button>
+        <button
+          [disabled]="!validateForm.valid"
+          class="register-form-button"
+          nz-button
+          nzType="primary">
+          Register
+        </button>
       </div>
 
     </form>

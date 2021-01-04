@@ -40,7 +40,6 @@ export class ChatbotManagementTemplateComponent implements OnInit {
   deleteRow(id: string) {
     const deletedIntentData = this.chatbotIntentData.filter(d => d._id === id);
     const deletedData: ChatbotIntentDelete = {
-      id: deletedIntentData[0]._id,
       intentId: deletedIntentData[0].intentId,
       intentName: deletedIntentData[0].intentName
     };

@@ -69,12 +69,16 @@ export class FaqManageComponent implements OnInit {
     });
   }
 
-  deleteRow(id: string): void {
-    this.faqService.deleteFaq(id).subscribe(res => {
+  deleteRow(id: string, intentId: string): void {
+    const deleteRow = {
+      id,
+      intentId
+    };
+    this.faqService.deleteFaq(deleteRow).subscribe(res => {
       console.log(res);
     }, error => {
 
     });
-    this.faqData = this.faqData.filter(d => d.intentId !== id);
+    this.faqData = this.faqData.filter(d => d.intentId !== intentId);
   }
 }

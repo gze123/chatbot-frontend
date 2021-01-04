@@ -100,7 +100,11 @@ export class ChatbotComponent implements OnInit {
       }
       const imageFile = responsePayload.responsePayload.files;
       imageFile.forEach(image => {
-        files.push({url: image, type: 'image/jpeg'});
+        if (image.includes('pdf')) {
+          files.push({url: image, icon: 'file-text-outline' });
+        } else {
+          files.push({url: image, type: 'image/jpeg'});
+        }
       });
       if (text === '') {
         text = responsePayload.responsePayload.texts;

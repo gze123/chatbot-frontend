@@ -27,9 +27,7 @@ export class FaqService {
     return this.http.post(AppConstants.FAQ_UPDATE, faqUpdateModel);
   }
 
-  deleteFaq(id: string) {
-    let arrayId = [];
-    arrayId.push(id);
-    return this.http.post(AppConstants.FAQ_DELETE, {id: arrayId});
+  deleteFaq(faqDelete) {
+    return this.http.post(AppConstants.FAQ_DELETE, faqDelete);
   }
 }

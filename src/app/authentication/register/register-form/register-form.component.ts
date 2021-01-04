@@ -49,11 +49,15 @@ export class RegisterFormComponent implements OnInit {
       });
     }, error => {
       this.pageLoading = false;
-      const errorMsg = error.error.error;
+      let errorMsg = error.error.error;
+      if (errorMsg == 'Duplicated userId.') {
+        errorMsg = 'Duplicated matric number.';
+      }
       this.nzModalService.error({
         nzTitle: 'Failed to register',
         nzContent: errorMsg,
         nzOnOk: () => {
+          this.validateForm.controls.password.reset();
         }
       });
 

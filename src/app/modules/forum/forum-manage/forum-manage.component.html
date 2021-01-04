@@ -163,6 +163,7 @@
           </button>
           <nz-form-item class="buttons-container">
             <button
+              [disabled]="!comment.content"
               class="button"
               (click)="saveComment(comment._id, comment.content)"
               *ngIf="editCache[comment._id].edit"

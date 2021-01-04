@@ -41,14 +41,21 @@
         </div>
         <div *ngIf="!ticketDetail.resolution">
           <div *ngIf="getUserRole()">
-            <nz-form-item>
-              <textarea [(ngModel)]="solution" nz-input rows="4"></textarea>
-            </nz-form-item>
+            <form [formGroup]="solutionForm" nz-form>
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input the solution.">
+                  <textarea formControlName="solution" nz-input rows="4"></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </form>
             <nz-form-item class="nz-item-end">
-              <button class="create-button" (click)="submitSolution()" [nzLoading]="" nz-button
-                      nzType="primary">{{'submit'|translate}}</button>
+              <button
+                [disabled]="!solutionForm.valid"
+                class="create-button"
+                (click)="submitSolution()"
+                [nzLoading]="" nz-button
+                nzType="primary">{{'submit'|translate}}</button>
             </nz-form-item>
-
           </div>
           <div *ngIf="!getUserRole()">
             <p>

@@ -24,7 +24,7 @@
           <nz-divider nzType="vertical"></nz-divider>
           <a
             style="color:red"
-            (nzOnConfirm)="deleteRow(data.intentId)"
+            (nzOnConfirm)="deleteRow(data._id, data.intentId)"
             nz-popconfirm
             nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
             >{{ "delete" | translate }}</a

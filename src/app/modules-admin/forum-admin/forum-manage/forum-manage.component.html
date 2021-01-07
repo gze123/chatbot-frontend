@@ -45,8 +45,8 @@
           <p style="margin-bottom: 0">
             {{ forumDetail.description }}
           </p>
-          <nz-form-item *ngIf="isAdminOrAuthor(forumDetail.createdBy)">
-            <button
+          <nz-form-item >
+            <button *ngIf="isEditable(forumDetail.createdBy)"
               (click)="updateForum()"
               style="
                 color: #1890ff;
@@ -58,10 +58,11 @@
             >
               <i nz-icon nzTheme="fill" nzType="edit"></i>Edit
             </button>
-            <button
+            <button *ngIf="isDeletable(forumDetail.createdBy)"
               (click)="deleteForum(forumDetail._id)"
-              style="color: red; border-style: none; box-shadow: none"
+              class="delete-button"
               nz-button
+              [style.padding-left]="isEditable(forumDetail.createdBy) ? '15px' : '0px'"
             >
               <i nz-icon nzTheme="fill" nzType="delete"></i>Delete
             </button>
@@ -74,13 +75,13 @@
       <nz-form-item class="edit-form-item">
         <nz-form-label>{{ "title" | translate }}</nz-form-label>
         <nz-form-control>
-          <input [(ngModel)]="forumDetail.title" nz-input type="text" />
+          <input [(ngModel)]="forumDetail.title" nz-input type="text"/>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item class="edit-form-item">
         <nz-form-label>{{ "description" | translate }}</nz-form-label>
         <nz-form-control>
-          <input [(ngModel)]="forumDetail.description" nz-input type="text" />
+          <input [(ngModel)]="forumDetail.description" nz-input type="text"/>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item class="buttons-container">
@@ -106,7 +107,7 @@
       </nz-form-item>
     </ng-template>
 
-    <nz-list> </nz-list>
+    <nz-list></nz-list>
     <div *ngFor="let data of commentData; let i = index">
       <ng-template
         [ngTemplateOutletContext]="{ comment: data }"
@@ -135,11 +136,11 @@
 
         <!--        <nz-comment-action><a (click)="replyTo(comment._id)">{{'reply.to' | translate}}</a></nz-comment-action>-->
         <nz-comment-content
-          *ngIf="isAdminOrAuthor(comment.createdBy, comment.editable)"
+          *ngIf="isDeletable(comment.createdBy)"
         >
           <button
             (click)="editComment(comment._id)"
-            *ngIf="!editCache[comment._id].edit"
+            *ngIf="isEditable(comment.createdBy) && !editCache[comment._id].edit"
             style="
               color: #1890ff;
               border-style: none;
@@ -148,15 +149,17 @@
             "
             nz-button
           >
-            <i nz-icon nzTheme="fill" nzType="edit"></i>Edit
+            <i nz-icon nzTheme="fill" nzType="edit"></i>
+            {{'edit'|translate}}
           </button>
           <button
             *ngIf="
-              isAdminOrAuthor(comment.createdBy, comment.editable) &&
+              isDeletable(comment.createdBy) &&
               !editCache[comment._id].edit
             "
             (click)="deleteComment(comment._id)"
-            style="color: red; border-style: none; box-shadow: none"
+            class="delete-button"
+            [style.padding-left]="isEditable(comment.createdBy) && !editCache[comment._id].edit ? '15px' : '0px'"
             nz-button
           >
             <i nz-icon nzTheme="fill" nzType="delete"></i

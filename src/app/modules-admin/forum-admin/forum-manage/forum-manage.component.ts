@@ -198,6 +198,18 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       localStorage.getItem('id') == id;
   }
 
+  isEditable(id: string) {
+    return localStorage.getItem('id') == this.forumDetail.createdBy ||
+    localStorage.getItem('id') == id;
+  }
+
+  isDeletable(id: string) {
+    return localStorage.getItem('role') == 'staff' ||
+      localStorage.getItem('id') == this.forumDetail.createdBy ||
+      localStorage.getItem('id') == id ||
+      localStorage.getItem('role') == 'superadmin';
+  }
+
   saveComment(id: any, content: string) {
     this.forumService.editReply(id, content).subscribe(res => {
       const response: any = res;

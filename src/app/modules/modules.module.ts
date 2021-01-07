@@ -6,6 +6,8 @@ import { ChatbotComponent } from './chatbot/chatbot.component';
 import {NbChatModule, NbSpinnerModule} from '@nebular/theme';
 import { ProfileComponent } from './profile/profile.component';
 import {SharedModulesModule} from '../shared/shared-modules/shared-modules.module';
+import {NgZorroAntdModule} from 'ng-zorro-antd';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import {SharedModulesModule} from '../shared/shared-modules/shared-modules.modul
     RouterModule,
     NbChatModule,
     NbSpinnerModule,
-    SharedModulesModule
+    SharedModulesModule,
+    NgZorroAntdModule,
+    TranslateModule
   ]
 })
 export class ModulesModule {

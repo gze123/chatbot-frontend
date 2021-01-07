@@ -3,6 +3,9 @@ import {HttpClient} from '@angular/common/http';
 import {AppConstants} from '../../shared/app.constant';
 import {NewsAndAnnouncementService} from '../../services/news-and-announcement.service';
 import {DatePipe} from '@angular/common';
+import {zip} from 'rxjs';
+import {ChatbotManagementService} from '../../services/chatbot-management.service';
+import {ChatbotIntent} from '../../models/chatbot.model';
 
 @Component({
   selector: 'app-chatbot',
@@ -13,7 +16,7 @@ export class ChatbotComponent implements OnInit {
 
   messages = [];
   loading = false;
-
+  cardLoading = false;
   // Random ID to maintain session with server
   sessionId = Math.random().toString(36).slice(-5);
 
@@ -21,17 +24,25 @@ export class ChatbotComponent implements OnInit {
     url: string,
     type: string
   };
+  chatbotIntentData: ChatbotIntent[];
+
+  gridStyle = {
+    textAlign: 'center'
+  };
 
   constructor(private http: HttpClient,
               private newsAndAnnouncementService: NewsAndAnnouncementService,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe,
+              private chatbotManagementService: ChatbotManagementService) {
   }
 
   ngOnInit() {
+    this.cardLoading = true;
     const name = localStorage.getItem('username');
     this.addBotMessage('Hi ' + name + '. How can I help you? ');
-    this.newsAndAnnouncementService.getNewsAndAnnouncement().subscribe(res => {
-      const response: any = res;
+    zip(this.newsAndAnnouncementService.getNewsAndAnnouncement(), this.chatbotManagementService.getIntent()).subscribe(res => {
+      const response: any = res[0];
+      const intent: any = res[1];
       if (response.result.total > 0) {
         const latestNews = response.result.data.pop();
         this.addBotMessage('Latest News and Announcement (' +
@@ -45,33 +56,18 @@ export class ChatbotComponent implements OnInit {
         this.addBotMessage('Link to view the news: ' +
           'https://chatbot-and-ticketing-app.herokuapp.com/student/news-and-announcement/' + latestNews._id);
       }
+      this.chatbotIntentData = intent.result.data;
+      this.chatbotIntentData = this.chatbotIntentData.filter(x => x.intentType !== 'faqIntent');
+      this.cardLoading = false;
+    }, error => {
+      this.cardLoading = false;
     });
   }
 
   handleUserMessage(event) {
     console.log(event);
     const text = event.message;
-    this.addUserMessage(text);
-
-    this.loading = true;
-
-    // Make the request
-    this.http.post<any>(
-      AppConstants.CHATBOT,
-      {
-        sessionId: this.sessionId,
-        queryInput: {
-          text: {
-            text,
-            languageCode: 'en-US'
-          }
-        }
-      }
-    )
-      .subscribe(res => {
-        this.addBotMessage(res.result);
-        this.loading = false;
-      });
+    this.processMsg(text);
   }
 
   addUserMessage(text) {
@@ -101,7 +97,7 @@ export class ChatbotComponent implements OnInit {
       const imageFile = responsePayload.responsePayload.files;
       imageFile.forEach(image => {
         if (image.includes('pdf')) {
-          files.push({url: image, icon: 'file-text-outline' });
+          files.push({url: image, icon: 'file-text-outline'});
         } else {
           files.push({url: image, type: 'image/jpeg'});
         }
@@ -122,4 +118,31 @@ export class ChatbotComponent implements OnInit {
     });
   }
 
+  sendMessage(text: string) {
+    this.processMsg(text);
+  }
+
+  processMsg(text: string) {
+    this.addUserMessage(text);
+
+    this.loading = true;
+
+    // Make the request
+    this.http.post<any>(
+      AppConstants.CHATBOT,
+      {
+        sessionId: this.sessionId,
+        queryInput: {
+          text: {
+            text,
+            languageCode: 'en-US'
+          }
+        }
+      }
+    )
+      .subscribe(res => {
+        this.addBotMessage(res.result);
+        this.loading = false;
+      });
+  }
 }

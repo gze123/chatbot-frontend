@@ -17,8 +17,21 @@
 
   </nb-chat-message>
 
-
   <nb-chat-form (send)="handleUserMessage($event)" [dropFiles]="true">
   </nb-chat-form>
 
 </nb-chat>
+<nz-card>
+  <nz-spin [nzSpinning]="cardLoading">
+    <span *ngFor="let data of chatbotIntentData; let i = index">
+    <button
+      nz-button
+      nzType="default"
+      nzShape="round"
+      (click)="sendMessage(data.input)"
+      style="margin-right: 5px">
+      {{data.input}}
+    </button>
+  </span>
+  </nz-spin>
+</nz-card>

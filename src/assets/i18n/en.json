@@ -115,5 +115,6 @@
   "update.profile": "Update Profile",
   "create.intent": "Create Intent",
   "f.a.q": "Frequently Asked Questions",
-  "create.faq": "Add FAQ"
+  "create.faq": "Add FAQ",
+  "suggestion": "Suggestion"
 }

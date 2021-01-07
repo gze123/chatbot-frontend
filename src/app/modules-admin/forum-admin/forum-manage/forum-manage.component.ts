@@ -192,12 +192,6 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     console.log(this.editCache);
   }
 
-  isAdminOrAuthor(id: string, editable?: any) {
-    return localStorage.getItem('role') == 'staff' ||
-      localStorage.getItem('id') == this.forumDetail.createdBy ||
-      localStorage.getItem('id') == id;
-  }
-
   isEditable(id: string) {
     return localStorage.getItem('id') == this.forumDetail.createdBy ||
     localStorage.getItem('id') == id;

@@ -23,3 +23,14 @@ nz-form-item {
   min-width: 200px;
   height: 40px;
 }
+
+.attachment-link {
+  min-height: 40px;
+  min-width: 300px;
+  border-radius: 5px;
+  color: white;
+  background-color: #2379b3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

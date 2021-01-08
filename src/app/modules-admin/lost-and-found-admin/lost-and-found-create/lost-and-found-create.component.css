@@ -46,3 +46,8 @@ nz-form-item {
   justify-content: center;
   align-items: center;
 }
+
+.upload-button {
+  min-width: 200px;
+  height: 40px
+}

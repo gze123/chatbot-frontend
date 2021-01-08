@@ -8,7 +8,7 @@ input {
 
 .attachment-link {
   min-height: 40px;
-  max-width: 300px;
+  min-width: 300px;
   border-radius: 5px;
   color: white;
   background-color: #2379b3;

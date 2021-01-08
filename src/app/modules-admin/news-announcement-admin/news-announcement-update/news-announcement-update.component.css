@@ -39,3 +39,12 @@ nz-form-item {
   border-radius: 5px;
   min-width: 100px;
 }
+
+.upload-button {
+  min-width: 200px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}

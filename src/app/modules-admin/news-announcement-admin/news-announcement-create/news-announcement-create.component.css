@@ -34,10 +34,15 @@ nz-form-item {
 .create-button-container {
   margin-bottom: 0px;
   display: flex;
+  justify-content: flex-end;
 }
 
 .create-button {
   height: 40px;
   border-radius: 5px;
   min-width: 100px;
+}
+
+.upload-button {
+  min-width: 200px;
 }

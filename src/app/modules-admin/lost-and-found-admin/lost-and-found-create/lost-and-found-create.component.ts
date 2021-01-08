@@ -29,6 +29,7 @@ export class LostAndFoundCreateComponent implements OnInit {
 
   submitForm(): void {
     this.pageLoading = true;
+    this.lostAndFoundCreateForm.patchValue({image: this.fileList});
     const formData = new FormData();
     for (const i in this.lostAndFoundCreateForm.controls) {
       this.lostAndFoundCreateForm.controls[i].markAsDirty();
@@ -36,12 +37,12 @@ export class LostAndFoundCreateComponent implements OnInit {
     }
     formData.append('item', this.lostAndFoundCreateForm.controls['item'].value);
     formData.append('location', this.lostAndFoundCreateForm.controls['location'].value);
-    formData.append('image', this.lostAndFoundCreateForm.controls['image'].value);
     formData.append('description', this.lostAndFoundCreateForm.controls['description'].value);
     formData.append('contact', this.lostAndFoundCreateForm.controls['contact'].value);
     formData.append('type', this.lostAndFoundType);
-
-    formData.forEach(x => console.log(x));
+    this.fileList.forEach((file: any) => {
+      formData.append('image', file);
+    });
     this.lostAndFoundService.addLostAndFound(formData).subscribe(res => {
       this.pageLoading = false;
       location.reload();
@@ -63,7 +64,6 @@ export class LostAndFoundCreateComponent implements OnInit {
       this.lostAndFoundCreateForm.get('contact').setValidators(Validators.required);
       this.imageInputExtra = 'Image is not necessary';
     } else {
-      this.lostAndFoundCreateForm.get('image').setValidators(Validators.required);
       this.imageInputExtra = '';
     }
   }
@@ -74,6 +74,11 @@ export class LostAndFoundCreateComponent implements OnInit {
       image: file
     });
     this.lostAndFoundCreateForm.get('image').updateValueAndValidity();
-    console.log(this.lostAndFoundCreateForm);
   }
+
+  beforeUploadFile = (file: UploadFile): boolean => {
+    this.fileList = this.fileList.concat(file);
+    return false;
+  }
+
 }

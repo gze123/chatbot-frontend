@@ -20,3 +20,13 @@ nz-form-item {
   border-radius: 5px;
   min-width: 100px;
 }
+
+nz-form-label {
+  text-align: left;
+}
+
+nz-form-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

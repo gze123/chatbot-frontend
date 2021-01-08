@@ -1,22 +1,51 @@
-<nz-card [nzBordered]="true" nzTitle="{{'create.forum' | translate}}">
-  <form (ngSubmit)="submitForm()" [formGroup]="createForumForm" [nzLayout]="'horizontal'" nz-form>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your title!">
+<nz-card [nzBordered]="true" nzTitle="{{ 'create.forum' | translate }}">
+  <form
+    (ngSubmit)="submitForm()"
+    [formGroup]="createForumForm"
+    [nzLayout]="'horizontal'"
+    nz-form
+  >
+    <nz-form-item class="field-center">
+      <nz-form-label [nzSpan]="3">Title</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please input your title!">
         <nz-input-group>
-          <input formControlName="title" nz-input placeholder="{{'title' | translate}}"/>
+          <input
+            formControlName="title"
+            nz-input
+            placeholder="{{ 'title' | translate }}"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your description for the title!">
+    <nz-form-item class="field-center">
+      <nz-form-label [nzSpan]="3">Description</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzErrorTip="Please input your description for the title!"
+      >
         <nz-input-group>
-          <input formControlName="description" nz-input placeholder="{{'description' | translate}}"/>
+          <textarea
+          placeholder="Description of the forum topic"
+            formControlName="description"
+            nz-input
+          ></textarea>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item class="create-button-container">
-      <nz-form-control>
-        <button class="create-button" [disabled]="!createForumForm.valid" nz-button nzType="primary">{{'create' | translate}}</button>
+      <nz-form-control
+        style="display: flex; justify-content: center !important"
+        [nzSpan]="12"
+        nzOffset="1"
+      >
+        <button
+          class="create-button"
+          [disabled]="!createForumForm.valid"
+          nz-button
+          nzType="primary"
+        >
+          {{ "create" | translate }}
+        </button>
       </nz-form-control>
     </nz-form-item>
   </form>

@@ -1,17 +1,21 @@
 <nz-card [nzBordered]="true" nzTitle="{{'search.forum' | translate}}">
-  <form [formGroup]="searchForumForm" [nzLayout]="'horizontal'" nz-form>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your keyword!">
+  <form style="display: flex; justify-content: center;" [formGroup]="searchForumForm" [nzLayout]="'inline'" nz-form>
+    <nz-form-item style="width: 40%; margin-right: 50px;">
+      <nz-form-control style="width: 100%;" nzErrorTip="Please input your keyword!">
         <nz-input-group>
           <input formControlName="keyword" nz-input placeholder="{{'keyword' | translate}}"/>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <div nz-row>
-      <div nz-col [nzSpan]="24" class="search-area">
+    <nz-form-item>
+      <nz-form-control>
         <button class="create-button" nz-button (click)="submitForm()" [disabled]="!searchForumForm.valid" [nzType]="'primary'">{{'search' | translate}}</button>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
         <button class="create-button" nz-button (click)="resetForm()">{{'reset' | translate}}</button>
-      </div>
-    </div>
+      </nz-form-control>
+    </nz-form-item>
   </form>
 </nz-card>

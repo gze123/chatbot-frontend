@@ -18,7 +18,7 @@ export class ChatbotUpdateIntentComponent implements OnInit {
   @Input()
   response: string;
   @Input()
-  attachments: [];
+  attachments: any[];
   @Input()
   id: string;
   @Output()
@@ -85,6 +85,8 @@ export class ChatbotUpdateIntentComponent implements OnInit {
     const id = this.id;
     const deleteFile = {id, filePath};
     this.chatbotManagementService.deleteFileIntent(deleteFile).subscribe(res => {
+      this.attachments = this.attachments.filter(item => item !== filePath );
+      this.msg.success('File deleted successfully');
     }, err => {
     });
   }

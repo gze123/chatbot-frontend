@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NewsAndAnnouncementService} from '../../../services/news-and-announcement.service';
 import {Router} from '@angular/router';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-news-announcement-manage',
@@ -14,6 +15,7 @@ export class NewsAnnouncementManageComponent implements OnInit {
 
   constructor(
     private newsAndAnnouncementService: NewsAndAnnouncementService,
+    private msg: NzMessageService,
     private router: Router
   ) {
   }
@@ -24,7 +26,6 @@ export class NewsAnnouncementManageComponent implements OnInit {
       const response: any = res;
       this.newsAndAnnouncementData = response.result.data;
       this.pagination = response.result.total;
-      console.log(response);
       this.pageLoading = false;
       }
       , err => {
@@ -35,8 +36,8 @@ export class NewsAnnouncementManageComponent implements OnInit {
   delete(id: string) {
     this.newsAndAnnouncementService.deleteNewsAndAnnouncement(id).subscribe(res => {
       const response: any = res;
-      console.log(response);
       this.ngOnInit();
+      this.msg.create('success', 'News/Announcement deleted successfully');
     }, error => {
 
     });

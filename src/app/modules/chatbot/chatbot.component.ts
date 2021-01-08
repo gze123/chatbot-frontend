@@ -26,9 +26,8 @@ export class ChatbotComponent implements OnInit {
   };
   chatbotIntentData: ChatbotIntent[];
 
-  gridStyle = {
-    textAlign: 'center'
-  };
+  welcome = 'Hello student, I am Bot! Welcome to FSKTM General Inquiry and Discussion Platform, feel free to chat with me. I will be representing the office staff to answer to all of your questions.' +
+    ' If I am not able to answer your question, please navigate to ticket section to address your problem directly to the office staff. Have a great day!';
 
   constructor(private http: HttpClient,
               private newsAndAnnouncementService: NewsAndAnnouncementService,

@@ -64,9 +64,15 @@ export class NewsAnnouncementCreateComponent implements OnInit {
     this.imageList.forEach((file: any) => {
       formData.append('images', file);
     });
+    if (this.imageList.length === 0) {
+      formData.append('images', null);
+    }
     this.fileList.forEach((file: any) => {
       formData.append('attachments', file);
     });
+    if(this.fileList.length === 0) {
+      formData.append('attachments', null);
+    }
     this.newsAnnouncementService.addNewsAndAnnouncement(formData).subscribe(res => {
       this.pageLoading = false;
       this.msg.create('success', 'News/Announcement created successfully');

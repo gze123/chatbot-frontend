@@ -22,7 +22,7 @@
       <nz-form-label [nzSpan]="3" >{{'upload' | translate}}</nz-form-label>
       <nz-form-control [nzSpan]="16" >
         <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUploadFile">
-          <button [disabled]="fileList.length > 4" nz-button><i nz-icon nzType="upload"></i>Select File</button>
+          <button class="upload-button" [disabled]="fileList.length > 4" nz-button><i nz-icon nzType="upload"></i>Select File</button>
         </nz-upload>
       </nz-form-control>
     </nz-form-item>

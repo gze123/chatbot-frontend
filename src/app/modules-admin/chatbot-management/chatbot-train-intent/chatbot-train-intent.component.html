@@ -104,9 +104,9 @@
     </div>
 
 
-    <nz-form-item>
-      <nz-form-control [nzSpan]="8" nzOffset="5">
-        <button nz-button
+    <nz-form-item style="display: flex; justify-content: flex-end;">
+      <nz-form-control class="create-button-container" [nzSpan]="8">
+        <button class="create-button" nz-button
                 nzType="primary"
                 [disabled]="!chatbotIntentTrainForm.valid"
                 (click)="submitForm()">

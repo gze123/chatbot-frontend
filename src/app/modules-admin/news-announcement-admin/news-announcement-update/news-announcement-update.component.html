@@ -63,7 +63,7 @@
               [(nzFileList)]="imageList"
               [nzBeforeUpload]="beforeUploadImage"
             >
-              <button nz-button><i nz-icon nzType="upload"></i>Select Image</button>
+              <button class="upload-button" nz-button><i nz-icon nzType="upload"></i>Select Image</button>
             </nz-upload>
           </nz-form-control>
         </nz-form-item>
@@ -99,11 +99,11 @@
               [(nzFileList)]="fileList"
               [nzBeforeUpload]="beforeUploadFile"
             >
-              <button nz-button><i nz-icon nzType="upload"></i>Select File</button>
+              <button class="upload-button" nz-button><i nz-icon nzType="upload"></i>Select File</button>
             </nz-upload>
           </nz-form-control>
         </nz-form-item>
-        <nz-form-item style="justify-content: flex-end;">
+        <nz-form-item class="button-container">
           <nz-form-control class="create-button-container" [nzSpan]="8" nzOffset="3">
             <button class="create-button" nz-button nzType="primary" (click)="submitForm()">
               {{ "submit" | translate }}

@@ -14,7 +14,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let data of basicTable.data">
-    <td class="image-link">
+    <td>
       <a [routerLink]="['/admin/news-and-announcement/',data._id]">{{ data.title }}</a>
     </td>
     <td class="image-link">

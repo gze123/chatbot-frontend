@@ -24,3 +24,9 @@ nz-form-item {
   border-radius: 5px;
   min-width: 100px;
 }
+
+.upload-button {
+  min-width: 200px;
+  height: 40px;
+}
+

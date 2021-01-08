@@ -37,9 +37,9 @@
         }}</nz-form-label>
         <nz-form-control [nzSpan]="16" [nzOffset]="i == 0 ? 0 : 4">
           <div class="attachment-link">
-            <a style="color: white" nz-button nzType="link" (click)="viewFile(attachment)"
+            <a style="color: white" nz-button nzType="link" (click)="viewFile(attachment.url)"
               ><i nz-icon nzType="link" nzTheme="outline"></i
-              >{{ attachment }}</a
+              >{{ attachment.fileName }}</a
             >
             <a
               style="color: red"
@@ -48,7 +48,7 @@
               nzDanger
               nz-popconfirm
               nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
-              (nzOnConfirm)="deleteFile(attachment)"
+              (nzOnConfirm)="deleteFile(attachment.filePath)"
               ><i nz-icon nzType="close" nzTheme="outline"></i
             ></a>
           </div>

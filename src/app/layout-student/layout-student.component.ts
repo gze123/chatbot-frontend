@@ -39,7 +39,7 @@ export class LayoutStudentComponent implements OnInit {
       localStorage.clear();
       console.log(res);
       this.pageLoading = false;
-      this.router.navigate(['/auth/login']).then();
+      this.router.navigate(['/auth/login']).then(r => location.reload());
     }, error => {
       this.pageLoading = false;
     });

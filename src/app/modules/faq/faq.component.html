@@ -3,38 +3,66 @@
     <div>
       <nz-page-header
         class="site-page-header"
-        nzTitle="{{'frequently.asked.question' | translate}}">
+        nzTitle="{{ 'frequently.asked.question' | translate }}"
+      >
       </nz-page-header>
     </div>
-    <nz-card [nzBordered]="true" nzTitle="{{'search.faq' | translate}}">
-      <form [formGroup]="searchFaqForm" [nzLayout]="'horizontal'" nz-form>
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Please input your keyword!">
+    <nz-card [nzBordered]="true" nzTitle="{{ 'search.faq' | translate }}">
+      <form
+        style="display: flex; justify-content: center"
+        [formGroup]="searchFaqForm"
+        [nzLayout]="'inline'"
+        nz-form
+      >
+        <nz-form-item style="width: 40%; margin-right: 50px">
+          <nz-form-control
+            style="width: 100%"
+            nzErrorTip="Please input your keyword!"
+          >
             <nz-input-group>
-              <input formControlName="keyword" nz-input placeholder="{{'keyword' | translate}}"/>
+              <input
+                formControlName="keyword"
+                nz-input
+                placeholder="{{ 'keyword' | translate }}"
+              />
             </nz-input-group>
           </nz-form-control>
         </nz-form-item>
-        <div nz-row>
-          <div nz-col [nzSpan]="24" class="search-area">
-            <button class="create-button" nz-button (click)="submitForm()" [disabled]="!searchFaqForm.valid"
-                    [nzType]="'primary'">{{'search' | translate}}</button>
-            <button class="create-button" nz-button (click)="resetForm()">{{'reset' | translate}}</button>
-          </div>
-        </div>
+        <nz-form-item>
+          <nz-form-control>
+            <button
+              class="create-button"
+              nz-button
+              (click)="submitForm()"
+              [disabled]="!searchFaqForm.valid"
+              [nzType]="'primary'"
+            >
+              {{ "search" | translate }}
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button class="create-button" nz-button (click)="resetForm()">
+              {{ "reset" | translate }}
+            </button>
+          </nz-form-control>
+        </nz-form-item>
       </form>
     </nz-card>
 
     <div class="content-faq">
       <nz-collapse>
-        <nz-collapse-panel *ngFor="let faqQuestionAnswer of faqQuestionAndAnswer"
-                           [nzHeader]="faqQuestionAnswer.question" [nzActive]="faqQuestionAnswer.active">
-          <p style="margin:0;">
-            {{faqQuestionAnswer.answer}}
+        <nz-collapse-panel
+          *ngFor="let faqQuestionAnswer of faqQuestionAndAnswer"
+          [nzHeader]="faqQuestionAnswer.question"
+          [nzActive]="faqQuestionAnswer.active"
+        >
+          <p style="margin: 0">
+            {{ faqQuestionAnswer.answer }}
           </p>
         </nz-collapse-panel>
       </nz-collapse>
     </div>
-
   </div>
 </nz-spin>

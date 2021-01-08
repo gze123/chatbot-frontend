@@ -1,7 +1,7 @@
 <div class="content-lost-and-found">
   <nz-card [nzBordered]="true" nzTitle="Search For Item" *ngIf="!filterData">
     <form
-      style="align-items: center; justify-content: center; display: flex;"
+      style=" justify-content: center; display: flex;"
       (ngSubmit)="search()"
       [formGroup]="lostAndFoundForm"
       [nzLayout]="'inline'"
@@ -18,7 +18,7 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item>
+      <nz-form-item style="margin-right: 50px">
         <nz-form-control>
           <nz-form-control>
             <nz-range-picker

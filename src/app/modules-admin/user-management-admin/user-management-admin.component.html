@@ -7,15 +7,7 @@
 </div>
 <nz-tabset>
   <nz-tab nzTitle="{{'user.management' | translate}}">
-    <nz-tabset>
-      <nz-tab nzTitle="{{'manage.user.management' | translate}}">
-        <app-user-management-manage></app-user-management-manage>
-      </nz-tab>
-      <nz-tab nzTitle="{{'add.user.management' | translate}}">
-        <app-user-management-create></app-user-management-create>
-      </nz-tab>
-    </nz-tabset>
-
+    <app-user-management-manage></app-user-management-manage>
   </nz-tab>
   <nz-tab nzTitle="{{'role.management' | translate}}">
     <app-role-management-manage></app-role-management-manage>

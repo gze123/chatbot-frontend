@@ -103,10 +103,15 @@ export class NewsAnnouncementUpdateComponent implements OnInit {
     });
   }
 
-  deleteFile(filePath: string) {
+  deleteFile(filePath: string, attachment: boolean) {
     const id = this.newsAndAnnouncement._id;
     const deleteFile = {id, filePath};
     this.newsAndAnnouncementService.deleteFile(deleteFile).subscribe(res => {
+      if (attachment) {
+        this.attachments = this.attachments.filter(item => item.filePath !== filePath);
+      } else {
+        this.images = this.images.filter(item => item.filePath !== filePath);
+      }
     }, err => {
     });
   }

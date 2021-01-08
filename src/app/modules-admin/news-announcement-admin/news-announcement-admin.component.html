@@ -6,12 +6,8 @@
     >
     </nz-page-header>
   </div>
-  <nz-tabset>
-    <nz-tab nzTitle="{{'manage.news.announcements' | translate}}">
-      <app-news-announcement-manage></app-news-announcement-manage>
-    </nz-tab>
-    <nz-tab nzTitle="{{'add.news.announcements' | translate}}">
-      <app-news-announcement-create></app-news-announcement-create>
-    </nz-tab>
-  </nz-tabset>
+  <nz-card [nzBordered]="true" nzTitle="{{'add.news.announcements' | translate}}" style="margin-bottom: 1vh">
+    <app-news-announcement-create></app-news-announcement-create>
+  </nz-card>
+  <app-news-announcement-manage></app-news-announcement-manage>
 </div>

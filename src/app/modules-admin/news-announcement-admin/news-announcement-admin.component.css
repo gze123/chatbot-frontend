@@ -1,0 +1,8 @@
+::ng-deep .ant-card-head {
+  background: #026cb3;
+  color: white;
+}
+
+::ng-deep .ant-card-body {
+  background: #FCFCFC;
+}

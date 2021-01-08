@@ -27,15 +27,11 @@ nz-form-label {
 
 nz-form-item {
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .create-button-container {
   margin-bottom: 0px;
   display: flex;
-  justify-content: center;
 }
 
 .create-button {

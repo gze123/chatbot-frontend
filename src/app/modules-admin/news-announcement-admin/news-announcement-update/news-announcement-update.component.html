@@ -6,107 +6,112 @@
 >
 </nz-page-header>
 <nz-spin [nzSpinning]="pageLoading">
-  <form [formGroup]="newsAnnouncementUpdateForm" nz-form>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{ "title" | translate }}</nz-form-label>
-      <nz-form-control
-        [nzSpan]="16"
-        nzErrorTip="Please input title for the news/announcement!"
-      >
-        <input formControlName="title" nz-input />
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSpan]="3">{{ "content" | translate }}</nz-form-label>
-      <nz-form-control
-        [nzSpan]="16"
-        nzErrorTip="Please input content for the news/announcement!"
-      >
-        <ckeditor
-          [editor]="Editor"
-          data=""
-          formControlName="content"
-        ></ckeditor>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item *ngFor="let image of images; let i = index">
-      <nz-form-label [nzSpan]="3" *ngIf="i == 0">{{
-        "upload.image" | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="16" [nzOffset]="i == 0 ? 0 : 3">
-        <div class="attachment-link">
-          <a nz-button nzType="link" (click)="viewFile(image.url)"
-            ><i nz-icon nzType="link" nzTheme="outline"></i
-            >{{ image.fileName }}</a
+  <div nz-row>
+    <div nz-col nzSpan="18" nzOffset="4">
+      <form [formGroup]="newsAnnouncementUpdateForm" nz-form>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="3">{{ "title" | translate }}</nz-form-label>
+          <nz-form-control
+            [nzSpan]="16"
+            nzErrorTip="Please input title for the news/announcement!"
           >
-          <a
-            style="color: red"
-            nz-button
-            nzType="link"
-            nzDanger
-            nz-popconfirm
-            nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
-            (nzOnConfirm)="deleteFile(image)"
-            ><i nz-icon nzType="close" nzTheme="outline"></i
-          ></a>
-        </div>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item style="justify-content: flex-start; padding-left: 150px;">
-      <nz-form-label [nzSpan]="3" *ngIf="images.length < 1">{{
-        "upload.image" | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="8" [nzOffset]="images.length > 0 ? 3 : 0">
-        <nz-upload
-          [(nzFileList)]="imageList"
-          [nzBeforeUpload]="beforeUploadImage"
-        >
-          <button nz-button><i nz-icon nzType="upload"></i>Select Image</button>
-        </nz-upload>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item *ngFor="let attachment of attachments; let i = index">
-      <nz-form-label [nzSpan]="3" *ngIf="i == 0">{{
-        "upload.file" | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="16" [nzOffset]="i == 0 ? 0 : 3">
-        <div class="attachment-link">
-          <a nz-button nzType="link" (click)="viewFile(attachment.url)"
-            ><i nz-icon nzType="link" nzTheme="outline"></i
-            >{{ attachment.fileName }}</a
+            <input formControlName="title" nz-input/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="3">{{ "content" | translate }}</nz-form-label>
+          <nz-form-control
+            [nzSpan]="16"
+            nzErrorTip="Please input content for the news/announcement!"
           >
-          <a
-            style="color: red"
-            nz-button
-            nzType="link"
-            nzDanger
-            nz-popconfirm
-            nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
-            (nzOnConfirm)="deleteFile(attachment)"
-            ><i nz-icon nzType="close" nzTheme="outline"></i
-          ></a>
-        </div>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item style="justify-content: flex-start; padding-left: 150px;">
-      <nz-form-label [nzSpan]="3" *ngIf="attachments.length < 1">{{
-        "upload.file" | translate
-      }}</nz-form-label>
-      <nz-form-control [nzSpan]="8" [nzOffset]="attachments.length > 0 ? 3 : 0">
-        <nz-upload
-          [(nzFileList)]="fileList"
-          [nzBeforeUpload]="beforeUploadFile"
-        >
-          <button nz-button><i nz-icon nzType="upload"></i>Select File</button>
-        </nz-upload>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item style="justify-content: flex-end;">
-      <nz-form-control class="create-button-container" [nzSpan]="8" nzOffset="4">
-        <button class="create-button" nz-button nzType="primary" (click)="submitForm()">
-          {{ "submit" | translate }}
-        </button>
-      </nz-form-control>
-    </nz-form-item>
-  </form>
+            <ckeditor
+              [editor]="Editor"
+              data=""
+              formControlName="content"
+            ></ckeditor>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngFor="let image of images; let i = index">
+          <nz-form-label [nzSpan]="3" *ngIf="i == 0">{{
+            "upload.image" | translate
+            }}</nz-form-label>
+          <nz-form-control [nzSpan]="16" [nzOffset]="i == 0 ? 0 : 3">
+            <div class="attachment-link">
+              <a nz-button nzType="link" (click)="viewFile(image.url)"
+              ><i nz-icon nzType="link" nzTheme="outline"></i
+              >{{ image.fileName }}</a
+              >
+              <a
+                style="color: red"
+                nz-button
+                nzType="link"
+                nzDanger
+                nz-popconfirm
+                nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
+                (nzOnConfirm)="deleteFile(image.filePath, false)"
+              ><i nz-icon nzType="close" nzTheme="outline"></i
+              ></a>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="justify-content: flex-start;">
+          <nz-form-label [nzSpan]="3" *ngIf="images.length < 1">{{
+            "upload.image" | translate
+            }}</nz-form-label>
+          <nz-form-control [nzSpan]="8" [nzOffset]="images.length > 0 ? 3 : 0">
+            <nz-upload
+              [(nzFileList)]="imageList"
+              [nzBeforeUpload]="beforeUploadImage"
+            >
+              <button nz-button><i nz-icon nzType="upload"></i>Select Image</button>
+            </nz-upload>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item *ngFor="let attachment of attachments; let i = index">
+          <nz-form-label [nzSpan]="3" *ngIf="i == 0">{{
+            "upload.file" | translate
+            }}</nz-form-label>
+          <nz-form-control [nzSpan]="16" [nzOffset]="i == 0 ? 0 : 3">
+            <div class="attachment-link">
+              <a nz-button nzType="link" (click)="viewFile(attachment.url)"
+              ><i nz-icon nzType="link" nzTheme="outline"></i
+              >{{ attachment.fileName }}</a
+              >
+              <a
+                style="color: red"
+                nz-button
+                nzType="link"
+                nzDanger
+                nz-popconfirm
+                nzPopconfirmTitle="{{ 'sure.to.delete' | translate }}"
+                (nzOnConfirm)="deleteFile(attachment.filePath, true)"
+              ><i nz-icon nzType="close" nzTheme="outline"></i
+              ></a>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="justify-content: flex-start;">
+          <nz-form-label [nzSpan]="3" *ngIf="attachments.length < 1">{{
+            "upload.file" | translate
+            }}</nz-form-label>
+          <nz-form-control [nzSpan]="8" [nzOffset]="attachments.length > 0 ? 3 : 0">
+            <nz-upload
+              [(nzFileList)]="fileList"
+              [nzBeforeUpload]="beforeUploadFile"
+            >
+              <button nz-button><i nz-icon nzType="upload"></i>Select File</button>
+            </nz-upload>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item style="justify-content: flex-end;">
+          <nz-form-control class="create-button-container" [nzSpan]="8" nzOffset="3">
+            <button class="create-button" nz-button nzType="primary" (click)="submitForm()">
+              {{ "submit" | translate }}
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+
 </nz-spin>

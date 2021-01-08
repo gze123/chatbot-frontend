@@ -1,30 +1,36 @@
 <div>
-  <nz-table
-    nzSize="small"
-    nzBordered="true"
-    nzOuterBordered="true"
-    #basicTable
-    [nzData]="adminUser"
-    [nzLoading]="pageLoading">
-    <thead>
-    <tr>
-      <th>{{'full.name' | translate}}</th>
-      <th>{{'user.id' | translate}}</th>
-      <th>{{'staff.role' | translate}}</th>
-      <th>{{'action' | translate}}</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of basicTable.data">
-      <td>{{ data.fullname }}</td>
-      <td>{{ data.userId }}</td>
-      <td>{{ data.staffRole }}</td>
-      <td class="image-link">
-        <a style="color: red" (nzOnConfirm)="deleteUser(data._id)" nz-popconfirm
-           nzPopconfirmTitle="{{'sure.to.delete' | translate}}"> {{'delete' | translate}}
-        </a>
-      </td>
-    </tr>
-    </tbody>
-  </nz-table>
+  <div style="margin-bottom: 1vh">
+    <app-user-management-create></app-user-management-create>
+  </div>
+  <div>
+    <nz-table
+      nzSize="small"
+      nzBordered="true"
+      nzOuterBordered="true"
+      #basicTable
+      [nzData]="adminUser"
+      [nzLoading]="pageLoading">
+      <thead>
+      <tr>
+        <th>{{'full.name' | translate}}</th>
+        <th>{{'user.id' | translate}}</th>
+        <th>{{'staff.role' | translate}}</th>
+        <th>{{'action' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.fullname }}</td>
+        <td>{{ data.userId }}</td>
+        <td>{{ data.staffRole }}</td>
+        <td class="image-link">
+          <a style="color: red" (nzOnConfirm)="deleteUser(data._id)" nz-popconfirm
+             nzPopconfirmTitle="{{'sure.to.delete' | translate}}"> {{'delete' | translate}}
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+
 </div>

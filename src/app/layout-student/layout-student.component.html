@@ -6,10 +6,10 @@
     nzCollapsible
     nzWidth="256px">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
+      <a>
         <img alt="logo" src="https://ng.ant.design/assets/img/logo.svg">
-        <h1>Chatbot & Ticketing</h1>
       </a>
+      <h1>General Inquiry & Discussion</h1>
     </div>
     <div *ngIf="studentAccess">
       <ul [nzInlineCollapsed]="isCollapsed" nz-menu nzMode="inline" nzTheme="dark">
@@ -87,19 +87,6 @@
           <router-outlet></router-outlet>
         </nz-spin>
       </div>
-      <!--      <div *ngIf="_router.url !== '/home'">-->
-      <!--        <nz-affix-->
-      <!--          (click)="openChatbot()"-->
-      <!--          [nzOffsetBottom]="nzOffsetBottom"-->
-      <!--          style="-->
-      <!--          width: 786px;-->
-      <!--          height: 42px;"-->
-      <!--        >-->
-      <!--          <button nz-button nzShape="circle" nzSize="large" nzType="primary" style="float:right; left: 0;">-->
-      <!--            <i nz-icon nzType="message"></i>-->
-      <!--          </button>-->
-      <!--        </nz-affix>-->
-      <!--      </div>-->
     </nz-content>
   </nz-layout>
 

@@ -47,3 +47,17 @@ nz-form-label {
   min-width: 100px;
 }
 
+nz-form-item {
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.right-container {
+  display: flex;
+  justify-content: center;
+}

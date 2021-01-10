@@ -1,36 +1,50 @@
-<a (click)="showModal()" [nzType]="'link'" nz-button>{{'train' | translate}}</a>
+<a (click)="showModal()" [nzType]="'link'" nz-button>{{
+  "train" | translate
+}}</a>
 <nz-modal
   (nzOnOk)="closeModel()"
   [(nzVisible)]="isVisible"
   (nzOnCancel)="handleCancel()"
   nzClosable="false"
-  nzTitle="{{'Update Intent' | translate}}" nzWidth="650">
+  nzTitle="{{ 'Update Intent' | translate }}"
+  nzWidth="650"
+>
   <nz-spin [nzSpinning]="pageLoading">
     <form [formGroup]="chatbotIntentTrainForm" nz-form>
-
       <div nz-row>
         <div nz-col nzSpan="24">
           <div formArrayName="trainings">
-            <nz-form-item *ngFor="let training of trainings().controls; let i=index">
+            <nz-form-item
+              *ngFor="let training of trainings().controls; let i = index"
+            >
               <div [formGroupName]="i">
                 <nz-form-label [nzSpan]="5" *ngIf="i == 0">
-                  {{'training.phrases' | translate}}
+                  {{ "training.phrases" | translate }}
                 </nz-form-label>
-                <nz-form-control
-                  [nzSpan]="17"
-                  [nzOffset]="i == 0 ? 0 : 5">
+                <nz-form-control [nzSpan]="17" [nzOffset]="i == 0 ? 0 : 5">
                   <input
                     class="passenger-input"
                     nz-input
                     type="text"
-                    formControlName="training">
-                  <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeTraining(i)"></i>
+                    formControlName="training"
+                  />
+                  <i
+                    nz-icon
+                    nzType="minus-circle-o"
+                    class="dynamic-delete-button"
+                    (click)="removeTraining(i)"
+                  ></i>
                 </nz-form-control>
               </div>
             </nz-form-item>
             <nz-form-item>
               <nz-form-control [nzSpan]="17" [nzOffset]="5">
-                <button nz-button nzType="dashed" class="add-button" (click)="addTraining()">
+                <button
+                  nz-button
+                  nzType="dashed"
+                  class="add-button"
+                  (click)="addTraining()"
+                >
                   <i nz-icon nzType="plus"></i>
                   Add field
                 </button>
@@ -39,26 +53,37 @@
           </div>
 
           <div formArrayName="responses" *ngIf="intentType !== 'faqIntent'">
-            <nz-form-item *ngFor="let response of responses().controls; let i=index">
+            <nz-form-item
+              *ngFor="let response of responses().controls; let i = index"
+            >
               <div [formGroupName]="i">
                 <nz-form-label [nzSpan]="5" *ngIf="i == 0">
-                  {{'reply' | translate}}
+                  {{ "reply" | translate }}
                 </nz-form-label>
-                <nz-form-control
-                  [nzSpan]="17"
-                  [nzOffset]="i == 0 ? 0 : 5">
+                <nz-form-control [nzSpan]="17" [nzOffset]="i == 0 ? 0 : 5">
                   <input
                     class="passenger-input"
                     nz-input
                     type="text"
-                    formControlName="response">
-                  <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeResponse(i)"></i>
+                    formControlName="response"
+                  />
+                  <i
+                    nz-icon
+                    nzType="minus-circle-o"
+                    class="dynamic-delete-button"
+                    (click)="removeResponse(i)"
+                  ></i>
                 </nz-form-control>
               </div>
             </nz-form-item>
             <nz-form-item>
               <nz-form-control [nzSpan]="17" [nzOffset]="5">
-                <button nz-button nzType="dashed" class="add-button" (click)="addResponse()">
+                <button
+                  nz-button
+                  nzType="dashed"
+                  class="add-button"
+                  (click)="addResponse()"
+                >
                   <i nz-icon nzType="plus"></i>
                   Add field
                 </button>
@@ -67,34 +92,34 @@
           </div>
 
           <nz-form-item *ngIf="intentType == 'faqIntent'">
-            <nz-form-label [nzSpan]="5">{{'reply' | translate}}</nz-form-label>
-            <nz-form-control
-              [nzSpan]="17"
-              [nzOffset]="0"
-            >
+            <nz-form-label [nzSpan]="5">{{
+              "reply" | translate
+            }}</nz-form-label>
+            <nz-form-control [nzSpan]="17" [nzOffset]="0">
               <input
                 class="passenger-input"
                 nz-input
                 [disabled]="true"
                 [readonly]="true"
-                placeholder="{{response}}"
+                placeholder="{{ response }}"
               />
             </nz-form-control>
           </nz-form-item>
-
-          <nz-form-item style="display: flex; justify-content: flex-end;">
-            <nz-form-control class="create-button-container" [nzSpan]="8" [nzOffset]="5">
-              <button class="create-button" nz-button
-                      nzType="primary"
-                      [disabled]="!chatbotIntentTrainForm.valid"
-                      (click)="submitForm()">
-                {{'submit' | translate}}
+          <nz-form-item class="right">
+            <nz-form-control class="right-container">
+              <button
+                class="create-button"
+                nz-button
+                nzType="primary"
+                [disabled]="!chatbotIntentTrainForm.valid"
+                (click)="submitForm()"
+              >
+                {{ "submit" | translate }}
               </button>
             </nz-form-control>
           </nz-form-item>
         </div>
       </div>
-
     </form>
   </nz-spin>
 </nz-modal>

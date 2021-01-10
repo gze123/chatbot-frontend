@@ -32,4 +32,6 @@ export class ChatbotManagementComponent implements OnInit {
     });
   }
 
+  reloadData($event: any) {
+  }
 }

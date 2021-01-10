@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UploadFile} from 'ng-zorro-antd/upload';
 import {ChatbotManagementService} from '../../../services/chatbot-management.service';
@@ -9,7 +9,7 @@ import {NzMessageService} from 'ng-zorro-antd';
   templateUrl: './chatbot-update-intent.component.html',
   styleUrls: ['./chatbot-update-intent.component.css']
 })
-export class ChatbotUpdateIntentComponent implements OnInit {
+export class ChatbotUpdateIntentComponent implements OnInit, OnChanges {
 
   @Input()
   intentName: string;
@@ -32,7 +32,11 @@ export class ChatbotUpdateIntentComponent implements OnInit {
     private fb: FormBuilder,
     private chatbotManagementService: ChatbotManagementService,
     private msg: NzMessageService
-  ) { }
+  ) {
+  }
+
+  ngOnChanges(){
+  }
 
   ngOnInit(): void {
     this.chatbotIntentUpdateForm = this.fb.group({
@@ -72,6 +76,8 @@ export class ChatbotUpdateIntentComponent implements OnInit {
       formData.append('attachments', file);
     });
     this.chatbotManagementService.updateIntent(formData).subscribe(res => {
+      this.reloadTable.emit();
+      this.ngOnInit();
       this.pageLoading = false;
       this.msg.success('Intent updated successfully');
     }, error => {
@@ -85,7 +91,8 @@ export class ChatbotUpdateIntentComponent implements OnInit {
     const id = this.id;
     const deleteFile = {id, filePath};
     this.chatbotManagementService.deleteFileIntent(deleteFile).subscribe(res => {
-      this.attachments = this.attachments.filter(item => item !== filePath );
+      this.reloadTable.emit();
+      this.attachments = this.attachments.filter(item => item.filePath !== filePath);
       this.msg.success('File deleted successfully');
     }, err => {
     });
@@ -98,7 +105,7 @@ export class ChatbotUpdateIntentComponent implements OnInit {
   beforeUploadFile = (file: UploadFile): boolean => {
     this.attachmentList = this.attachmentList.concat(file);
     return false;
-  }
+  };
 
   handleCancel() {
     this.isVisible = false;

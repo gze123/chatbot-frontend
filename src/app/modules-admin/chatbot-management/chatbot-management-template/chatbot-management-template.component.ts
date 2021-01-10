@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ChatbotIntent, ChatbotIntentDelete} from '../../../models/chatbot.model';
 import {NzMessageService} from 'ng-zorro-antd';
@@ -17,6 +17,8 @@ export class ChatbotManagementTemplateComponent implements OnInit, OnChanges {
   intentType: string;
   @Input()
   chatbotIntentData: ChatbotIntent[];
+  @Output()
+  reloadTable = new EventEmitter();
   intents = ['faqIntent', 'lnfIntent', 'letterIntent'];
 
   constructor(
@@ -67,7 +69,7 @@ export class ChatbotManagementTemplateComponent implements OnInit, OnChanges {
   }
 
   reloadData($event: any) {
-    this.ngOnInit();
+    this.reloadTable.emit();
   }
 
   isGeneral() {

@@ -10,7 +10,7 @@
     <nz-spin [nzSpinning]="pageLoading">
       <nz-tabset>
         <nz-tab nzTitle="General">
-          <app-chatbot-general></app-chatbot-general>
+          <app-chatbot-general (reloadTable)="reloadData($event)"></app-chatbot-general>
         </nz-tab>
         <nz-tab nzTitle="FAQ">
           <ng-template nz-tab>

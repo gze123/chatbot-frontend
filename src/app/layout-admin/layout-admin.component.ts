@@ -40,7 +40,7 @@ export class LayoutAdminComponent implements OnInit {
     this.authService.logout().subscribe(res => {
       localStorage.clear();
       this.pageLoading = false;
-      this.router.navigate(['/auth/login']).then();
+      this.router.navigate(['/auth/login']).then(r => location.reload());
     }, error => {
       this.pageLoading = false;
     });

@@ -38,15 +38,7 @@ export class LoginFormComponent implements OnInit {
     this.authService.login(userLogin).subscribe(res => {
       const response: any = res;
       this.pageLoading = false;
-      localStorage.setItem('jwtToken', response.result.token);
-      localStorage.setItem('refreshToken', response.result.refreshToken);
-      localStorage.setItem('role', response.result.user.role);
-      localStorage.setItem('id', response.result.user._id);
-      localStorage.setItem('username', response.result.user.username);
-      localStorage.setItem('fullname', response.result.user.fullname);
-      localStorage.setItem('userId', response.result.user.userId);
-      localStorage.setItem('email', response.result.user.email);
-
+      this.authService.saveDetailsToLocalStorage(response);
       if (response.result.user.role === 'staff' || response.result.user.role === 'superadmin') {
         localStorage.setItem('staffRole', response.result.user.staffRole);
         this.router.navigate(['/admin/chatbot-management']).then(r => {

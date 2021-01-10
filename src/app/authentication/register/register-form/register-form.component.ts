@@ -40,12 +40,8 @@ export class RegisterFormComponent implements OnInit {
     };
     this.authService.register(user).subscribe(res => {
       const response: any = res;
-      console.log(res);
-      localStorage.setItem('jwtToken', response.result.token);
-      localStorage.setItem('username', response.result.user.username);
-      localStorage.setItem('role', response.result.user.role);
-      localStorage.setItem('id', response.result.user._id);
-      this.router.navigate(['/student/forum/title']).then(r => {
+      this.authService.saveDetailsToLocalStorage(response);
+      this.router.navigate(['/student/home']).then(r => {
       });
     }, error => {
       this.pageLoading = false;

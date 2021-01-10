@@ -111,7 +111,7 @@ export class ChatbotComponent implements OnInit {
       text,
       type: files.length ? 'file' : 'text',
       files,
-      sender: 'Bot',
+      sender: 'FSKTMBot',
       avatar: 'https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/robot-face.png',
       date: new Date()
     });

@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import Typewriter from 't-writer.js';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const target = document.querySelector('.tw');
+    const writer = new Typewriter(target, {
+      loop: false,
+      typeColor: 'white'
+    });
+
+    writer
+      .type('A website built for student\'s convenience')
+      .rest(500)
+      .start();
   }
 
   forgotPasswordVisible(event: any) {

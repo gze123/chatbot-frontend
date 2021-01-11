@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     });
 
     writer
-      .type('A website built for student\'s convenience')
+      .type('General Enquiry & Discussion Platform')
       .rest(500)
       .start();
   }

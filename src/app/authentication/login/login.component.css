@@ -4,22 +4,30 @@
 }
 
 h2 {
-  margin: 1em 0 0.5em 0;
-  color: #343434;
+  font-size: 120px;
+  font-family: "Stencil Std", fantasy !important;
+  margin: 0px;
+  color:  rgb(10, 124, 253);
   font-weight: 600;
   font-family: 'Ultra', sans-serif;
-  font-size: 36px;
-  line-height: 42px;
   text-transform: uppercase;
-  text-shadow: 0 2px white, 0 3px #777;
+  text-align: center;
+  text-shadow: 0 2px rgb(255, 255, 255), 0 3px rgb(255, 255, 255);
+}
+
+h4 {
+  font-size: 25px;
+  font-family: "Lucida Console", "Courier New", monospace;
+  text-transform: uppercase;
+  margin-bottom: 30px;
 }
 
 .tw {
-  justify-items: center;
-  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
-  background-color: black;
-  width: 280px;
+  background-color: rgb(10, 124, 253);
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }

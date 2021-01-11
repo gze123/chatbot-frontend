@@ -193,7 +193,6 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         this.forumService.deleteReply(_id).subscribe(
           (res) => {
             const response: any = res;
-            console.log(response);
             location.reload();
           },
           (error) => {
@@ -216,8 +215,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
 
   isEditable(id: string, editable: boolean) {
     return (
-      (
-        localStorage.getItem('id') == this.forumDetail.createdBy) && editable
+      (localStorage.getItem('id') == id) && editable
     );
   }
 

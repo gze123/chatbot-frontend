@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Comment, Forum } from '../../../models/forum.model';
-import { Subscription, zip } from 'rxjs';
-import { ForumCommentBoxComponent } from '../../../modules-admin/forum-admin/forum-manage/forum-comment-box/forum-comment-box.component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ForumService } from '../../../services/forum-service.service';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Comment, Forum} from '../../../models/forum.model';
+import {Subscription, zip} from 'rxjs';
+import {ForumCommentBoxComponent} from '../../../modules-admin/forum-admin/forum-manage/forum-comment-box/forum-comment-box.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ForumService} from '../../../services/forum-service.service';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {Location} from '@angular/common';
 
@@ -45,7 +45,8 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     private router: Router,
     private location: Location,
     private msg: NzMessageService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.pageLoading = true;
@@ -84,7 +85,8 @@ export class ForumManageComponent implements OnInit, OnDestroy {
             reply = response.result;
             x.reply = reply;
           },
-          (error) => {}
+          (error) => {
+          }
         );
     });
   }
@@ -109,7 +111,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
     this.forumService.addReplyToForum(commentCreateModel).subscribe(
       (res) => {
         const response: any = res;
-        console.log(response.result);
+        response.result.editable = true;
         this.commentData = [...this.commentData, response.result].map((e) => {
           return {
             ...e,
@@ -143,10 +145,12 @@ export class ForumManageComponent implements OnInit, OnDestroy {
             this.location.back();
             this.router.navigate(['/student/forum/title']).then();
           },
-          (error) => {}
+          (error) => {
+          }
         );
       },
-      nzOnCancel: (instance) => {},
+      nzOnCancel: (instance) => {
+      },
     });
   }
 
@@ -164,7 +168,6 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       title: this.forumDetail.title,
       description: this.forumDetail.description,
     };
-    console.log(editForumDetail);
     this.nzModalService.confirm({
       nzTitle: 'Are you sure to edit this forum title and description?',
       nzOnOk: () => {
@@ -173,10 +176,12 @@ export class ForumManageComponent implements OnInit, OnDestroy {
             console.log(res);
             this.showUpdate = false;
           },
-          (error) => {}
+          (error) => {
+          }
         );
       },
-      nzOnCancel: () => {},
+      nzOnCancel: () => {
+      },
     });
   }
 
@@ -191,10 +196,12 @@ export class ForumManageComponent implements OnInit, OnDestroy {
             console.log(response);
             location.reload();
           },
-          (error) => {}
+          (error) => {
+          }
         );
       },
-      nzOnCancel: (instance) => {},
+      nzOnCancel: (instance) => {
+      },
     });
   }
 
@@ -204,6 +211,13 @@ export class ForumManageComponent implements OnInit, OnDestroy {
       localStorage.getItem('id') == this.forumDetail.createdBy ||
       localStorage.getItem('id') == id ||
       editable
+    );
+  }
+
+  isEditable(id: string, editable: boolean) {
+    return (
+      (
+        localStorage.getItem('id') == this.forumDetail.createdBy) && editable
     );
   }
 
@@ -218,6 +232,7 @@ export class ForumManageComponent implements OnInit, OnDestroy {
         data: { ...item },
       };
     });
+    console.log(this.commentData);
   }
 
   saveComment(_id: any, content: string) {

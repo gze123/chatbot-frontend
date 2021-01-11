@@ -135,7 +135,7 @@
 
         <!--        <nz-comment-action><a (click)="replyTo(comment._id)">{{'reply.to' | translate}}</a></nz-comment-action>-->
         <nz-comment-content
-          *ngIf="isAdminOrAuthor(comment.createdBy, comment.editable)"
+          *ngIf="isEditable(comment.createdBy, comment.editable)"
         >
           <button
             (click)="editComment(comment._id)"

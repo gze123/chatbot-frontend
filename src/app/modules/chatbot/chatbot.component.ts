@@ -39,22 +39,8 @@ export class ChatbotComponent implements OnInit {
     this.cardLoading = true;
     const name = localStorage.getItem('username');
     this.addBotMessage('Hi ' + name + '. How can I help you? ');
-    zip(this.newsAndAnnouncementService.getNewsAndAnnouncement(), this.chatbotManagementService.getIntent()).subscribe(res => {
-      const response: any = res[0];
-      const intent: any = res[1];
-      if (response.result.total > 0) {
-        const latestNews = response.result.data.pop();
-        this.addBotMessage('Latest News and Announcement (' +
-          this.datePipe.transform(latestNews.createdAt, 'yyyy-MM-dd') +
-          '): ' +
-          latestNews.title);
-        if (latestNews.images.length > 0) {
-          const image = {responsePayload: {files: latestNews.images}};
-          this.addBotMessage(JSON.stringify(image));
-        }
-        this.addBotMessage('Link to view the news: ' +
-          'https://chatbot-and-ticketing-app.herokuapp.com/student/news-and-announcement/' + latestNews._id);
-      }
+    zip(this.chatbotManagementService.getIntent()).subscribe(res => {
+      const intent: any = res[0];
       this.chatbotIntentData = intent.result.data;
       this.chatbotIntentData = this.chatbotIntentData.filter(x => x.intentType !== 'faqIntent');
       this.cardLoading = false;

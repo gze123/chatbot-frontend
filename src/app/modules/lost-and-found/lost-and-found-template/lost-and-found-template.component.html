@@ -2,7 +2,6 @@
   <nz-card [nzBordered]="true" nzTitle="Search For Item" *ngIf="!filterData">
     <form
       style=" justify-content: center; display: flex;"
-      (ngSubmit)="search()"
       [formGroup]="lostAndFoundForm"
       [nzLayout]="'inline'"
       nz-form
@@ -30,7 +29,7 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-control>
-          <button class="search-button" nz-button nzType="primary">
+          <button  (click)="search()" class="search-button" nz-button nzType="primary">
             Search
           </button>
         </nz-form-control>
@@ -75,7 +74,7 @@
                     *ngIf="showDelete(data.createdBy)">
         </nz-divider>
         <a
-          style="color: red;" 
+          style="color: red;"
           *ngIf="showDelete(data.createdBy)"
            (nzOnConfirm)="deleteRow(data._id)"
            [nzType]="'link'"

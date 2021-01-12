@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {LostAndFound} from '../../../models/lost-and-found.model';
-import {NzModalService} from 'ng-zorro-antd';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LostAndFoundService} from '../../../services/lost-and-found-service.service';
 import {DatePipe} from '@angular/common';
@@ -26,7 +26,8 @@ export class LostAndFoundTemplateComponent implements OnInit {
     private modalService: NzModalService,
     private fb: FormBuilder,
     private lostAndFoundService: LostAndFoundService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private msg: NzMessageService
   ) {
   }
 
@@ -84,7 +85,7 @@ export class LostAndFoundTemplateComponent implements OnInit {
     this.lostAndFoundDisplayData = this.lostAndFoundDisplayData.filter(d => d._id !== id);
     this.lostAndFoundData = this.lostAndFoundData.filter(d => d._id !== id);
     this.lostAndFoundService.deleteLostAndFound(id).subscribe(res => {
-      console.log(res);
+      this.msg.success('Item deleted.');
     }, error => {
 
     });

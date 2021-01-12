@@ -39,12 +39,12 @@ export class NewsAnnouncementCreateComponent implements OnInit {
   beforeUploadFile = (file: UploadFile): boolean => {
     this.fileList = this.fileList.concat(file);
     return false;
-  }
+  };
 
   beforeUploadImage = (file: UploadFile): boolean => {
     this.imageList = this.imageList.concat(file);
     return false;
-  }
+  };
 
   submitForm(): void {
     this.pageLoading = true;
@@ -61,17 +61,23 @@ export class NewsAnnouncementCreateComponent implements OnInit {
     }
     formData.append('title', this.newsAnnouncementCreateForm.controls.title.value);
     formData.append('contents', this.newsAnnouncementCreateForm.controls.content.value);
-    this.imageList.forEach((file: any) => {
-      formData.append('images', file);
-    });
-    if (this.imageList.length === 0) {
-      formData.append('images', null);
+    const blod = new Blob();
+    if (this.imageList.length !== 0) {
+      this.imageList.forEach((file: any) => {
+        formData.append('images', file);
+      });
     }
-    this.fileList.forEach((file: any) => {
-      formData.append('attachments', file);
-    });
-    if(this.fileList.length === 0) {
-      formData.append('attachments', null);
+    else {
+      formData.append('images', blod);
+    }
+    if (this.fileList.length !== 0) {
+      this.fileList.forEach((file: any) => {
+        formData.append('attachments', file);
+      });
+    }
+    else {
+      const emp: any[] = [];
+      formData.append('attachments', blod);
     }
     this.newsAnnouncementService.addNewsAndAnnouncement(formData).subscribe(res => {
       this.pageLoading = false;

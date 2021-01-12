@@ -48,7 +48,7 @@ export class LostAndFoundAdminTemplateComponent implements OnInit {
   }
 
   search() {
-    const item = this.lostAndFoundForm.controls.item.value;
+    const search = this.lostAndFoundForm.controls.item.value;
     let minDate = '';
     let maxDate = '';
     const type = this.lostAndFoundType;
@@ -57,13 +57,12 @@ export class LostAndFoundAdminTemplateComponent implements OnInit {
       maxDate = this.datePipe.transform(new Date(this.lostAndFoundForm.controls.date.value[1]), 'yyyy/MM/dd');
     }
     const data = {
-      item, minDate, maxDate, type
+      search, minDate, maxDate, type
     };
     this.pageLoading = true;
     this.lostAndFoundService.getLostAndFound(data).subscribe(res => {
       const response: any = res;
       this.lostAndFoundDisplayData = response.result.data;
-      console.log(response.result);
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;

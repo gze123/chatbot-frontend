@@ -70,7 +70,6 @@ export class LostAndFoundTemplateComponent implements OnInit {
     this.lostAndFoundService.getLostAndFound(data).subscribe(res => {
       const response: any = res;
       this.lostAndFoundDisplayData = response.result.data;
-      console.log(response.result);
       this.pageLoading = false;
     }, error => {
       this.pageLoading = false;

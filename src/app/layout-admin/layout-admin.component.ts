@@ -9,7 +9,7 @@ import {AuthService} from '../services/auth.service';
   styleUrls: ['./layout-admin.component.css']
 })
 export class LayoutAdminComponent implements OnInit {
-  title = 'FinalYearProject-Frontend-Admin';
+  title: string;
   isCollapsed = false;
   nzOffsetBottom = 10;
   public _router: Router;
@@ -32,6 +32,9 @@ export class LayoutAdminComponent implements OnInit {
     this.username = localStorage.getItem('username');
     if (localStorage.getItem('role') === 'superadmin') {
       this.roleSuperadmin = true;
+      this.title = 'SUPERADMIN';
+    } else {
+      this.title = 'ADMIN';
     }
   }
 

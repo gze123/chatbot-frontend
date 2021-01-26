@@ -1,35 +1,71 @@
-<nz-page-header class="site-page-header" (nzBack)="back()" nzBackIcon nzTitle="Back">
+<nz-page-header
+  class="site-page-header"
+  (nzBack)="back()"
+  nzBackIcon
+  nzTitle="Back"
+>
 </nz-page-header>
 <nz-card-loading *ngIf="pageLoading"></nz-card-loading>
-<nz-carousel nzAutoPlay [nzEffect]="effect" style="margin-top:2vh; max-width: 81vw;">
+<nz-carousel
+  nzAutoPlay
+  [nzEffect]="effect"
+  style="margin-top: 2vh; max-width: 81vw"
+>
   <div nz-carousel-content *ngFor="let image of imageList">
-    <img [src]=image alt="" style="height:50vh;">
+    <img [src]="image" alt="" style="height: 50vh" />
   </div>
 </nz-carousel>
 <div *ngIf="!pageLoading">
-  <div class="title" nz-row>
-    <div nz-col nzSpan="12">
-      <h1>{{title}}</h1>
-    </div>
-    <div nz-col nzOffset="9" nzSpan="3" *ngIf="isAdminRole()">
-      <a  style="margin-right:1vw" nz-button nzType="text" [routerLink]="['/admin/news-and-announcement/edit',this.paramId]">Edit</a>
-      <button nz-button nzType="text" class="btn danger" nzDanger (click)="deleteNewsAndAnnouncement(this.paramId)">Delete</button>
+  <div class="title">
+    <h1>{{ title }}</h1>
+  </div>
+  <div
+    style="display: flex; flex-direction: row; align-items: center"
+    *ngIf="isAdminRole()"
+  >
+    {{ createdAt | date }}
+    <div style="flex: 1; display: flex; flex-direction: row; justify-content: flex-end;">
+      <div>
+        <a
+          style="
+            margin-right: 1vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+          nz-button
+          nzType="text"
+          [routerLink]="['/admin/news-and-announcement/edit', this.paramId]"
+          >Edit</a
+        >
+      </div>
+      <button
+        nz-button
+        nzType="text"
+        class="btn danger"
+        nzDanger
+        (click)="deleteNewsAndAnnouncement(this.paramId)"
+      >
+        Delete
+      </button>
     </div>
   </div>
-  {{createdAt | date}}
   <nz-divider></nz-divider>
-  <div [innerHTML]="contents">
-  </div>
+  <div [innerHTML]="contents"></div>
   <div *ngIf="attachments.length">
     <nz-divider nzOrientation="left" nzText="Attachments"></nz-divider>
     <div>
       <div *ngFor="let attachment of attachments">
-        <div style="margin-bottom: 1vh;">
-          <button class="attachment-link" (click)="goToLink(attachment.url)" nz-button ><i nz-icon nzType="link" nzTheme="outline"></i>
-            {{attachment.fileName}}
+        <div style="margin-bottom: 1vh">
+          <button
+            class="attachment-link"
+            (click)="goToLink(attachment.url)"
+            nz-button
+          >
+            <i nz-icon nzType="link" nzTheme="outline"></i>
+            {{ attachment.fileName }}
           </button>
         </div>
-
       </div>
     </div>
   </div>

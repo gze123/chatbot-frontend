@@ -50,3 +50,15 @@ img {
   align-items: center;
   justify-content: center;
 }
+
+button {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}
+
+a {
+  height: 40px;
+  border-radius: 5px;
+  min-width: 100px;
+}
